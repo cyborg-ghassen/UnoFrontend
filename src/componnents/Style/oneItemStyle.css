@@ -1,0 +1,155 @@
+.MMMMMMMMMMMMMMM{
+    width: 100%;
+}
+.AllTheItemDetail{
+    margin: auto;
+    margin-top: 100px;
+    width: 80%;
+
+    /* border: 1px solid black; */
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    justify-content: space-around;
+}
+.ENPROMO{
+    color: red;
+    font-size: 18px;
+    padding-left: 12px;
+
+
+}
+.AllTheItemDetail .theImg{
+    width: 40%;
+    height: 400px;
+    min-width: 320px;
+    /* border: 1px solid rgb(66, 13, 13); */
+    position: relative;
+    display: flex;
+    
+    position: relative;
+    overflow: hidden; /* Hide any overflow */
+    /* width: 250px; */
+    /* border: 2px solid black; */
+    /* height: 350px; */
+    /* border-radius: 30px; */
+    /* background-image: url('../banner/assetes/TokyoPic.jpg'); Replace with your image URL
+    background-repeat: no-repeat;
+    background-size: cover; /* Scale the background image to cover the entire element */
+    background-position: center center;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+}
+.AllTheItemDetail .theImg img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    z-index: 1;
+  /* object-fit: cover; */
+   /* Maintain the image's aspect ratio */
+  }
+
+.AllTheItemDetail .thedetail{
+    /* border: 1px solid black; */
+    /* min-width: 300px; */
+    /* width: 45%; */
+    font-family: sans-serif;
+    max-width: 500px;
+    
+}
+.AllTheItemDetail .thedetail .TheTxt{
+    font-weight: bold;
+    font-size: 25px;
+    /* padding: 10px 10px; */
+    
+    font-family: sans-serif;
+    /* padding-bottom:  3px; */
+    
+}
+.AllTheItemDetail .thedetail .TheName{
+    /* padding: 10px 10px; */
+    font-size: 23px;
+    /* font-weight: bold; */
+    padding-bottom:  10px;
+    font-family: sans-serif;
+    
+}
+.AllTheItemDetail .thedetail .Rating {
+    display: flex;
+    font-family: sans-serif;
+    align-items: center
+}
+.AllTheItemDetail .thedetail .Rating label{
+    padding-right:  5px;
+    /* width: 50px; */
+    /* height:  50px; */
+    font-family: sans-serif;
+}
+.AllTheItemDetail .thedetail .Price{
+    /* padding: 10px 10px; */
+    /* font-weight: bold; */
+    font-size: 18px;
+    padding-bottom:  15px;
+    padding-top:  15px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.374);
+    font-family: sans-serif;
+    padding-bottom: 20px;
+
+    
+}
+.AllTheItemDetail .thedetail .Price .Prix{
+    font-weight: bold;
+    color: rgb(104, 104, 104);
+    padding-bottom:  10px;
+    font-family: sans-serif;
+}
+.AllTheItemDetail .thedetail .Decprition{
+    padding: 10px 10px;
+    padding-left: 0px;
+    font-family: sans-serif;
+    color: rgb(118, 118, 118);
+    font-size: 15px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.374);
+    
+}
+.AllTheItemDetail .thedetail .Add{
+    padding-top: 20px;
+}
+.AllTheItemDetail .thedetail .Add input{
+    width: 40px;
+    height: 15px;
+    padding: 10px 10px;
+    border: 2px solid rgba(47, 95, 208);
+}
+.AllTheItemDetail .thedetail .Add button:hover{
+
+    background-color:  rgb(38, 78, 172);
+}
+    .AllTheItemDetail .thedetail .Add button{
+    background-color:  rgba(47, 95, 208);
+    margin-right: 10px;
+    margin-left: 20px;
+    color: rgb(255, 255, 255);
+    font-size: 15px;
+    padding: 10px 15px;
+    border: 0px;
+    border-radius: 5px;
+
+}
+.AA1{
+    font-size: 10px;
+    font-size: 15px;
+    
+}
+.AA2{
+    font-size: 12px;
+}
