@@ -8,9 +8,10 @@ import ProductMap from './componnents/ProductMap';
 import {TheItemRendring , AllthePage} from './componnents/OneItemToBy';
 import { Panier } from './componnents/Panier';
 import { LogIn } from './componnents/LogIn';
+import { useEffect } from 'react';
 
 function App() {
-
+	
   return (
     <div>
     <NavBar/>

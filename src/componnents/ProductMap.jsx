@@ -1,10 +1,14 @@
-import React from "react"
+import React, { useEffect } from "react"
 import "./Style/ProductMapStyle.css"
 import "./styling.css"
 import Judy from './assetes/Judy2.jpg';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import { Filltre } from "./filtre";
+// const { id } = useParams();
+
+  // Scroll to the top when the component mounts
+  
 const ProductMap=()=>{
     const items = [
         { id: 1, name: 'Air Freshener' ,describtion:"Judy Cleaner really cleans everything in the house", promo:0 },
@@ -24,6 +28,7 @@ const ProductMap=()=>{
     //   const checkPromo=(p)=>{
     //     return p!==0;
     //   }
+    
     return(<div className="Am">
         <div className="theImg"></div>
         <Filltre/>

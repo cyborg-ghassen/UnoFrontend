@@ -23,8 +23,8 @@ const Footer=()=>{
         </div>
         <div className="theTT">Buy Your cleaner Product</div>
         <div className="Linkss">
-            <a href="">Home</a>
-            <a href="">Products</a>
+            <a href="/Home">Home</a>
+            <a href="/Products">Products</a>
             <a href="">Our Magazine</a>
             <a href="">Admin Space</a>
         </div>

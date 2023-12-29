@@ -894,8 +894,15 @@ flex-direction: column;
     font-family: sans-serif;
     
 }
+.theFooter .Linkss a:hover{
+    color: rgb(204, 204, 204);
+}
 .theFooter .Linkss{
     /* border: 1px solid black; */
+    /* margin: auto; */
+    width: 100%;
+    /* border: 1px solid white; */
+    text-align: center;
     margin-top: 30px;
     
 }
