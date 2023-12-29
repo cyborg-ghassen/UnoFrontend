@@ -5,6 +5,11 @@ import cover2 from "./assetes/Cover2.jpg"
 import cover3 from "./assetes/Cover3.jpg"
 
 export const Filltre=()=>{
+    const ChackBoxs= ['Glass', 'Wood', 'Metal', 'Plastic', 'Ceramic','Leather',
+    'Fabric',
+    'Paper',
+    'Electronics',
+    'Organic',]
     return(
         <div className="Filltre">
             <div className="Title2">Find Your Product</div>
@@ -32,42 +37,15 @@ export const Filltre=()=>{
             <button className="AffectSerch">Find Products</button>
             </div>
             <div className="Index">
-                <div>
-                    <label >For Glass</label>
+                {ChackBoxs.map(item=>(
+
+                    <div>
+                    <label >{item}</label>
                     <input type="checkbox" />
                 </div>
-                <div>
-                    <label >For Glass</label>
-                    <input type="checkbox" />
-                </div>
-                <div>
-                    <label >For Glass</label>
-                    <input type="checkbox" />
-                </div>
-                <div>
-                    <label >For Glass</label>
-                    <input type="checkbox" />
-                </div>
-                <div>
-                    <label >For Glass</label>
-                    <input type="checkbox" />
-                </div>
-                <div>
-                    <label >For Glass</label>
-                    <input type="checkbox" />
-                </div>
-                <div>
-                    <label >For Glass</label>
-                    <input type="checkbox" />
-                </div>
-                <div>
-                    <label >For Glass</label>
-                    <input type="checkbox" />
-                </div>
-                <div>
-                    <label >For Glass</label>
-                    <input type="checkbox" />
-                </div>
+                    ))}
+                
+                
             </div>
         </div>
     )

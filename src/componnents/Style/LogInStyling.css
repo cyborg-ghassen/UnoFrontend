@@ -1,0 +1,160 @@
+.All{
+    width: 100%;
+    margin-top: 50px;
+    display: flex;
+    /* border: 1px solid black; */
+    height: 500px;
+    background-image: url('../assetes/clean_boutique_desk.jpg');
+    /* Make the background image cover the entire viewport */
+    background-size: cover;
+    /* Center the background image */
+    background-position: center;
+    /* Fix the background image while scrolling */
+    background-attachment: fixed;
+    /* margin-bottom: -20px; */
+}
+.All .Content{
+    /* border: 1px solid black; */
+    width: 350px;
+    background-color: rgba(255, 255, 255, 0.701);
+    box-shadow: 11px 11px 47px 0px rgba(235, 235, 235, 0.75);
+    height: 420px;
+    border-radius: 6px;
+    margin: auto;
+    /* margin-top: 10px; */
+    display: flex;
+    flex-direction: column; 
+align-items: center;
+    /* flex-direction: column; */
+    /* justify-content: center; */
+    /* justify-content: center; */
+    /* margin-top: -25px;    */
+}
+.All .Content .Tittre{
+    font-family: sans-serif;
+    font-size: 35px;
+    font-weight: bold;
+    color: rgb(38, 118, 188);
+/* margin: auto; */
+width: 100%;
+text-align: center;
+margin-bottom: 20px;
+
+}
+.All .Content .RR {
+    width: 100%;
+    /* text-align: center; */
+    display: flex;
+    
+    flex-direction: column;
+
+
+
+align-items: center;
+    margin-bottom: 20px;
+    /* margin: auto; */
+    
+}
+.All .Content .RR input{
+    width: 70%;
+    height: 30px;
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid rgb(38, 118, 188);
+    padding: 0px 10px;
+}
+.All .Content .LOG:hover{
+
+    background-color: rgb(29, 96, 154);
+}
+.All .Content .LOG{
+    background-color: rgb(38, 118, 188);
+    color: white;
+    font-family: sans-serif;
+    margin-bottom: 15px;
+    font-size: 16px;
+    border: 0px;
+    margin-top: 5px;
+    border-radius: 6px;
+    padding: 8px 50px;
+}
+.All .Content .RR div{
+    
+    font-family: sans-serif;
+    font-size: 15px;
+    margin-bottom: 5px;
+    color: rgba(71, 71, 71, 0.849);
+    /* font-weight: bold; */
+}
+.xx{
+    /* border-bottom: 1px solid rgba(72, 72, 72, 0.292); */
+    /* margin-top: 12px; */
+}
+.OOO button{
+    
+    margin: auto;
+}
+.OOO{
+    display: flex;
+}
+
+.All .Content .Alert{
+    color: white;
+    width: 100%;
+    text-align: center;
+    background-color: red;
+    font-family: sans-serif;
+    /* visibility: hidden; */
+    /* position: absolute; */
+
+}
+.All .Content .LogInWithGoogle{
+    padding-top: 10px;
+    border-top: 1px solid rgba(80, 80, 80, 0.244);
+}
+.All .Content .LogInWithGoogle .WWWWWWWWWW{
+    font-size: 14px;
+}
+.All .Content .LogInWithGoogle button{
+    display: flex;
+    background-color: transparent;
+    /* background-color: rgb(188, 38, 38); */
+    color: rgb(188, 38, 38) ;
+    font-family: sans-serif;
+    margin-bottom: 15px;
+    font-size: 16px;
+    border: 0px;
+    border: 1px solid rgb(188, 38, 38) ;
+    margin-top: 5px;
+    border-radius: 6px;
+    /* width: 150px; */
+    padding: 3px 10px;
+    border-radius: 10px;
+    justify-content: space-around;
+    align-items: center;
+}
+.All .Content .LogInWithGoogle button .GoogleSvg{
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    
+justify-content: center;
+    /* border: 1px solid white; */
+}
+.All .Content .LogInWithGoogle button .Name{
+    color: white;
+    color: rgb(188, 38, 38) ;
+
+}
+#m3:hover{
+
+    color: rgb(23, 74, 118);
+}
+#m3{
+    background-color: transparent;
+    color: rgb(29, 96, 154);
+    margin-bottom: -5px;
+    /* text-decoration: underline; */
+
+}

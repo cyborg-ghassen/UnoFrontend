@@ -2,23 +2,25 @@ import React from "react"
 import "./Style/ProductMapStyle.css"
 import "./styling.css"
 import Judy from './assetes/Judy2.jpg';
+import { Link } from 'react-router-dom';
 
 import { Filltre } from "./filtre";
 const ProductMap=()=>{
     const items = [
-        { id: 1, name: 'Air Freshener' , promo:0 },
-        { id: 2, name: 'Glass Cleaner' , promo:50},
-        { id: 3, name: 'Vinegar'  , promo:0},
-        { id: 3, name: 'Baking soda' , promo:0},
-        { id: 3, name: 'Biological detergent' , promo:20},
-        { id: 3, name: 'judy'  , promo:10},
-        { id: 3, name: 'judy' , promo:0},
-        { id: 3, name: 'judy' , promo:0},
-        { id: 3, name: 'judy' , promo:0},
-        { id: 3, name: 'judy' , promo:0},
-        { id: 3, name: 'judy' , promo:0},
-        { id: 3, name: 'judy' , promo:0},
+        { id: 1, name: 'Air Freshener' ,describtion:"Judy Cleaner really cleans everything in the house", promo:0 },
+        { id: 2, name: 'Glass Cleaner' ,describtion:"Judy Cleaner really cleans everything in the house", promo:50},
+        { id: 3, name: 'Vinegar'  ,describtion:"Judy Cleaner really cleans everything in the house", promo:0},
+        { id: 3, name: 'Baking soda' ,describtion:"Judy Cleaner really cleans everything in the house", promo:0},
+        { id: 3, name: 'Biological detergent' ,describtion:"Judy Cleaner really cleans everything in the house", promo:20},
+        { id: 3, name: 'judy'  ,describtion:"Judy Cleaner really cleans everything in the house", promo:10},
+        { id: 3, name: 'judy' ,describtion:"Judy Cleaner really cleans everything in the house", promo:0},
+        { id: 3, name: 'judy' ,describtion:"Judy Cleaner really cleans everything in the house", promo:0},
+        { id: 3, name: 'judy' ,describtion:"Judy Cleaner really cleans everything in the house", promo:0},
+        { id: 3, name: 'judy' ,describtion:"Judy Cleaner really cleans everything in the house", promo:0},
+        { id: 3, name: 'judy' ,describtion:"Judy Cleaner really cleans everything in the house", promo:0},
+        { id: 3, name: 'judy' ,describtion:"Judy Cleaner really cleans everything in the house", promo:0},
       ];
+      const pagination=[0,1,2,3,4]
     //   const checkPromo=(p)=>{
     //     return p!==0;
     //   }
@@ -48,18 +50,32 @@ const ProductMap=()=>{
                         }
 
                     </div>
-                    <div className="Name">judy</div>
-                    <div className="Name UU">Judy Cleaner really cleans everything in the house</div>
+                    <div className="Name">{item.name}</div>
+                    <div className="Name UU">{item.describtion}</div>
                     <div className="Price">
                         <div>Price:</div>
                         <div>20.000 dt</div>
                         {/* <!-- <div className="Promo">Promo <label for="" style="color: white;">-10%</label> </div> --> */}
                     </div>
+                    <Link to={"/Product/"+item.id}>
+
                 <button>Buy</button>
+                    </Link>
 
                 </div>
                 ))}
                 
+            </div>
+        </div>
+        <div className="Pagination">
+            <div className="TheButtons">
+
+            <button>{"<"}</button>
+            <button>{pagination[1]}</button>
+            <button>{pagination[2]}</button>
+            <button>{pagination[3 ]}</button>
+            {/* <button>3</button> */}
+            <button>{">"}</button>
             </div>
         </div>
     </div>

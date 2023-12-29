@@ -4,6 +4,7 @@ import Judy from './assetes/Judy2.jpg';
 import bannet1 from "./assetes/Bannet1.jpg";
 import Profile from "./assetes/profile.jpg";
 import {Filltre ,Covers} from "./filtre";
+import { Link } from "react-router-dom";
 // const bannet1="./assetes/Bannet1.jpg"
 
 export const Banner=()=>{
@@ -28,6 +29,8 @@ export const Banner=()=>{
     )
 }
 export const ForLogo=()=>{
+
+ 
     return(
         <div className="TheLO">
             <div className="AA"> 
@@ -114,6 +117,13 @@ export const ForLogo=()=>{
 export const ProductExepmle=(prop)=>{
     var per1=prop.per || ""
     console.log(prop.Per)
+    const itmes=[
+
+      { id: 1, name: 'Air Freshener' ,describtion:"Judy Cleaner really cleans everything in the house", promo:0 ,price:20},
+      { id: 2, name: 'Glass Cleaner' ,describtion:"Judy Cleaner really cleans everything in the house", promo:50 ,price:20},
+      { id: 3, name: 'Vinegar'  ,describtion:"Judy Cleaner really cleans everything in the house", promo:0 ,price:20},
+      { id: 3, name: 'Baking soda' ,describtion:"Judy Cleaner really cleans everything in the house", promo:0 ,price:20}
+     ]
     const Jugy="./assetes/Judy2.jpg"
     return(
         <div className="theProducts">
@@ -122,67 +132,37 @@ export const ProductExepmle=(prop)=>{
                 <a href="">{prop.Per.info}</a>
             </div>
             <div className="Products">
+              {itmes.map(item => 
+                // {{console.log("lsmslm")}}
                 <div className="TheCart">
                     <div className="ThePic">
                         <img src={Judy} alt=""/>
                         {/* <!-- <div className="offre">-10%</div> --> */}
-                        <div className="Promo">Promo <label for=""
-                        //  style="color: white;"
-                        >-10%</label> </div>
+                        {item.promo!=0 &&(
+
+                          <div className="Promo">Promo <label for=""
+                          //  style="color: white;"
+                          >-10%</label> </div>
+                          )
+                          
+                        }
 
                     </div>
-                    <div className="Name">judy</div>
-                    <div className="Name UU">Judy Cleaner really cleans everything in the house</div>
+                    <div className="Name">{item.name}</div>
+                    <div className="Name UU">{item.describtion}</div>
                     <div className="Price">
                         <div>Price:</div>
-                        <div>20.000 dt</div>
+                        <div>{item.price}.000 dt</div>
                         {/* <!-- <div className="Promo">Promo <label for="" style="color: white;">-10%</label> </div> --> */}
                     </div>
-                <button>Buy</button>
+                    <Link to={"/Product/"+item.id}>
 
-                </div>
-                <div className="TheCart">
-                    <div className="ThePic">
-                        <img src={Judy} alt=""/>
-                    </div>
-                    <div className="Name">judy</div>
-                    <div className="Name UU">Judy Cleaner really cleans everything in the house</div>
-                    <div className="Price">
-                        <div>Price:</div>
-                        <div>20.000 dt</div>
-                    </div>
-                <button>Buy</button>
-
-                </div>
-                <div className="TheCart">
-                    <div className="ThePic">
-                    <img src={Judy} alt=""/>
-
-                    </div>
-                    <div className="Name">judy</div>
-                    <div className="Name UU">Judy Cleaner really cleans everything in the house</div>
-                    <div className="Price">
-                        <div>Price:</div>
-                        <div>20.000 dt</div>
-                    </div>
-                <button>Buy</button>
-
-                </div>
-                    <div className="TheCart">
-                        <div className="ThePic">
-                        <img src={Judy} alt=""/>
-
-                        </div>
-                        <div className="Name">judy</div>
-                        <div className="Name UU">Judy Cleaner really cleans everything in the house</div>
-                        <div className="Price">
-                            <div>Price:</div>
-                            <div>20.000 dt</div>
-                        </div>
                     <button>Buy</button>
+                      </Link>
 
-                    </div>
-            </div>
+                </div>
+                )}
+                            </div>
         </div>
 
     )
@@ -263,6 +243,10 @@ export const NextFroCart=()=>{
 
 }
 export const LandingPage=()=>{
+  var dataPer1={
+    context:"Best Product",
+        info:"Store"
+  }
   var dataPer={
     context:"Daily Deal",
         info:"Store"
@@ -278,7 +262,8 @@ export const LandingPage=()=>{
         <ProductExepmle Per={dataPer} />
         <Covers/>
         <ForLogo/>
-        <NextFroCart/>
+        {/* <NextFroCart/> */}
+        <ProductExepmle Per={dataPer1} />
     {/* <!-- the Exepmle of the product /////////////////////////////////////////////////////////--> */}
     {/* <!-- the4 Covers //////////////////////////////////////--> */}
       
