@@ -1,3 +1,117 @@
+.Confirmation{
+    width: 50%;
+    min-width: 350px;
+    height: 500px ;
+    /* border: 1px solid black; */
+    margin: auto;
+    position: absolute;
+    position: fixed;
+    /* -left: 175px; */
+    left:   25%;
+    /* margin: auto; */
+    background-color: rgb(255, 255, 255);
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 11px 11px 40px 0px rgba(178, 178, 178, 0.75);
+    background-image: url('../assetes/CercleProduct.jpg');
+  background-size: cover; /* This ensures that the background image covers the entire container */
+  background-repeat: no-repeat;
+  background-position: center center;
+  border-radius: 20px;
+  top: 15%;
+    /* transform: translateX(100%); */
+    animation: slideIn 0.5s ;
+}
+@keyframes slideIn {
+    0% {
+        top: -100%;
+    }
+    100% {
+        top: 15%;
+      /* top: 50%; Adjust as needed for the final position */
+    }
+  }
+@media only screen and (max-width: 680px) {
+    .Confirmation{
+        left:   25%;
+        
+    }
+
+}
+@media only screen and (max-width: 449px) {
+    .Confirmation{
+        left:   5%;
+        
+    }
+
+}
+.Confirmation .TIO{
+    color: black;
+    font-size: 25px;
+    padding: 10px 10px;
+    font-weight: bold;
+    font-family: sans-serif;
+    
+    
+}
+.Confirmation .LALA{
+    padding: 10px 10px;
+    color: black;
+    font-family: sans-serif;
+    font-size: 17px;
+    font-weight: bold;
+}
+.Confirmation .THEB .A2:hover{
+
+    background-color: rgb(177, 40, 40);
+}
+.Confirmation .THEB .A1:hover{
+
+    background-color: rgb(177, 40, 40);
+}
+.Confirmation .THEB .A1{
+
+    background-color: rgb(208, 47, 47);
+    color: white;
+}
+.Confirmation .THEB .A2{
+    background-color: rgb(208, 47, 47);
+    color: white;
+
+}
+.Confirmation .THEB button:hover{
+    background-color: rgb(38, 78, 169);
+
+}
+.Confirmation .THEB button{
+    padding: 7px 15px;
+    font-weight: bold;
+    border: 0px;
+    border-radius: 5px;
+    background-color: rgba(47, 95, 208);
+    color: white;
+    margin-top:10px ;
+}
+.Confirmation .THEB{
+    padding: 10px 10px;
+    display: flex;
+    width: 200px;
+    justify-content: space-evenly;
+
+
+flex-wrap: wrap;
+}
+/* .Confirmation input{} */
+.Confirmation input{
+    width: 50%;
+    border-radius: 5px;
+    border: 2px solid rgba(47, 95, 208);
+    height: 20px;
+    padding: 10px 10px;
+}
+
 .ALLP{
     display: flex;
     background-image: url('../assetes/clean_boutique_desk.jpg');

@@ -1,10 +1,19 @@
-import React from "react";
+import React , { useState } from "react";
 import "./Style/oneItemStyle.css"
 import Judy from './assetes/Judy2.jpg';
 import { ProductExepmle } from "./landingPage";
 // import 
 
 export const TheItemRendring=()=>{
+    const [isPopupOpen, setPopupOpen] = useState(false);
+
+    const openPopup = () => {
+      setPopupOpen(true);
+    };
+  
+    const closePopup = () => {
+      setPopupOpen(false);
+    };
     var data={
         Slogon:"Unleash the Power of Cleanliness",
         Name:"Judy Clean",
@@ -19,6 +28,17 @@ export const TheItemRendring=()=>{
     const GrayStars = Array.from({ length: 5-data.Stars }, (_, index) => index);
     return(
         <div className="AllTheItemDetail">
+            {isPopupOpen && (
+
+                <div class="theConfirmation">
+        <div class="title">Add in the Panier</div>
+        <div class="text">Discover the exceptional cleaning experience with Judy Clean Products. Engineered with precision and designed for efficacy, our line of cleaning solutions redefines the standards of cleanliness in every home. From cutting-edge formulations to eco-friendly ingredients, Judy Clean Products offer a comprehensive solution for maintaining a pristine living environment.</div>
+        <div class="buttons">
+            <button onClick={closePopup}>Add</button>
+            <button class="OO2" onClick={closePopup}>Cancel</button>
+        </div>
+    </div>
+                )}
             <div className="theImg">
             <img src={Judy} alt=""/>
                 
@@ -65,7 +85,7 @@ export const TheItemRendring=()=>{
                 </div>
                 <div className="Add">
                     <input type="number" value={1} />
-                    <button>Add To Cart</button>
+                    <button onClick={openPopup}>Add To Cart</button>
                 </div>
                 <div className="Price AA2"><label htmlFor="" className="Prix AA1">Category:  </label> 
                 <label htmlFor="" className="AA2">

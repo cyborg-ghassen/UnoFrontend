@@ -1,3 +1,82 @@
+.theConfirmation{
+    width: 300px;
+    height: 250px;
+    /* border: 1px solid black; */
+    margin: auto;
+    box-shadow: 2px 2px 4px 0px rgba(178, 178, 178, 0.75);
+    margin: auto;
+    /* left: 50%; */
+    display: flex;
+    position: absolute;
+    z-index: 20;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 30px;
+    background-color: rgb(167, 201, 230);
+    animation: fadeIn 0.3s ease-in-out;
+    position: fixed;
+    top: 15%;
+    /* transform: translateX(100%); */
+    animation: slideIn 0.5s ;
+}
+@keyframes slideIn {
+    0% {
+        top: -100%;
+    }
+    100% {
+        top: 15%;
+      /* top: 50%; Adjust as needed for the final position */
+    }
+  }
+.theConfirmation .title{
+    font-family: sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+    color: rgb(65, 65, 65);
+
+}
+.theConfirmation .text{
+    font-family: sans-serif;
+    text-align: center;
+    color: rgb(65, 65, 65);
+    font-size: 13px;
+    width: 90%;
+    
+}
+.theConfirmation .buttons{
+    font-family: sans-serif;
+    text-align: center;
+    width: 90%;
+    
+    
+}
+.theConfirmation .buttons button:hover{
+
+    background-color: rgb(46, 79, 108);
+}
+.theConfirmation .buttons button{
+    font-size: 15px;
+    border-radius: 3px;
+    border: 0px solid rgb(65, 111, 151);
+    /* margin-left:5px ; */
+    /* margin-right:5px ; */
+    color: rgb(255, 255, 255);
+    font-family: sans-serif;
+    padding: 5px 15px;
+    background-color: rgb(65, 111, 151);
+    
+}
+    .theConfirmation .buttons  .OO2{
+        background-color: rgb(196, 38, 41);
+        
+    }
+    .theConfirmation .buttons  .OO2:hover{
+
+        background-color: rgb(152, 30, 32);
+    }
 .MMMMMMMMMMMMMMM{
     width: 100%;
 }
