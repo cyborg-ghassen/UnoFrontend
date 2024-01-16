@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
 import "./Style/oneItemStyle.css"
-import Judy from './assetes/Judy2.jpg';
 import {ProductExepmle} from "./landingPage";
 import {useParams} from "react-router-dom";
 import {api} from "../utils/api";
@@ -8,7 +7,15 @@ import {api} from "../utils/api";
 
 export const TheItemRendring = () => {
     const [isPopupOpen, setPopupOpen] = useState(false);
-    const [product, setProduct] = useState({})
+    const [product, setProduct] = useState({
+        Slogon: "Wait for loading",
+        Name: "Wait for loading",
+        Price: "Wait for loading",
+        promo: "Wait for loading",
+        Stars: 0,
+        Description: "Wait for loading",
+        Category: ["Wait for loading", "Wait for loading"]
+    })
 
     const {id} = useParams()
 
@@ -28,16 +35,6 @@ export const TheItemRendring = () => {
         getProduct().then(res => setProduct(res))
     }, []);
 
-    var data = {
-        Slogon: "Unleash the Power of Cleanliness",
-        Name: "Judy Clean",
-        Price: "20.000",
-        promo: 18,
-        Stars: 4,
-        Description: "Discover the exceptional cleaning experience with Judy Clean Products. Engineered with precision and designed for efficacy, our line of cleaning solutions redefines the standards of cleanliness in every home. From cutting-edge formulations to eco-friendly ingredients, Judy Clean Products offer a comprehensive solution for maintaining a pristine living environment.",
-        Category: ["Cat1", "Cat2"]
-
-    }
     const BlueStars = Array.from({length: product?.reviews}, (_, index) => index);
     const GrayStars = Array.from({length: 5 - product?.reviews}, (_, index) => index);
     return (
