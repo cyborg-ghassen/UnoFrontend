@@ -21,6 +21,7 @@ class Product(models.Model):
     reviews = models.IntegerField(default=0)
     slogan = models.CharField(max_length=100)
     stock = models.IntegerField(default=0)
+    promotion = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
