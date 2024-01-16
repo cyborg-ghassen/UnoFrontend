@@ -19,11 +19,11 @@ const ProductMap = () => {
     let query = useQuery();
 
     const getProducts = async (query) => {
-        return (await api.get(`/product/product/?${query.toString()}`)).data
+        return await api.get(`/product/product/?${query.toString()}`).then(res => setProducts(res?.data?.results))
     }
 
     useEffect(() => {
-        getProducts(query).then(res => setProducts(res?.results))
+        getProducts(query)
     }, []);
 
 
@@ -46,8 +46,11 @@ const ProductMap = () => {
     };
     const handleNavigation = (page) => {
         query.set('page', page.toString());
+
         const newSearch = query.toString();
-        navigate(newSearch);
+        navigate(`?${newSearch}`);
+        console.log(newSearch)
+        getProducts(query)
     };
 
     useEffect(() => {
@@ -89,7 +92,7 @@ const ProductMap = () => {
 
                             </div>
                             <div className="Name">{item?.name}</div>
-                            <div className="Name UU">{item?.description}</div>
+                            <div className="Name UU">{item?.slogan}</div>
                             <div className="Price">
                                 <div>Price:</div>
                                 <div>{item?.price} dt</div>

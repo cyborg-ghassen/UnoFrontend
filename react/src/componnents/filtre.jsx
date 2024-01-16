@@ -18,7 +18,7 @@ export const Filltre=({getProducts})=>{
         let price=''
         let text=''
         if (TextValue!=""){
-            text="&searsh="+TextValue
+            text="&search="+TextValue
         }
         if (CategoryValue!="Category"){
             category="&category="+CategoryValue
