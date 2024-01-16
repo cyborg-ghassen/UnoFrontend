@@ -15,8 +15,16 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from django.views.generic import RedirectView
 
 urlpatterns = [
+    path('', RedirectView.as_view(url='/admin/', permanent=False)),
     path('admin/', admin.site.urls),
+    path('api/v1/product/', include(('product.api.apiurls', 'product'), namespace='product-api')),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
+
+admin.site.site_header = "UNO Admin"
+admin.site.site_title = "UNO Admin Portal"
+admin.site.index_title = "Welcome to Uno Portal"
