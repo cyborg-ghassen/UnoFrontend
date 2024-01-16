@@ -21,7 +21,7 @@ export const PanierData=()=>{
       setPopupOpen(false);
     };
     const itemsToBy=[
-        { id: 1, name: 'Air Freshener' ,describtion:"Judy Cleaner really cleans ", promo:0 ,price:20,Quantity:8},
+        { id: 1, name: 'Air Freshener' ,describtion:"Judy Cleaner really cleans", promo:0 ,price:20,Quantity:8},
         { id: 1, name: 'Air Freshener' ,describtion:"Judy Cleaner really cleans", promo:0 ,price:20,Quantity:8},
         { id: 1, name: 'Air Freshener' ,describtion:"Judy Cleaner really cleans", promo:0 ,price:20,Quantity:8},
         { id: 1, name: 'Air Freshener' ,describtion:"Judy Cleaner really cleans", promo:0 ,price:20,Quantity:8},

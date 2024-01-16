@@ -1,8 +1,8 @@
-import React, { useEffect } from "react"
+import React, { useEffect ,useState } from "react"
 import "./Style/ProductMapStyle.css"
 import "./styling.css"
 import Judy from './assetes/Judy2.jpg';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams ,useNavigate , useLocation} from 'react-router-dom';
 
 import { Filltre } from "./filtre";
 // const { id } = useParams();
@@ -10,6 +10,10 @@ import { Filltre } from "./filtre";
   // Scroll to the top when the component mounts
   
 const ProductMap=()=>{
+    const [myList, setMyList] = useState([]);
+
+    const navigate = useNavigate();
+    const location = useLocation();
     const items = [
         { id: 1, name: 'Air Freshener' ,describtion:"Judy Cleaner really cleans everything in the house", promo:0 },
         { id: 2, name: 'Glass Cleaner' ,describtion:"Judy Cleaner really cleans everything in the house", promo:50},
@@ -24,7 +28,39 @@ const ProductMap=()=>{
         { id: 3, name: 'judy' ,describtion:"Judy Cleaner really cleans everything in the house", promo:0},
         { id: 3, name: 'judy' ,describtion:"Judy Cleaner really cleans everything in the house", promo:0},
       ];
-      const pagination=[0,1,2,3,4]
+    //   const pagination=[0,1,2,3,4]
+      const nbPage=10 
+    const Curent=1
+    var listPage=[]
+    var i
+    var k=1
+    const reglePagination = (win) => {
+        
+        if (win != 0 && listPage[listPage.length - 1] != nbPage) {
+            listPage=[]
+            for (let i = win + 1; i <= nbPage && k !== 4; i++) {
+            listPage.push(i);
+            k++;
+          }
+        }
+        setMyList([...listPage]);
+      };
+    const handleNavigation = (page) => {
+        const searchParams = new URLSearchParams(location.search);
+        searchParams.set('page', page.toString());
+        const newSearch = searchParams.toString();
+        const newUrl = location.pathname + '?' + newSearch;
+        navigate(newUrl);
+      };
+
+    useEffect(() => {
+        
+    
+        reglePagination(Curent)
+        
+      }, []);
+    console.log(listPage)
+    // console.log(i)
     //   const checkPromo=(p)=>{
     //     return p!==0;
     //   }
@@ -75,12 +111,17 @@ const ProductMap=()=>{
         <div className="Pagination">
             <div className="TheButtons">
 
-            <button>{"<"}</button>
-            <button>{pagination[1]}</button>
-            <button>{pagination[2]}</button>
-            <button>{pagination[3 ]}</button>
-            {/* <button>3</button> */}
-            <button>{">"}</button>
+            <button onClick={()=>{
+                reglePagination(Curent-1)
+            }}>{"<"}</button>
+            {myList.map(item=>(
+
+                    <button onClick={()=>{handleNavigation(item)}}>{item}</button>
+            ))
+        }
+            <button onClick={()=>{
+                reglePagination(Curent+1)
+            }}>{">"}</button>
             </div>
         </div>
     </div>
