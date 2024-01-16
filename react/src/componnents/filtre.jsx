@@ -4,6 +4,7 @@ import "./styling.css"
 import cover1 from "./assetes/Cover1.jpg"
 import cover2 from "./assetes/Cover2.jpg"
 import cover3 from "./assetes/Cover3.jpg"
+import useQuery from "../utils/useQuery";
 
 export const Filltre=({getProducts})=>{
     const [CategoryValue, setCategoryValue] = useState('Category');
@@ -32,6 +33,7 @@ export const Filltre=({getProducts})=>{
     }
     const navigate = useNavigate();
     const location = useLocation();
+    let query = useQuery();
     const handleButtonClick = () => {
         const querys=getQuerys()
         const currentUrl = location.pathname;
@@ -39,7 +41,9 @@ export const Filltre=({getProducts})=>{
         console.log(querys)
         // Navigate to another page
         navigate(currentUrl+querys);
-        getProducts(querys)
+        const newSearch = query.toString();
+        console.log(newSearch)
+        getProducts(newSearch)
       };
     const ChackBoxs= ['Glass', 'Wood', 'Metal', 'Plastic', 'Ceramic','Leather',
     'Fabric',

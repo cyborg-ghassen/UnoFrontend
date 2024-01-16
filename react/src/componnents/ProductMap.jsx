@@ -13,6 +13,7 @@ import {api} from "../utils/api";
 
 const ProductMap = () => {
     const [myList, setMyList] = useState([]);
+    const [products, setProducts] = useState([]);
 
     const navigate = useNavigate();
     let query = useQuery();
@@ -22,7 +23,7 @@ const ProductMap = () => {
     }
 
     useEffect(() => {
-        getProducts(query).then(res => setMyList(res?.results))
+        getProducts(query).then(res => setProducts(res?.results))
     }, []);
 
 
@@ -34,14 +35,14 @@ const ProductMap = () => {
     var k = 1
     const reglePagination = (win) => {
 
-        // if (win !== 0 && listPage[listPage.length - 1] !== nbPage) {
-        //     listPage = []
-        //     for (let i = win + 1; i <= nbPage && k !== 4; i++) {
-        //         listPage.push(i);
-        //         k++;
-        //     }
-        // }
-        // setMyList([...listPage]);
+        if (win !== 0 && listPage[listPage.length - 1] !== nbPage) {
+            listPage = []
+            for (let i = win + 1; i <= nbPage && k !== 4; i++) {
+                listPage.push(i);
+                k++;
+            }
+        }
+        setMyList([...listPage]);
     };
     const handleNavigation = (page) => {
         query.set('page', page.toString());
@@ -52,14 +53,14 @@ const ProductMap = () => {
     useEffect(() => {
 
 
-        // reglePagination(Curent)
+        reglePagination(Curent)
 
     }, []);
     console.log(listPage)
     // console.log(i)
-    //   const checkPromo=(p)=>{
-    //     return p!==0;
-    //   }
+      const checkPromo=(p)=>{
+        return p!==0;
+      }
 
     return (<div className="Am">
             <div className="theImg"></div>
@@ -70,14 +71,14 @@ const ProductMap = () => {
                     <a href="">In Uno</a>
                 </div>
                 <div className="Products">
-                    {myList?.map(item => (
+                    {products?.map(item => (
                         // <li key={item.id}>{item.name}</li>
                         <div className="TheCart">
                             <div className="ThePic">
                                 <img src={Judy} alt=""/>
                                 {/* <!-- <div className="offre">-10%</div> --> */}
                                 {/* {checkPromo(item.promo) &&( */}
-                                {item?.promotion != 0 && (
+                                {item?.promotion !== 0 && (
 
 
                                     <div className="Promo">Promo <label for=""
@@ -110,13 +111,13 @@ const ProductMap = () => {
                     <button onClick={() => {
                         reglePagination(Curent - 1)
                     }}>{"<"}</button>
-                    {/*{myList?.map(item => (*/}
+                    {myList?.map(item => (
 
-                    {/*    <button onClick={() => {*/}
-                    {/*        handleNavigation(item)*/}
-                    {/*    }}>{item}</button>*/}
-                    {/*))*/}
-                    {/*}*/}
+                        <button onClick={() => {
+                            handleNavigation(item)
+                        }}>{item}</button>
+                    ))
+                    }
                     <button onClick={() => {
                         reglePagination(Curent + 1)
                     }}>{">"}</button>
