@@ -5,7 +5,7 @@ import cover1 from "./assetes/Cover1.jpg"
 import cover2 from "./assetes/Cover2.jpg"
 import cover3 from "./assetes/Cover3.jpg"
 
-export const Filltre=()=>{
+export const Filltre=({getProducts})=>{
     const [CategoryValue, setCategoryValue] = useState('Category');
     const [MarqueValue, setMarqueValue] = useState('Marque');
     const [PriceValue, setPriceValue] = useState('Price');
@@ -39,6 +39,7 @@ export const Filltre=()=>{
         console.log(querys)
         // Navigate to another page
         navigate(currentUrl+querys);
+        getProducts(querys)
       };
     const ChackBoxs= ['Glass', 'Wood', 'Metal', 'Plastic', 'Ceramic','Leather',
     'Fabric',
