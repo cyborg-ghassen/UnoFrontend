@@ -3,6 +3,7 @@ import "./Style/oneItemStyle.css"
 import {ProductExepmle} from "./landingPage";
 import {useParams} from "react-router-dom";
 import {api} from "../utils/api";
+import axios from "axios";
 // import 
 
 export const TheItemRendring = () => {
@@ -19,12 +20,33 @@ export const TheItemRendring = () => {
         setPopupOpen(false);
     };
 
-    const getProduct = async () => {
-        return (await api.get(`/product/product/${id}/`)).data
-    }
+    // const getProduct = async () => {
+    //     return (await api.get(`/product/product/${id}/`)).data
+    // }
+    const getProductbyId=()=>
+    {
+        return new Promise(async(resolve,reject)=>{
+        
+            try{
 
+                var data=await api.get(`/product/product/${id}/`)
+                console.log(data)
+                if (data.status!=200){
+                    reject("something Going wrong")
+
+                }
+                resolve(data.data)
+            }catch{
+                reject("can not fetsh data")
+                
+            }
+            
+        })
+    }
     useEffect(() => {
-        getProduct().then(res => setProduct(res))
+        getProductbyId().then(res => setProduct(res)).catch((e)=>{
+            // redirect for a 404 page
+        })
     }, []);
 
     const BlueStars = Array.from({length: product?.reviews}, (_, index) => index);
