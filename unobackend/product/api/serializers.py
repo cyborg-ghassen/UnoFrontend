@@ -10,6 +10,11 @@ class CategorySerializer(serializers.ModelSerializer):
 
 
 class ProductSerializer(serializers.ModelSerializer):
+    category_names = serializers.SerializerMethodField()
+
     class Meta:
         model = Product
         fields = '__all__'
+
+    def get_category_names(self, obj):
+        return [cat.name for cat in obj.category.all()]
