@@ -7,15 +7,7 @@ import {api} from "../utils/api";
 
 export const TheItemRendring = () => {
     const [isPopupOpen, setPopupOpen] = useState(false);
-    const [product, setProduct] = useState({
-        Slogon: "Wait for loading",
-        Name: "Wait for loading",
-        Price: "Wait for loading",
-        promo: "Wait for loading",
-        Stars: 0,
-        Description: "Wait for loading",
-        Category: ["Wait for loading", "Wait for loading"]
-    })
+    const [product, setProduct] = useState({})
 
     const {id} = useParams()
 
