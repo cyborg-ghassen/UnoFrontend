@@ -12,6 +12,8 @@
     /* Fix the background image while scrolling */
     background-attachment: fixed;
     /* margin-bottom: -20px; */
+    margin-bottom: -20px;
+
 }
 .All .Content{
     /* border: 1px solid black; */

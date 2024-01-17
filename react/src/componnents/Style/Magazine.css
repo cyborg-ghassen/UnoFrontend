@@ -1,0 +1,96 @@
+.Allz{
+    margin-top: 50px;
+    width: 100%;
+    background-color: aliceblue;
+    margin-bottom: -30px;
+}
+.Allz .Cadre121{
+    margin: auto;
+    padding: 40px 0px;
+    width: 70%;
+    display: flex;
+    min-width: 350px;
+    
+    flex-wrap: wrap;
+    
+    justify-content: space-between;
+    
+    
+}
+
+.Allz .Cadre121 .Text555{
+    height: 350px;
+    
+    flex-direction: column;
+}
+.Allz .Cadre121 .Text555 .Title{
+    font-size: 25px;
+    width: 100%;
+    font-family: sans-serif;
+    
+    font-weight: bold;
+    
+    color: rgb(65, 111, 151);
+    
+    
+}
+.Allz .Cadre121 .Text555 .Paraghe{
+    margin-top: 50px;
+    font-family: sans-serif;
+    padding:  20px 6px;
+    border-left: 1px solid rgb(74, 74, 74);
+    color: rgb(142, 142, 142);
+    font-size: 18px;
+    min-width: 250px;
+}
+.Allz .Cadre121 .ThePhoto1{
+
+    background-image: url('../assetes/CollectionProduct.jpg');
+    width: 350px;
+    height:  350px;
+    border-radius: 30px;
+    /* border: 1px solid black; */
+    box-shadow: 11px 11px 47px 0px rgba(178, 178, 178, 0.75);
+    /* background-image: url('../assetes/clean_boutique_desk.jpg'); */
+    /* Make the background image cover the entire viewport */
+    background-size: cover;
+    /* Center the background image */
+    background-position: center;
+    
+}
+.Allz .Cadre121 .ThePhoto{
+    width: 350px;
+    height:  350px;
+    border-radius: 30px;
+    /* border: 1px solid black; */
+    box-shadow: 11px 11px 47px 0px rgba(178, 178, 178, 0.75);
+    background-image: url('../assetes/clean_boutique_desk.jpg');
+    /* Make the background image cover the entire viewport */
+    background-size: cover;
+    /* Center the background image */
+    background-position: center;
+    /* Fix the background image while scrolling */
+    /* background-attachment: fixed; */
+}
+    
+
+@media screen and (max-width: 1073px) {
+    .Allz .Cadre121{
+        justify-content: center;
+    }
+.Allz .Cadre121 .ThePhoto{
+margin-top: 60px;
+}
+}
+.All{
+
+    height: 550px;
+}
+.Content{
+    /* height: none; */
+    /* border: 1px solid black; */
+}
+#PPPPPPPPPPPPPPO{
+    height: 500px;
+
+}

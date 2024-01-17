@@ -66,7 +66,7 @@ export const LogIn=()=>{
                 </div>
                 <a className="Alert">Your password is incorrect</a>
                 <div className="OOO xx">
-                    <button id="m3" className="LOG">Create an account</button>
+                    <a id="m3" href="/register" className="LOG">Create an account</a>
                     {/* <button className="LOG">Log in</button> */}
                 </div>
                 <div className="LogInWithGoogle RR">

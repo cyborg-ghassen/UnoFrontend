@@ -12,6 +12,8 @@ import { useEffect } from 'react';
 import { PageNotFound } from './componnents/PageNotFount';
 import { Provider } from 'react-redux';
 import {storeAuth} from './reduxStores.js/AuthStore.js';
+import { Magazine } from './componnents/Magazine.jsx';
+import { Register } from './componnents/Register.jsx';
 
 function App() {
 	
@@ -27,6 +29,9 @@ function App() {
         		<Route path="/Product/:id" element={<AllthePage />} />
         		<Route path="/Panier" element={<Panier />} />
         		<Route path="/LogIn" element={<LogIn />} />
+        		<Route path="/OurMagazine" element={<Magazine />} />
+        		<Route path="/register" element={<Register />} />
+				
         		<Route path="*" element={<PageNotFound />} />
         		{/* <Route path="/about" element={<Banner />} /> */}
       		</Routes>

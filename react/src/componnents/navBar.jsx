@@ -63,7 +63,7 @@ const NavBar1=()=>{
 
       		    <a href="/home">Home</a>
                 <a href="/Products">Products</a>
-                <a href="">Our Magazine</a>
+                <a href="/OurMagazine">Our Magazine</a>
       		    {/* <Link to="/home">Home</Link> */}
                 {/* <Link to="/Products">Products</Link> */}
                 {/* <Link to={""}>Our Magazine</Link> */}
@@ -74,8 +74,8 @@ const NavBar1=()=>{
 
             {!authOrNot && (
                 <label htmlFor="">
-                <a className="Lin" href="">Log In</a>
-                <a className="Sup" href="">Sign Up</a>
+                <a className="Lin" href="/LogIn">Log In</a>
+                <a className="Sup" href="/register">Sign Up</a>
                 </label>
             )}
             {authOrNot && (
