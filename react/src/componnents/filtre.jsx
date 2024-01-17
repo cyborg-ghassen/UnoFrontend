@@ -1,4 +1,4 @@
-import React , { useState }from "react";
+import React , { useEffect , useState }from "react";
 import  {useNavigate , useLocation}  from 'react-router-dom';
 import "./styling.css"
 import cover1 from "./assetes/Cover1.jpg"
@@ -24,7 +24,7 @@ export const Filltre=({getProducts})=>{
             category="&category="+CategoryValue
         }
         if (MarqueValue!="Marque"){
-                marque="&Marque="+MarqueValue
+            marque="&Marque="+MarqueValue
         }
         if (PriceValue!="Price"){
             price="&Price="+PriceValue
@@ -34,16 +34,64 @@ export const Filltre=({getProducts})=>{
     const navigate = useNavigate();
     const location = useLocation();
     let query = useQuery();
+    const regleFilltre=()=>{
+
+        // let queryVal=getQuerys()
+        
+
+
+    }
+useEffect(() => {
+
+    regleFilltre()
+    const params = new URLSearchParams(location.search);
+        if  (params.has("Marque")){
+            // console.log('000000000000000000000000000000')
+            setMarqueValue(params.get("Marque"))
+        }
+        if  (params.has("category")){
+            // console.log('000000000000000000000000000000')
+            setCategoryValue(params.get("category"))
+        }
+        if  (params.has("Price")){
+            // console.log('000000000000000000000000000000')
+            setPriceValue(params.get("Price"))
+        }
+        if  (params.has("search")){
+            // console.log('000000000000000000000000000000')
+            setTextValue(params.get("search"))
+        }
+    
+        // console.log("slmlsm 45545454"+CategoryValue+ TextValue +PriceValue +MarqueValue)
+
+    }, []);
+
+
+
     const handleButtonClick = () => {
         const querys=getQuerys()
+        
         const currentUrl = location.pathname;
-        console.log(currentUrl)
-        console.log(querys)
+        // console.log(currentUrl)
+        // console.log(querys)
         // Navigate to another page
         navigate(currentUrl+querys);
+        window.location.href = currentUrl+querys;
+        regleFilltre()  
         const newSearch = query.toString();
-        console.log(newSearch)
-        getProducts(newSearch)
+        // console.log(newSearch)
+        try{
+
+            getProducts(newSearch).then(()=>{
+
+            }).catch(()=>{
+
+                console.log("there is no product fetshed")
+            })
+                }catch(e){
+            console.log("there is no product fetshed12")
+
+        }
       };
     const ChackBoxs= ['Glass', 'Wood', 'Metal', 'Plastic', 'Ceramic','Leather',
     'Fabric',
@@ -62,7 +110,7 @@ export const Filltre=({getProducts})=>{
                 <option value="3">Three</option>
             </select>
             <select value={MarqueValue} onChange={(event)=>{setMarqueValue(event.target.value)}} className="Selection" aria-label="Default select example">
-                <option selected value="Marquee">Marquee</option>
+                <option selected value="Marque">Marque</option>
                 <option value="1">One</option>
                 <option value="2">Two</option>
                 <option value="3">Three</option>

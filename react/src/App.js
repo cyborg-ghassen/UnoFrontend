@@ -9,6 +9,7 @@ import {TheItemRendring , AllthePage} from './componnents/OneItemToBy';
 import { Panier } from './componnents/Panier';
 import { LogIn } from './componnents/LogIn';
 import { useEffect } from 'react';
+import { PageNotFound } from './componnents/PageNotFount';
 
 function App() {
 	
@@ -23,6 +24,7 @@ function App() {
         		<Route path="/Product/:id" element={<AllthePage />} />
         		<Route path="/Panier" element={<Panier />} />
         		<Route path="/LogIn" element={<LogIn />} />
+        		<Route path="*" element={<PageNotFound />} />
         		{/* <Route path="/about" element={<Banner />} /> */}
       		</Routes>
    	 </Router>

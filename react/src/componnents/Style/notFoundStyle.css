@@ -1,0 +1,23 @@
+.all {
+    margin-top: 80px;
+    width: 100%;
+    height: 450px;
+    /* display: flex; */
+}
+.all div{
+    text-align: center;
+}
+.all .all1{
+    margin: auto;
+    width: 100%;
+}
+.all .all1 .a404{
+    font-size: 200px;
+    color: rgb(65, 111, 151);
+    font-weight: bold;
+}
+.all .all1 .pnf{
+    font-size: 20px;
+    color: rgb(175, 175, 175)
+
+}
