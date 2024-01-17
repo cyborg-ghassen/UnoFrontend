@@ -21,11 +21,14 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import RedirectView
+from rest_framework_simplejwt.views import TokenObtainSlidingView, TokenRefreshSlidingView
 
 urlpatterns = [
     path('', RedirectView.as_view(url='/admin/', permanent=False)),
     path('admin/', admin.site.urls),
     path('api/v1/product/', include(('product.api.apiurls', 'product'), namespace='product-api')),
+    path('api/v1/token/', TokenObtainSlidingView.as_view(), name='token_obtain'),
+    path('api/v1/token/refresh/', TokenRefreshSlidingView.as_view(), name='token_refresh'),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
 
