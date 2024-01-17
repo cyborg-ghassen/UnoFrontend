@@ -10,11 +10,14 @@ import { Panier } from './componnents/Panier';
 import { LogIn } from './componnents/LogIn';
 import { useEffect } from 'react';
 import { PageNotFound } from './componnents/PageNotFount';
+import { Provider } from 'react-redux';
+import {storeAuth} from './reduxStores.js/AuthStore.js';
 
 function App() {
 	
   return (
     <div>
+<Provider store={storeAuth}>
     <NavBar/>
     {/* <Link to={}>a</Link> */}
     <Router>
@@ -29,6 +32,7 @@ function App() {
       		</Routes>
    	 </Router>
     <Footer/>
+  </Provider>
     </div>
     
     );

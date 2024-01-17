@@ -1,12 +1,52 @@
 import React, { useState } from "react";
+import { api } from "../utils/api";
+import {useDispatch} from "react-redux"
+import { setTrue } from "../reduxStores.js/authSlice";
 import "./Style/LogInStyling.css"
 export const LogIn=()=>{
+    const dispatch=useDispatch()
     const [username,setusername] =useState("")
     const [password,setPassword] =useState("")
-    const checkInputs=()=>{
-        console.log(username)
-        console.log(password)
+    const getToken=()=>{
+        return new Promise(async(resolve, reject) => {
+            
+            var data=await api.post('/token/',{username:username,password:password})
+            .catch((e)=>{
+                reject(e.response.data.detail)
+            })
+            // console.log("this is the data "+data)
+            if (data){
+                console.log(data.data.detail)
+                if (data.status!=200 ){
+                    reject(data.data.detail)
+                }
+                if (data.data.token==null){
+                    reject(data.data.detail)
+                }else{
+                    resolve(data.data.token)
+                }
+            }else{
+                reject("something want wrong")
+
+            }
+        })
     }
+    const checkInputs=()=>{
+        // console.log(username)
+        // console.log(password)
+        getToken().then((token)=>{
+            dispatch(setTrue())
+            console.log("we set the ture value")
+            // var token
+            localStorage.setItem('Token', token);
+
+        }).catch((msg)=>{
+            console.log(msg)
+            //handle an alert for the user
+        })
+        
+    }
+    
     return(
         <div className="All">
             <div className="Content">
