@@ -3,13 +3,21 @@ from rest_framework import viewsets, filters
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 from .filters import ProductFilter
-from .serializers import CategorySerializer, ProductSerializer
+from .serializers import CategorySerializer, ProductSerializer, BrandSerializer
 from product.models import Category, Product
+
+from ..models import Brand
 
 
 class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.order_by('-id')
     serializer_class = CategorySerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
+
+
+class BrandViewSet(viewsets.ModelViewSet):
+    queryset = Brand.objects.order_by('-id')
+    serializer_class = BrandSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
 
 

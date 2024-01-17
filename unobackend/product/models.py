@@ -12,10 +12,21 @@ class Category(models.Model):
         return self.name
 
 
+class Brand(models.Model):
+    name = models.CharField(max_length=100)
+
+    class Meta:
+        verbose_name_plural = "Brands"
+
+    def __str__(self):
+        return self.name
+
+
 class Product(models.Model):
     name = models.CharField(max_length=100)
     price = models.DecimalField(max_digits=7, decimal_places=3)
     category = models.ManyToManyField(Category)
+    brand = models.ForeignKey(Brand, on_delete=models.SET_NULL, null=True)
     description = models.TextField()
     image = models.ImageField(upload_to='products')
     reviews = models.IntegerField(default=0)
