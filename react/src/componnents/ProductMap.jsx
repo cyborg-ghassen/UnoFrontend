@@ -24,7 +24,9 @@ const ProductMap = () => {
     let query = useQuery();
 
     const getProducts = async (query) => {
-        return await api.get(`/product/product/?${query.toString()}`).then(res => {setProducts(res?.data?.results)}).catch(()=>{
+        return await api.get(`/product/product/?${query.toString()}`).then(res => {
+            // console.log(res.data.results)
+            setProducts(res?.data?.results)}).catch(()=>{
             console.log("there is no product fitshed1.3")
         })
     }
@@ -105,7 +107,7 @@ const ProductMap = () => {
                         // <li key={item.id}>{item.name}</li>
                         <div className="TheCart">
                             <div className="ThePic">
-                                <img src={Judy} alt=""/>
+                                <img src={item.image} alt=""/>
                                 {/* <!-- <div className="offre">-10%</div> --> */}
                                 {/* {checkPromo(item.promo) &&( */}
                                 {item?.promotion !== 0 && (

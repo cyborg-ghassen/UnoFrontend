@@ -14,6 +14,7 @@ import { Provider } from 'react-redux';
 import {storeAuth} from './reduxStores.js/AuthStore.js';
 import { Magazine } from './componnents/Magazine.jsx';
 import { Register } from './componnents/Register.jsx';
+import { Myrouters } from './componnents/routres.jsx';
 
 function App() {
 	
@@ -22,20 +23,8 @@ function App() {
 <Provider store={storeAuth}>
     <NavBar/>
     {/* <Link to={}>a</Link> */}
-    <Router>
-      		<Routes>
-        		<Route path="/home" element={<LandingPage />} />
-        		<Route path="/Products" element={<ProductMap />} />
-        		<Route path="/Product/:id" element={<AllthePage />} />
-        		<Route path="/Panier" element={<Panier />} />
-        		<Route path="/LogIn" element={<LogIn />} />
-        		<Route path="/OurMagazine" element={<Magazine />} />
-        		<Route path="/register" element={<Register />} />
-				
-        		<Route path="*" element={<PageNotFound />} />
-        		{/* <Route path="/about" element={<Banner />} /> */}
-      		</Routes>
-   	 </Router>
+    
+    <Myrouters/>
     <Footer/>
   </Provider>
     </div>

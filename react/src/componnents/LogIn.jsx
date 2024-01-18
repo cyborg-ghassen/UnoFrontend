@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { api } from "../utils/api";
 import {useDispatch} from "react-redux"
+import { useNavigate } from "react-router-dom";
 import { setTrue } from "../reduxStores.js/authSlice";
 import "./Style/LogInStyling.css"
 export const LogIn=()=>{
+    const navigate=useNavigate()
     const dispatch=useDispatch()
+    const [LogInAlert,setLogInAlert] =useState("")
     const [username,setusername] =useState("")
     const [password,setPassword] =useState("")
     const getToken=()=>{
@@ -13,6 +16,7 @@ export const LogIn=()=>{
             var data=await api.post('/token/',{username:username,password:password})
             .catch((e)=>{
                 reject(e.response.data.detail)
+                // setLogInAlert
             })
             // console.log("this is the data "+data)
             if (data){
@@ -39,9 +43,11 @@ export const LogIn=()=>{
             console.log("we set the ture value")
             // var token
             localStorage.setItem('Token', token);
+            navigate("/home")
 
         }).catch((msg)=>{
             console.log(msg)
+            setLogInAlert(msg)
             //handle an alert for the user
         })
         
@@ -64,9 +70,17 @@ export const LogIn=()=>{
                     <button className="LOG" onClick={checkInputs} >Log in</button>
                     {/* <button className="LOG">Log in</button> */}
                 </div>
-                <a className="Alert">Your password is incorrect</a>
+                {LogInAlert!="" && 
+                  <a className="Alert">
+                    <label htmlFor="">
+                    {LogInAlert}
+                    </label>
+                    </a>
+                } 
                 <div className="OOO xx">
-                    <a id="m3" href="/register" className="LOG">Create an account</a>
+                    <a id="m3" href="/register" className="LOG">
+                         Create an account
+                        </a>
                     {/* <button className="LOG">Log in</button> */}
                 </div>
                 <div className="LogInWithGoogle RR">

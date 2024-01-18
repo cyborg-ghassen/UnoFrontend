@@ -1,14 +1,20 @@
 import React, {useEffect, useState} from "react";
 import "./Style/oneItemStyle.css"
 import {ProductExepmle} from "./landingPage";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {api} from "../utils/api";
-import axios from "axios";
+import { useDispatch,useSelector } from "react-redux";
+import { setNewItemToBasket } from "../reduxStores.js/authSlice";
+// import axios from "axios";
 // import 
 
 export const TheItemRendring = () => {
+    const navigate=useNavigate();
+    const dispatch=useDispatch();
+    const AuthenticatedOrNot=useSelector((state)=>state.Auth.value)
     const [isPopupOpen, setPopupOpen] = useState(false);
     const [product, setProduct] = useState({})
+    const [Quantity, setQuantity] = useState(1)
 
     const {id} = useParams()
 
@@ -18,6 +24,10 @@ export const TheItemRendring = () => {
 
     const closePopup = () => {
         setPopupOpen(false);
+    };
+    const setToBacket = () => {
+        dispatch(setNewItemToBasket({id:parseInt(id),Quantity:parseInt(Quantity)}))
+        closePopup()
     };
 
     // const getProduct = async () => {
@@ -29,16 +39,27 @@ export const TheItemRendring = () => {
         
             try{
 
-                var data=await api.get(`/product/product/${id}/`)
+                var data=await api.get(`/product/product/${id}/`).catch((e)=>{
+                console.log(e)
+                   
+                    if (e.response.status==404){
+                        navigate("/PageNotFound")
+                    }
+                })
                 console.log(data)
                 if (data.status!=200){
                     reject("something Going wrong")
-
+                    
                 }
                 resolve(data.data)
-            }catch{
+            }catch(e){
+                // console.log(e)
+                // if (e.status==404){
+                //     navigate("/*")
+                // }
+
                 reject("can not fetsh data")
-                
+                /// redirect to 404
             }
             
         })
@@ -63,7 +84,7 @@ export const TheItemRendring = () => {
                         Clean Products offer a comprehensive solution for maintaining a pristine living environment.
                     </div>
                     <div class="buttons">
-                        <button onClick={closePopup}>Add</button>
+                        <button onClick={setToBacket} >Add</button>
                         <button class="OO2" onClick={closePopup}>Cancel</button>
                     </div>
                 </div>
@@ -120,8 +141,19 @@ export const TheItemRendring = () => {
                     {product?.description}
                 </div>
                 <div className="Add">
-                    <input type="number" name={"quantity"} value={1}/>
-                    <button onClick={openPopup}>Add To Cart</button>
+                    <input type="number" name={"quantity"} value={Quantity} onChange={(event)=>setQuantity(event.target.value)}/>
+                    <button onClick={()=>{
+                        if (AuthenticatedOrNot){
+                            openPopup()
+                        }else{
+                            navigate("/LogIn")
+                        }
+                    }}>Add To Cart</button>
+                    {!AuthenticatedOrNot && 
+                    <div className="LPLPLPMM">  
+                    <a className="LPLPLPMM" href="/LogIn">You have to authenticate to continue you shopping.</a>
+                    </div>
+                    }
                 </div>
                 <div className="Price AA2"><label htmlFor="" className="Prix AA1">Category: </label>
                     <label htmlFor="" className="AA2">

@@ -1077,3 +1077,67 @@ a{
     padding: 5px 5px;
 
 }
+
+.thyt{
+    font-weight: bold;
+    font-size: 25px;
+    font-family: sans-serif;
+
+}
+.propUpForMobile{
+
+    visibility: hidden;
+    position: fixed;
+    top: 0px;
+    background-color: aliceblue;
+    width: 100%;
+    height: 670px;
+
+}
+.propUpForMobile .Links66 a{
+
+    color: rgb(96, 96, 96);
+}
+.propUpForMobile .Links66{
+    margin-top: 40px;
+    width: 100%;
+    height: 300px;
+    /* font-size: 20px; */
+    border-bottom: 1px solid rgb(137, 137, 137);
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+justify-content: space-evenly;
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 20px;
+    /* border: 1px solid black; */
+    font-weight: bold;
+    font-family: sans-serif;
+    
+}
+.propUpForMobile .Links67 a{
+    color: rgb(69, 69, 69);
+    
+}
+.propUpForMobile .Links67 .p9{
+    margin-bottom: 20px;
+    color: rgb(65, 111, 151);
+}
+.propUpForMobile .Links67{
+    margin-top: 20px;
+    width: 100%;
+    /* height: 300px; */
+    /* font-size: 20px; */
+    /* border-bottom: 1px solid rgb(96, 96, 96); */
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 21px;
+    /* border: 1px solid black; */
+    font-weight: bold;
+    font-family: sans-serif;
+}

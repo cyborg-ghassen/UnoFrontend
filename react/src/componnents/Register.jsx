@@ -7,7 +7,34 @@ export const Register=()=>{
     const [password,setPassword] =useState("")
     const [Email,setEmail] =useState("")
     const [ConfPassword,setConfPassword] =useState("")
+    const [Alert,setAlert] =useState("")
     const checkInputs=()=>{
+        if (username.length=="" || password=="" || ConfPassword==""){
+
+            setAlert("You should complete the form.")
+            return 0
+        }
+        if (username.length<5){
+            setAlert("Username must have more than 5 characters.")
+            return 0
+        }
+        if (Email.length!=0){
+            // if the email not exist
+            if (false){
+                setAlert("Email not Found.")
+                return 0
+            }
+        }
+        if (password.length<5){
+            setAlert("Password must have more than 5 characters.")
+            return 0
+        }
+        if (password!=ConfPassword){
+            setAlert("Password Confirmation is incorrect")
+            return 0
+        }
+        // send a request to register the new client
+        // redirect to logIn Page
 
     }
     return (
@@ -36,7 +63,13 @@ export const Register=()=>{
                     <button className="LOG" onClick={checkInputs} >Create Account</button>
                     {/* <button className="LOG">Log in</button> */}
                 </div>
-                <a  className="Alert">Your password is incorrect</a>
+
+                {Alert!="" &&
+
+                    <a  className="Alert">{Alert}</a>
+                }
+                
+                
                 <div className="OOO xx">
                     <a id="m3" href="/LogIn" className="LOG">Go to login page</a>
                     {/* <button className="LOG">Log in</button> */}
