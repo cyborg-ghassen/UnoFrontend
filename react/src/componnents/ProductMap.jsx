@@ -2,8 +2,7 @@ import React, {useEffect, useState} from "react"
 // import { useLocation } from 'react-router-dom';
 import "./Style/ProductMapStyle.css"
 import "./styling.css"
-import Judy from './assetes/Judy2.jpg';
-import {Link, useParams, useNavigate, useLocation} from 'react-router-dom';
+import {Link, useNavigate, useLocation} from 'react-router-dom';
 
 import {Filltre} from "./filtre";
 import useQuery from "../utils/useQuery";
@@ -16,7 +15,7 @@ const ProductMap = () => {
     const [myList, setMyList] = useState([1,2,3]);
     // const [Curent, setCurentProducts] = useState(1);
     const [products, setProducts] = useState([]);
-    const [nbPage, setnbPage] = useState(10);
+    const [nbPage] = useState(10);
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
 
@@ -33,6 +32,7 @@ const ProductMap = () => {
     
     useEffect(() => {
         getProducts(query)
+        // eslint-disable-next-line
     }, []);
     // setCurentProducts(parseInt(queryParams.get('page')))
 
@@ -46,10 +46,10 @@ const ProductMap = () => {
     // var k = 1
     const reglePagination = (win) => {
         console.log("slmslm "+win)
-        if (win+3<=nbPage && win!=0){
+        if (win+3<=nbPage && win!==0){
             listPage=[]
            let  k=1
-            for (let i = win; (i <= nbPage) && (k != 4); i++) {
+            for (let i = win; (i <= nbPage) && (k !== 4); i++) {
                 listPage.push(i);
                 // console.log(listPage)
                 k++;
@@ -59,7 +59,7 @@ const ProductMap = () => {
         }else if(win+3>=nbPage){
             listPage=[]
            let  k=1
-            for (let i = nbPage; (i > 0) && (k != 4); i--) {
+            for (let i = nbPage; (i > 0) && (k !== 4); i--) {
                 listPage.unshift(i);
                 // console.log(listPage)
                 k++;
@@ -82,16 +82,11 @@ const ProductMap = () => {
     };
 
     useEffect(() => {
-
-
-        
         reglePagination(Curent+1)
+        // eslint-disable-next-line
     }, []);
     // console.log(myList)
     // console.log(i)
-      const checkPromo=(p)=>{
-        return p!==0;
-      }
 
     return (<div className="Am">
             <div className="theImg"></div>
@@ -99,10 +94,10 @@ const ProductMap = () => {
             <div className="theProducts">
                 <div className="theTitle">
                     <div className="klem">Daily Deals</div>
-                    <a href="">In Uno</a>
+                    <a href="#!">In Uno</a>
                 </div>
                 <div className="Products">
-                {products?.length==0 && <p>There is no product</p>}
+                {products?.length===0 && <p>There is no product</p>}
                     {products?.map(item => (
                         // <li key={item.id}>{item.name}</li>
                         <div className="TheCart">

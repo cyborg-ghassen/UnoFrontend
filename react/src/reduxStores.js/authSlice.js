@@ -1,9 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit'
-
-const Auth = {
-  value: false,
-}
-
 export const authSlice = createSlice({
   name: 'Auth',
   initialState:{
@@ -45,7 +40,7 @@ export const authSlice = createSlice({
     },
     updateQuatity:(state,action)=>{
       // state.basket=state.basket.filter(item => item.id !== action.payload.id);
-      var  i=state.basket.findIndex(item => item.id == action.payload.id)
+      var  i=state.basket.findIndex(item => item.id === action.payload.id)
       state.basket[i].quantity=action.payload.quantity;
     }
 

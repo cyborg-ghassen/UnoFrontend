@@ -38,11 +38,11 @@ export const PanierData=()=>{
       setPopupOpen(true);
     };
     // to fetsh the product selected
-    const getProductSelected=()=>{
-        return new Promise((resolve,reject)=>{
-
-        })
-    }
+    // const getProductSelected=()=>{
+    //     return new Promise((resolve,reject)=>{
+    //
+    //     })
+    // }
     const validateEmail=(email)=> {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
@@ -129,11 +129,11 @@ export const PanierData=()=>{
                 <input type="text"  value={PhoneNumber} onChange={(event)=>{setPhoneNumber(event.target.value)}}/>
                 <div className="LALA">Remark:</div>
                 <input type="text"value={Remark} onChange={(event)=>setRemark(event.target.value)} />
-                {Alert!="" &&
+                {Alert!=="" &&
 
                 <div className="LALA1">{Alert}</div>
                 }
-                {AlertSucces!="" &&
+                {AlertSucces!=="" &&
 
                 <div className="LALA2">{AlertSucces}</div>
                 }
@@ -159,10 +159,10 @@ export const PanierData=()=>{
 
                 </div>
             </div> */}
-            {bas.length==0 && (
+            {bas.length===0 && (
                 <div className="thyt">There is no product selected.</div> 
                 )}
-            {bas.length!=0 && (
+            {bas.length!==0 && (
 
             itemsToBy.map(item => (  
                 
@@ -209,7 +209,7 @@ export const PanierData=()=>{
                 <div className="PRIE">800.000dt</div>
                 <div className="LL"> 
                     <button onClick={()=>{
-                        if(bas.length!=0){
+                        if(bas.length!==0){
                             openPopup()
                         }
                         }}> confirm</button>

@@ -1,5 +1,5 @@
 import React from "react";
-import {  BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import {  BrowserRouter as Router } from 'react-router-dom';
 // import "./assetes/uno logo.png" 
 import { useSelector } from 'react-redux';
 import logo from "./assetes/uno logo.png" 
