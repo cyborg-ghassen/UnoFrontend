@@ -21,7 +21,7 @@ export const LogIn=()=>{
             // console.log("this is the data "+data)
             if (data){
                 console.log(data.data.detail)
-                if (data.status!=200 ){
+                if (data.status!==200 ){
                     reject(data.data.detail)
                 }
                 if (data.data.token==null){
@@ -70,8 +70,8 @@ export const LogIn=()=>{
                     <button className="LOG" onClick={checkInputs} >Log in</button>
                     {/* <button className="LOG">Log in</button> */}
                 </div>
-                {LogInAlert!="" && 
-                  <a className="Alert">
+                {LogInAlert!=="" &&
+                  <a className="Alert" href={"#!"}>
                     <label htmlFor="">
                     {LogInAlert}
                     </label>

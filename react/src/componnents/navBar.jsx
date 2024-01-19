@@ -1,5 +1,10 @@
+// <<<<<<< HEAD
 import React, { useState } from "react";
 import {  BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+// =======
+// import React from "react";
+// import {  BrowserRouter as Router } from 'react-router-dom';
+// >>>>>>> c014548f0b5cacf04c1bdca5f351077d724097ff
 // import "./assetes/uno logo.png" 
 import { useSelector } from 'react-redux';
 import logo from "./assetes/uno logo.png" 

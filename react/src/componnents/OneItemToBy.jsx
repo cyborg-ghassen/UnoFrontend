@@ -42,12 +42,12 @@ export const TheItemRendring = () => {
                 var data=await api.get(`/product/product/${id}/`).catch((e)=>{
                 console.log(e)
                    
-                    if (e.response.status==404){
+                    if (e.response.status===404){
                         navigate("/PageNotFound")
                     }
                 })
                 console.log(data)
-                if (data.status!=200){
+                if (data.status!==200){
                     reject("something Going wrong")
                     
                 }
@@ -68,6 +68,7 @@ export const TheItemRendring = () => {
         getProductbyId().then(res => setProduct(res)).catch((e)=>{
             // redirect for a 404 page
         })
+        // eslint-disable-next-line
     }, []);
 
     const BlueStars = Array.from({length: product?.reviews}, (_, index) => index);

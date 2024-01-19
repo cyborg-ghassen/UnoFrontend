@@ -9,7 +9,7 @@ export const Register=()=>{
     const [ConfPassword,setConfPassword] =useState("")
     const [Alert,setAlert] =useState("")
     const checkInputs=()=>{
-        if (username.length=="" || password=="" || ConfPassword==""){
+        if (username.length==="" || password==="" || ConfPassword===""){
 
             setAlert("You should complete the form.")
             return 0
@@ -18,7 +18,7 @@ export const Register=()=>{
             setAlert("Username must have more than 5 characters.")
             return 0
         }
-        if (Email.length!=0){
+        if (Email.length!==0){
             // if the email not exist
             if (false){
                 setAlert("Email not Found.")
@@ -29,7 +29,7 @@ export const Register=()=>{
             setAlert("Password must have more than 5 characters.")
             return 0
         }
-        if (password!=ConfPassword){
+        if (password!==ConfPassword){
             setAlert("Password Confirmation is incorrect")
             return 0
         }
@@ -64,9 +64,9 @@ export const Register=()=>{
                     {/* <button className="LOG">Log in</button> */}
                 </div>
 
-                {Alert!="" &&
+                {Alert!=="" &&
 
-                    <a  className="Alert">{Alert}</a>
+                    <a  className="Alert" href={"#!"}>{Alert}</a>
                 }
                 
                 

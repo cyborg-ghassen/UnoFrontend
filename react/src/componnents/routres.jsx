@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import {LandingPage} from './landingPage';
 import ProductMap from './ProductMap';
-import {TheItemRendring , AllthePage} from './OneItemToBy';
+import {AllthePage} from './OneItemToBy';
 import { Panier } from './Panier';
 import { LogIn } from './LogIn';
 // import { useEffect } from 'react';
