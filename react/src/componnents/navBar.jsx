@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {  BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 // import "./assetes/uno logo.png" 
 import { useSelector } from 'react-redux';
@@ -7,6 +7,11 @@ import logo from "./assetes/uno logo.png"
 
 import "./styling.css"
 const NavBar=()=>{
+    const [theLinks,setTheLinks]=useState(false)
+    const toggleState=()=>{
+        // console.log("in the toggle")
+                setTheLinks(!theLinks)
+    }
     const authOrNot = useSelector((state) => state.Auth.value);
     const bas = useSelector((state) => state.Auth.basket);
     // console.log(bas)
@@ -19,7 +24,9 @@ const NavBar=()=>{
     return(
 
         <div className="NAVNAV">
-            <div className="propUpForMobile">
+            {theLinks &&(
+
+                <div className="propUpForMobile">
                 <div className="Links66">
 
                 <a href="/Home">Home</a>
@@ -42,13 +49,24 @@ const NavBar=()=>{
                 
                 } 
             </div>
+            )}
         <div className="NN">
             <div className="MObile">
         <div className="Object1">
 
             
-        <div className="DA33">
-            <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#267676"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 6H20M4 12H20M4 18H20" stroke="#000000rgb(38, 118, 188)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>   
+        <div className="DA33" onClick={()=>{
+            toggleState()}}>
+                <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+      <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+      <g id="SVGRepo_iconCarrier">
+        <path d="M4 6H20M4 12H20M4 18H20" stroke="#416f97" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+      </g>
+    </svg>
+
+
+            {/* <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#267676"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 6H20M4 12H20M4 18H20" stroke="#000000rgb(38, 118, 188)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>    */}
 </div>
 <div className="LOGO">
 
@@ -84,6 +102,8 @@ const NavBar1=(props)=>{
         <div className="navbar">
         <div className="TheLogo">
             <div className="DA3">
+            
+
                 <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#267676"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 6H20M4 12H20M4 18H20" stroke="#000000rgb(38, 118, 188)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>   
             </div>
             <div className="LOGO"></div>

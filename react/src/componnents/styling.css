@@ -1086,14 +1086,30 @@ a{
 }
 .propUpForMobile{
 
-    visibility: hidden;
+    /* visibility: hidden; */
     position: fixed;
-    top: 0px;
+    /* top: 0px; */
     background-color: aliceblue;
     width: 100%;
     height: 670px;
+    /* top: 50px; */
+    /* animation: fadeIn 0.3s ease-in-out; */
+
+    animation: aa 0.5s ;
+    left:  0%;
+
 
 }
+@keyframes aa {
+    0% {
+       left: -500px;
+    }
+    100% {
+        left: 0px;
+        /* top: 100%; */
+      /* top: 50%; Adjust as needed for the final position */
+    }
+  }
 .propUpForMobile .Links66 a{
 
     color: rgb(96, 96, 96);

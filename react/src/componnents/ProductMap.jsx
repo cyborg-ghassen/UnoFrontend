@@ -129,7 +129,7 @@ const ProductMap = () => {
                             </div>
                             <Link to={"/Product/" + item?.id}>
 
-                                <button>Buy</button>
+                                <button >Buy</button>
                             </Link>
 
                         </div>
