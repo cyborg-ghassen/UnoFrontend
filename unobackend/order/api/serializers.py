@@ -43,3 +43,19 @@ class OrderSerializer(serializers.ModelSerializer):
             OrderItem.objects.create(order=order, **item)
 
         return order
+
+    def update(self, instance, validated_data):
+        items = validated_data.pop("items", None)
+
+        for attr, value in validated_data.items():
+            setattr(instance, attr, value)
+        instance.save()
+
+        if items:
+            OrderItem.objects.filter(coli=instance).delete()
+
+            for product in items:
+                OrderItem.objects.create(coli=instance, **product)
+
+        return instance
+
