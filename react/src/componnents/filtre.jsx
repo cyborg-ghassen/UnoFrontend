@@ -54,6 +54,7 @@ export const Filltre = ({getProducts}) => {
         for (const key in filterData) {
             if (filterData[key])
                 query.set(key, filterData[key])
+            else query.delete(key)
         }
     }, [filterData]);
 
@@ -83,7 +84,7 @@ export const Filltre = ({getProducts}) => {
                 </select>
                 <select value={filterData.price__lt} name={"price__lt"} onChange={({target}) => onSelectChange(target)}
                         className="Selection" aria-label="Default select example">
-                    <option selected value="Price">Price</option>
+                    <option selected value="">Price</option>
                     <option value="20">{"< 20"}</option>
                     <option value="50">{"< 50"}</option>
                     <option value="80">{"< 80"}</option>
