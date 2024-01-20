@@ -17,6 +17,7 @@ class BrandSerializer(serializers.ModelSerializer):
 
 class ProductSerializer(serializers.ModelSerializer):
     category_names = serializers.SerializerMethodField()
+    image_url = serializers.SerializerMethodField()
 
     class Meta:
         model = Product
@@ -24,3 +25,6 @@ class ProductSerializer(serializers.ModelSerializer):
 
     def get_category_names(self, obj):
         return [cat.name for cat in obj.category.all()]
+
+    def get_image_url(self, obj):
+        return obj.image_url
