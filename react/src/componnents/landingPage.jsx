@@ -1,13 +1,15 @@
 import React from "react";
 import "./styling.css"
+
 import Judy from './assetes/Judy2.jpg';
 import bannet1 from "./assetes/Bannet1.jpg";
 import Profile from "./assetes/profile.jpg";
 import {Filltre ,Covers} from "./filtre";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // const bannet1="./assetes/Bannet1.jpg"
 
 export const Banner=()=>{
+  const navigate =useNavigate()
     return(
         
         <div className="theLeanding">
@@ -19,8 +21,8 @@ export const Banner=()=>{
                      {/* <!-- Simplify your cleaning routine with our cutting-edge tools and accessories. Whether you're a professional or a home enthusiast, discover the key to a sparkling space. Shop now for a cleaner, fresher lifestyle! --> */}
                     </div>
                 <div className="Buttons">
-                    <button>Store</button>
-                    <button>About Us</button>
+                    <button onClick={()=>navigate("/Products?page1")}>Store</button>
+                    <button onClick={ ()=> navigate("/OurMagazine") }>About Us</button>
                 </div>
 
             </div>

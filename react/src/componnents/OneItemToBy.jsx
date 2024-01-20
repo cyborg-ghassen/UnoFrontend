@@ -171,6 +171,9 @@ export const TheItemRendring = () => {
 }
 export const AllthePage = () => {
     console.log("slmslmslmslm")
+      useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
     const dataPer = {
         context: "Related Product",
         info: "More"
