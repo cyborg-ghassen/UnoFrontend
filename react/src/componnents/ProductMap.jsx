@@ -12,28 +12,46 @@ import {api} from "../utils/api";
 // Scroll to the top when the component mounts
 
 const ProductMap = () => {
-    const [myList, setMyList] = useState([1,2,3]);
+    const [myList, setMyList] = useState([]);
     // const [Curent, setCurentProducts] = useState(1);
     const [products, setProducts] = useState([]);
-    const [nbPage] = useState(10);
+    const [nbPage,setNbPage] = useState(4);
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
 
     const navigate = useNavigate();
     let query = useQuery();
-
+    
+      
     const getProducts = async (query) => {
-        return await api.get(`/product/product/?${query.toString()}`).then(res => {
-            // console.log(res.data.results)
-            setProducts(res?.data?.results)}).catch(()=>{
-            console.log("there is no product fitshed1.3")
+
+        return new Promise(async(resolve,reject)=>{
+
+            var data= await api.get(`/product/product/?${query.toString()}`).then(async(res) => {
+                // console.log(res?.data?.count)
+                var nPage=await res?.data?.count / 14
+                if (nPage-Math.trunc(nPage)!=0){
+                    nPage= await  Math.trunc(nPage)+1
+                }else{
+                    nPage=await Math.trunc(nPage)
+                }
+                await setNbPage(nPage)
+                
+                 setProducts(res?.data?.results)
+                resolve(res) 
+            }).catch((e)=>{
+                reject(e)
+            })
         })
     }
-    
     useEffect(() => {
         getProducts(query)
-        // eslint-disable-next-line
-    }, []);
+        .then(async()=>{
+            await reglePagination(Curent+1)
+            // p=myList
+            
+        }).catch((e)=>{})        
+    }, [getProducts]);
     // setCurentProducts(parseInt(queryParams.get('page')))
 
 
@@ -45,29 +63,31 @@ const ProductMap = () => {
   
     // var k = 1
     const reglePagination = (win) => {
-        console.log("slmslm "+win)
+        // console.log(nbPage)
         if (win+3<=nbPage && win!==0){
             listPage=[]
            let  k=1
             for (let i = win; (i <= nbPage) && (k !== 4); i++) {
                 listPage.push(i);
-                // console.log(listPage)
                 k++;
             }
             setMyList([...listPage]);
-            
+            // setMyList(listPage);
+ 
         }else if(win+3>=nbPage){
             listPage=[]
            let  k=1
-            for (let i = nbPage; (i > 0) && (k !== 4); i--) {
-                listPage.unshift(i);
-                // console.log(listPage)
+           for (let i = nbPage; (i > 0) && (k !== 4); i--) {
+               listPage.unshift(i);
+            //    console.log(listPage)
                 k++;
             }
             setMyList([...listPage]);
 
-        }
+            // setMyList(listPage);
 
+        }
+            return listPage
         
         // console.log(myList)
         
@@ -77,17 +97,8 @@ const ProductMap = () => {
 
         const newSearch = query.toString();
         navigate(`?${newSearch}`);
-        // console.log(newSearch)
         getProducts(query)
     };
-
-    useEffect(() => {
-        reglePagination(Curent+1)
-        // eslint-disable-next-line
-    }, []);
-    // console.log(myList)
-    // console.log(i)
-
     return (<div className="Am">
             <div className="theImg"></div>
             <Filltre getProducts={getProducts}/>
@@ -99,7 +110,6 @@ const ProductMap = () => {
                 <div className="Products">
                 {products?.length===0 && <p>There is no product</p>}
                     {products?.map(item => (
-                        // <li key={item.id}>{item.name}</li>
                         <div className="TheCart">
                             <div className="ThePic">
                                 <img src={item.image} alt=""/>
@@ -109,11 +119,9 @@ const ProductMap = () => {
 
 
                                     <div className="Promo">Promo <label for=""
-                                        //  style="color: white;"
                                     >-{item?.promotion}%</label></div>
                                 )
                                 }
-
                             </div>
                             <div className="Name">{item?.name}</div>
                             <div className="Name UU">{item?.slogan}</div>
@@ -123,25 +131,21 @@ const ProductMap = () => {
                                 {/* <!-- <div className="Promo">Promo <label for="" style="color: white;">-10%</label> </div> --> */}
                             </div>
                             <Link to={"/Product/" + item?.id}>
-
                                 <button >Buy</button>
                             </Link>
-
                         </div>
                     ))}
-
                 </div>
             </div>
             <div className="Pagination">
-                <div className="TheButtons">
-
+                {myList.length!=0 && (
+                    <div className="TheButtons">
                     <button onClick={() => {
                         reglePagination(myList[0]-1)
                     }}>{"<"}</button>
                     {myList.map(item => (
-
                         <button onClick={() => {
-                            handleNavigation(item)
+                        handleNavigation(item)
                         }}>{item}</button>
                     ))
                     }
@@ -149,6 +153,7 @@ const ProductMap = () => {
                         reglePagination(myList[0]+1)
                     }}>{">"}</button>
                 </div>
+                    )}
             </div>
         </div>
 
