@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { api } from "../utils/api";
+import { api, setAuthToken } from "../utils/api";
 import {useDispatch} from "react-redux"
 import { useNavigate } from "react-router-dom";
 import { setTrue } from "../reduxStores.js/authSlice";
@@ -39,6 +39,7 @@ export const LogIn=()=>{
         // console.log(username)
         // console.log(password)
         getToken().then((token)=>{
+            setAuthToken(token)
             dispatch(setTrue())
             console.log("we set the ture value")
             // var token

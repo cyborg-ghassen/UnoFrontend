@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import { api } from "../utils/api";
 import "./Style/LogInStyling.css"
 import "./Style/Magazine.css"
+import { useNavigate } from "react-router-dom";
 
 export const Register=()=>{
+    const navigate=useNavigate()
     const [username,setusername] =useState("")
     const [password,setPassword] =useState("")
     const [Email,setEmail] =useState("")
@@ -33,9 +36,38 @@ export const Register=()=>{
             setAlert("Password Confirmation is incorrect")
             return 0
         }
+
+
         // send a request to register the new client
         // redirect to logIn Page
+        PostReq().then((e)=>navigate("/LogIn"))
+        .catch((e)=>{})
 
+    }
+    const PostReq=()=>{
+        return new Promise(async(resolve,reject)=>{
+           
+
+               var data= await  api.post("/auth/user/",{is_active:true,username:username,email:Email,password:password}).catch((e)=>{
+                   if(e.response?.data?.username){
+                       setAlert(e.response?.data?.username)
+                       
+                    }else if(e.response?.data?.email){
+
+                        setAlert(e.response?.data?.email)
+                    
+                    }else if(e.response?.data?.password){
+                        setAlert(e.response?.data?.password)
+                        
+                   }
+                   reject("error to register00000000000")
+            })
+            if (data?.status==201){
+                resolve(200)
+            }
+        
+            
+        })
     }
     return (
 <div className="All">

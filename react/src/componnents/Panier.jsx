@@ -1,9 +1,10 @@
-import React  , { useState } from "react";
+import React  , { useEffect, useState } from "react";
 import "./Style/Panier.css"
 import Judy from './assetes/Judy2.jpg';
 import { resetBasket ,deleteOneItem } from "../reduxStores.js/authSlice";
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
+import { api } from "../utils/api";
 
 const TITLE=()=>{
     return(
@@ -18,6 +19,7 @@ export const PanierData=()=>{
     const dispatch=useDispatch();
     const [isPopupOpen, setPopupOpen] = useState(false);
     const [PhoneNumber, setPhoneNumber] = useState("");
+    const [Address, setAddress] = useState("");
     const [Email, setEmail] = useState("");
     const [FullName, setFullName] = useState("");
     const [Remark, setRemark] = useState("");
@@ -104,6 +106,37 @@ export const PanierData=()=>{
         restTheBasket();
         setPopupOpen(false);
     };
+    // /order/items/
+    useEffect(()=>{
+        getItems().then((data)=>{
+
+        }).catch((e)=>{
+
+        })
+    },[])
+    const headers = {
+        'Authorization':"Bearer "+localStorage.getItem("Token")  ,
+          
+    };
+    const axiosConfig = {
+        headers: headers,
+        // Other configurations like method, baseURL, etc.
+      };
+    const getItems=()=>{
+        return new Promise(async(resolve,reject)=>{
+
+            var data=await api.post("/order/items/",{bas}
+            ,
+            axiosConfig).then((res)=>{
+                console.log(data.data)
+                resolve(data.data)
+                // itemsToBy=data.data  
+            }).catch((e)=>{
+                console.log(e)
+                reject(e)
+            })
+        })
+    }
 
     const itemsToBy=[
         { id: 1, name: 'Air Freshener' ,describtion:"Judy Cleaner really cleans", promo:0 ,price:20,Quantity:8},
@@ -127,6 +160,8 @@ export const PanierData=()=>{
                 <input type="email" value={Email} onChange={(event)=>{setEmail(event.target.value)}} />
                 <div className="LALA">Phone Number:</div>
                 <input type="text"  value={PhoneNumber} onChange={(event)=>{setPhoneNumber(event.target.value)}}/>
+                <div className="LALA">Address:</div>
+                <input type="text"  value={Address} onChange={(event)=>{setAddress(event.target.value)}}/>
                 <div className="LALA">Remark:</div>
                 <input type="text"value={Remark} onChange={(event)=>setRemark(event.target.value)} />
                 {Alert!=="" &&
