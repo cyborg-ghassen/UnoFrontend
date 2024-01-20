@@ -27,6 +27,7 @@ urlpatterns = [
     path('', RedirectView.as_view(url='/admin/', permanent=False)),
     path('admin/', admin.site.urls),
     path('api/v1/product/', include(('product.api.apiurls', 'product'), namespace='product-api')),
+    path('api/v1/auth/', include(('accounts.api.apiurls', 'accounts'), namespace='accounts-api')),
     path('api/v1/token/', TokenObtainSlidingView.as_view(), name='token_obtain'),
     path('api/v1/token/refresh/', TokenRefreshSlidingView.as_view(), name='token_refresh'),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),

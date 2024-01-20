@@ -13,7 +13,7 @@ export const LogIn=()=>{
     const getToken=()=>{
         return new Promise(async(resolve, reject) => {
             
-            var data=await api.post('/token/',{username:username,password:password})
+            var data=await api.post('/auth/login/',{username:username,password:password})
             .catch((e)=>{
                 reject(e.response.data.detail)
                 // setLogInAlert
