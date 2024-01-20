@@ -32,9 +32,9 @@ export const authSlice = createSlice({
 
     },
     deleteOneItem:(state,action)=>{
-      console.log("lsmslm")
+      // console.log("lsmslm")
       const updatedBasket = state.basket.filter(item => item.id !== action.payload.id);
-      console.log(updatedBasket)
+      // console.log(updatedBasket)
       state.basket = updatedBasket;
       
     },

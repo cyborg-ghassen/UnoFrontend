@@ -17,8 +17,11 @@ const TITLE=()=>{
 export const PanierData=()=>{
     const navigate=useNavigate()
     const dispatch=useDispatch();
+    const [totlaPrice, settotlaPrice] = useState(0);
     const [isPopupOpen, setPopupOpen] = useState(false);
     const [PhoneNumber, setPhoneNumber] = useState("");
+    const [itemsToBy, setItemsToBy] = useState([]);
+   
     const [Address, setAddress] = useState("");
     const [Email, setEmail] = useState("");
     const [FullName, setFullName] = useState("");
@@ -27,10 +30,11 @@ export const PanierData=()=>{
     const [AlertSucces, setAlertSucces] = useState("");
     const bas = useSelector((state) => state.Auth.basket);
     const deleteOneItemFromTheList=(id)=>{
-        // console.log("pppppppppppppppppppppppppppppppppppp")
-        // console.log(id)
-
+        // console.log("in the dispatch")
         dispatch(deleteOneItem({id:id}))
+        getItems()
+        .then(()=>{})
+        .catch(()=>{})
     }
    
     const restTheBasket=()=>{
@@ -85,17 +89,22 @@ export const PanierData=()=>{
         setAlert("")
         /// the code to send the request
 
+        sendCommend().then(()=>{
 
-        // is the case of code staus==200
-        setAlertSucces("Order sended with succes we will contact you as soon as possible.")
-        setEmail("")
-        setFullName("")
-        setPhoneNumber("")
-        setRemark("")
-        delay(3000).then(() => {
-            restTheBasket()
-            navigate("/home")
-        });
+            // is the case of code staus==200
+            setAlertSucces("Order sended with succes we will contact you as soon as possible.")
+            setEmail("")
+            setFullName("")
+            setPhoneNumber("")
+            setRemark("")
+            delay(3000).then(() => {
+                restTheBasket()
+                navigate("/home")
+            });
+        }).catch((e)=>{
+            setAlert("Something went wrong.")
+
+        })
         
 
     }
@@ -106,7 +115,13 @@ export const PanierData=()=>{
         restTheBasket();
         setPopupOpen(false);
     };
-    // /order/items/
+    const dataTosend=()=>{
+        return bas.map(item => ({
+            product: item.id,
+            quantity: item.Quantity
+          }));          
+    }
+    
     useEffect(()=>{
         getItems().then((data)=>{
 
@@ -120,34 +135,47 @@ export const PanierData=()=>{
     };
     const axiosConfig = {
         headers: headers,
-        // Other configurations like method, baseURL, etc.
+        
       };
     const getItems=()=>{
         return new Promise(async(resolve,reject)=>{
 
-            var data=await api.post("/order/items/",{bas}
+            var data=await api.post("/order/items/",dataTosend()
             ,
             axiosConfig).then((res)=>{
-                console.log(data.data)
-                resolve(data.data)
-                // itemsToBy=data.data  
+                
+                settotlaPrice(res?.data?.total_price)
+                setItemsToBy(res?.data?.products)
+                resolve(res?.data)
+                
             }).catch((e)=>{
-                console.log(e)
+               
                 reject(e)
             })
         })
     }
-
-    const itemsToBy=[
-        { id: 1, name: 'Air Freshener' ,describtion:"Judy Cleaner really cleans", promo:0 ,price:20,Quantity:8},
-        { id: 1, name: 'Air Freshener' ,describtion:"Judy Cleaner really cleans", promo:0 ,price:20,Quantity:8},
-        { id: 1, name: 'Air Freshener' ,describtion:"Judy Cleaner really cleans", promo:0 ,price:20,Quantity:8},
-        { id: 1, name: 'Air Freshener' ,describtion:"Judy Cleaner really cleans", promo:0 ,price:20,Quantity:8},
-        { id: 1, name: 'Air Freshener' ,describtion:"Judy Cleaner really cleans", promo:0 ,price:20,Quantity:8},
-        { id: 1, name: 'Air Freshener' ,describtion:"Judy Cleaner really cleans", promo:0 ,price:20,Quantity:8},
-        { id: 1, name: 'Air Freshener' ,describtion:"Judy Cleaner really cleans", promo:0 ,price:20,Quantity:8},
-        { id: 1, name: 'Air Freshener' ,describtion:"Judy Cleaner really cleans", promo:0 ,price:20,Quantity:8}
-    ]
+    const sendCommend=()=>{
+        return new Promise(async(resolve,reject)=>{
+            var data=await api.post("/order/order/",
+            {
+                items: dataTosend(),
+                type: "passenger",
+                status: "draft",
+                full_name: FullName,
+                email: Email,
+                address: Address,
+                phone: PhoneNumber,
+                notes: Remark,
+            },axiosConfig
+            
+            ).then((data)=>{
+                resolve(data)
+            }).catch((e)=>{
+                reject(e)
+            })
+        })
+    }
+    
     return(
         <div className="ALLP">
              {isPopupOpen && (
@@ -175,25 +203,15 @@ export const PanierData=()=>{
                 <div className="THEB">
 
                 <button  onClick={checkInputsAndSendCommend}>Confirm</button>
-                <button className="A1"  onClick={closePopup}>Cansel</button>
-                <button className="A2"  onClick={resetBasketAndclosePopup}>Cansel All The Command</button>
+                <button className="A1"  onClick={closePopup}>Cancel</button>
+                <button className="A2"  onClick={resetBasketAndclosePopup}>Cancel All The Command</button>
                 </div>
 
             </div>
                 )}
         <div   className="All1">
         <div className="theProduct">
-            {/* <div className="TheTITLES">
-                <div className="widde">
-                </div>
-                <div className="QQ">
-
-                <div>Product</div>
-                <div className="QQQQ">Quantity</div>
-                <div className="WWWW">Price</div>
-
-                </div>
-            </div> */}
+            
             {bas.length===0 && (
                 <div className="thyt">There is no product selected.</div> 
                 )}
@@ -207,10 +225,11 @@ export const PanierData=()=>{
 
                 <div className="ThePhoto">
                     <img src={Judy} alt="" />
+                    {/* <img src={item?.product?.image} alt="" /> */}
                 </div>
                 <div className="Titre">
-                    <label htmlFor="" className="Slogan">{item.describtion}</label><br />
-                    <label htmlFor="" className="Tito">{item.name}</label>
+                    <label htmlFor="" className="Slogan">{item?.product?.slogan}</label><br />
+                    <label htmlFor="" className="Tito">{item?.product?.name}</label>
 
                 </div>
                 </div>
@@ -219,17 +238,17 @@ export const PanierData=()=>{
                 <div className="number XX">
                     <label htmlFor="">Quantity</label>
                     <br />
-                    x{item.Quantity}
+                    x{item?.quantity}
                 </div>
                 <div className="PPRIX XX">
                     <label htmlFor="">Price</label>
                     <br />
-                    {item.price}.000dt
+                    {item?.individual_price}dt
                 </div>
                 <div className="Buttons1">
                     <button className="Edit">Edit</button>
                     <button id="YY" className="Cancel" onClick={()=>{
-                        deleteOneItemFromTheList(item.id)}}>Cancel</button>
+                        deleteOneItemFromTheList(item?.product?.id)}}>Cancel</button>
                 </div>
                 </div>
 
@@ -241,7 +260,7 @@ export const PanierData=()=>{
         <div className="ThePrice">
                 <div className="theTicket">The Ticket</div>
                 <div className="theDes">Discover the exceptional cleaning experience with Judy Clean Products. Engineered with precision and designed for efficacy, our line of cleaning solutions redefines the standards of cleanliness in every home.</div>
-                <div className="PRIE">800.000dt</div>
+                <div className="PRIE">{totlaPrice}dt</div>
                 <div className="LL"> 
                     <button onClick={()=>{
                         if(bas.length!==0){
