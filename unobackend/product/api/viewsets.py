@@ -1,11 +1,10 @@
 from django_filters.rest_framework import DjangoFilterBackend
+from product.models import Category, Product
 from rest_framework import viewsets, filters
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 from .filters import ProductFilter
 from .serializers import CategorySerializer, ProductSerializer, BrandSerializer
-from product.models import Category, Product
-
 from ..models import Brand
 
 
