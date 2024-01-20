@@ -1,10 +1,11 @@
+from product.api.serializers import ProductSerializer
+from product.models import Product
 from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 
-from .serializers import OrderItemSerializer
-from product.models import Product
-
-from product.api.serializers import ProductSerializer
+from .serializers import OrderItemSerializer, OrderSerializer
+from ..models import Order
 
 
 class OrderItemViewSet(viewsets.ViewSet):
@@ -34,3 +35,9 @@ class OrderItemViewSet(viewsets.ViewSet):
             'products': products_data,
         }
         return Response(response_data)
+
+
+class OrderViewSet(viewsets.ModelViewSet):
+    queryset = Order.objects.order_by("-created_at")
+    serializer_class = OrderSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
