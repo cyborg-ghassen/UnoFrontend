@@ -35,7 +35,7 @@ class Order(models.Model):
         verbose_name_plural = _("Orders")
 
     def __str__(self):
-        return f"{_('Order')} {self.type}"
+        return f"{_('Order')} {self.get_type_display()}"
 
 
 class OrderItem(models.Model):
