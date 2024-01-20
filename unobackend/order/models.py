@@ -18,14 +18,14 @@ ORDER_STATUS = (
 
 
 class Order(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    type = models.CharField(max_length=100, choices=ORDER_TYPES, default='physic')
-    status = models.CharField(max_length=100, choices=ORDER_STATUS, default='draft')
+    user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+    type = models.CharField(max_length=100, choices=ORDER_TYPES, default='physic', null=True, blank=True)
+    status = models.CharField(max_length=100, choices=ORDER_STATUS, default='draft', null=True, blank=True)
     full_name = models.CharField(max_length=100)
-    email = models.EmailField()
+    email = models.EmailField(null=True, blank=True)
     address = models.CharField(max_length=100)
     phone = models.CharField(max_length=100)
-    notes = models.TextField()
+    notes = models.TextField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

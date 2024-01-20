@@ -1,11 +1,11 @@
 from product.api.serializers import ProductSerializer
 from product.models import Product
-from rest_framework import viewsets
+from rest_framework import viewsets, status
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 
 from .serializers import OrderItemSerializer, OrderSerializer
-from ..models import Order
+from order.models import Order
 
 
 class OrderItemViewSet(viewsets.ViewSet):
@@ -16,10 +16,10 @@ class OrderItemViewSet(viewsets.ViewSet):
         total_price = 0
         products_data = []
         for item_data in serializer.validated_data:
-            product_id = item_data['product_id']
+            product = item_data['product']
             quantity = item_data['quantity']
 
-            product = Product.objects.get(pk=product_id)
+            product = Product.objects.get(pk=product.pk)
             individual_price = product.price * quantity
             total_price += individual_price
 
@@ -41,3 +41,17 @@ class OrderViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.order_by("-created_at")
     serializer_class = OrderSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        order = Order.objects.get(pk=serializer.data.get('id'))
+        if self.request.user.is_authenticated:
+            order.user = self.request.user
+            order.save()
+            headers = self.get_success_headers(serializer.data)
+            return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+        else:
+            return Response({"detail": "You do not have permission to perform this action"},
+                            status=status.HTTP_401_UNAUTHORIZED)
