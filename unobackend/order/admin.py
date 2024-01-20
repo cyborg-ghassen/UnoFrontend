@@ -1,12 +1,11 @@
 from django.contrib import admin
 
-from .models import Order, OrderItem
-
 from .forms import OrderItemInlineFormSet
+from .models import Order, OrderItem
 
 
 # Register your models here.
-class OrderItemInline(admin.TabularInline):
+class ItemInline(admin.TabularInline):
     model = OrderItem
     extra = 1
     formset = OrderItemInlineFormSet
@@ -15,7 +14,7 @@ class OrderItemInline(admin.TabularInline):
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
     list_display = ('user', 'status', 'full_name', 'email', 'phone')
-    inlines = [OrderItemInline]
+    inlines = [ItemInline]
 
     actions = ['approve_orders', 'reject_orders']
 
