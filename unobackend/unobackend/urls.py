@@ -23,6 +23,7 @@ from django.urls import path, include
 from django.views.generic import RedirectView
 from rest_framework_simplejwt.views import TokenObtainSlidingView, TokenRefreshSlidingView
 from django.views.i18n import set_language
+from django.utils.translation import gettext_lazy as _
 
 urlpatterns = [
     path('', RedirectView.as_view(url='/admin/', permanent=False)),
@@ -39,6 +40,6 @@ urlpatterns = [
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) if not os.environ.get(
     'USE_S3') == 'on' else []
 
-admin.site.site_header = "UNO Admin"
-admin.site.site_title = "UNO Admin Portal"
-admin.site.index_title = "Welcome to Uno Portal"
+admin.site.site_header = _("UNO Admin")
+admin.site.site_title = _("UNO Admin Portal")
+admin.site.index_title = _("Welcome to Uno Portal")

@@ -1,40 +1,47 @@
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 
 # Create your models here.
 class Category(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(verbose_name=_("Name"), max_length=100)
 
     class Meta:
-        verbose_name_plural = "Categories"
+        verbose_name_plural = _("Categories")
+        verbose_name = _("Category")
 
     def __str__(self):
         return self.name
 
 
 class Brand(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(verbose_name=_("Name"), max_length=100)
 
     class Meta:
-        verbose_name_plural = "Brands"
+        verbose_name_plural = _("Brands")
+        verbose_name = _("Brand")
 
     def __str__(self):
         return self.name
 
 
 class Product(models.Model):
-    name = models.CharField(max_length=100)
-    price = models.DecimalField(max_digits=7, decimal_places=3)
-    category = models.ManyToManyField(Category)
-    brand = models.ForeignKey(Brand, on_delete=models.SET_NULL, null=True)
-    description = models.TextField()
-    image = models.ImageField(upload_to='products')
-    reviews = models.IntegerField(default=0)
-    slogan = models.CharField(max_length=100)
-    stock = models.IntegerField(default=0)
-    promotion = models.IntegerField(default=0)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    name = models.CharField(verbose_name=_("Name"), max_length=100)
+    price = models.DecimalField(verbose_name=_("Price"), max_digits=7, decimal_places=3)
+    category = models.ManyToManyField(verbose_name=_("Category"), to=Category)
+    brand = models.ForeignKey(Brand, on_delete=models.SET_NULL, null=True, verbose_name=_("Brand"))
+    description = models.TextField(verbose_name=_("Description"))
+    image = models.ImageField(upload_to='products', verbose_name=_("Image"))
+    reviews = models.IntegerField(default=0, verbose_name=_("Reviews"))
+    slogan = models.CharField(max_length=100, verbose_name=_("Slogan"))
+    stock = models.IntegerField(default=0, verbose_name=_("Stock"))
+    promotion = models.IntegerField(default=0, verbose_name=_("Promotion"))
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_("Creation Date"))
+    updated_at = models.DateTimeField(auto_now=True, verbose_name=_("Update Date"))
+
+    class Meta:
+        verbose_name = _("Product")
+        verbose_name_plural = _("Products")
 
     @property
     def image_url(self):

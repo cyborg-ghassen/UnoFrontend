@@ -157,9 +157,13 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = 'en-us'
 
 LANGUAGES = [
-    ('en', 'English'),
-    ('ar', 'Arabic'),
-    ('fr', 'French'),
+    ('en', _('English')),
+    ('ar', _('Arabic')),
+    ('fr', _('French')),
+]
+
+LOCALE_PATHS = [
+    BASE_DIR / 'locales'
 ]
 
 TIME_ZONE = 'Africa/Tunis'

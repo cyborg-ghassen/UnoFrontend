@@ -1,0 +1,187 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-20 19:22+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: .\order\api\serializers.py:26
+msgid "Enter at least one item."
+msgstr "Saisissez au moins un élément."
+
+#: .\order\api\viewsets.py:59
+msgid "You do not have permission to perform this action"
+msgstr "Vous n'êtes pas autorisé à effectuer cette action"
+
+#: .\order\models.py:9
+msgid "Physical"
+msgstr "Physique"
+
+#: .\order\models.py:10
+msgid "Company"
+msgstr "Société"
+
+#: .\order\models.py:11
+msgid "Passenger"
+msgstr "Passager"
+
+#: .\order\models.py:15
+msgid "Draft"
+msgstr "Brouillon"
+
+#: .\order\models.py:16
+msgid "Approved"
+msgstr "Approuvé"
+
+#: .\order\models.py:17
+msgid "Rejected"
+msgstr "Rejeté"
+
+#: .\order\models.py:22
+msgid "User"
+msgstr "Utilisateur"
+
+#: .\order\models.py:23
+msgid "Type"
+msgstr "Type"
+
+#: .\order\models.py:24
+msgid "Status"
+msgstr "Statut"
+
+#: .\order\models.py:25
+msgid "Full name"
+msgstr "Nom et prénom"
+
+#: .\order\models.py:26
+msgid "Email"
+msgstr "E-mail"
+
+#: .\order\models.py:27
+msgid "Address"
+msgstr "Adresse"
+
+#: .\order\models.py:28
+msgid "Phone"
+msgstr "Téléphone"
+
+#: .\order\models.py:29
+msgid "Notes"
+msgstr "Remarques"
+
+#: .\order\models.py:30 .\product\models.py:39
+msgid "Creation Date"
+msgstr "Date de création"
+
+#: .\order\models.py:31 .\product\models.py:40
+msgid "Update Date"
+msgstr "Date de mise à jour"
+
+#: .\order\models.py:34 .\order\models.py:42 .\order\models.py:43
+msgid "Order"
+msgstr "Commande"
+
+#: .\order\models.py:35
+msgid "Orders"
+msgstr "Commandes"
+
+#: .\order\models.py:44
+msgid "Quantity"
+msgstr ""
+
+#: .\product\models.py:7 .\product\models.py:18 .\product\models.py:29
+msgid "Name"
+msgstr "Quantité"
+
+#: .\product\models.py:10
+msgid "Categories"
+msgstr "Catégories"
+
+#: .\product\models.py:11 .\product\models.py:31
+msgid "Category"
+msgstr "Catégorie"
+
+#: .\product\models.py:21
+msgid "Brands"
+msgstr "Marques"
+
+#: .\product\models.py:22 .\product\models.py:32
+msgid "Brand"
+msgstr "Marque"
+
+#: .\product\models.py:30
+msgid "Price"
+msgstr "Prix"
+
+#: .\product\models.py:33
+msgid "Description"
+msgstr "Description"
+
+#: .\product\models.py:34
+msgid "Image"
+msgstr "Image"
+
+#: .\product\models.py:35
+msgid "Reviews"
+msgstr "Commentaires"
+
+#: .\product\models.py:36
+msgid "Slogan"
+msgstr "Slogan"
+
+#: .\product\models.py:37
+msgid "Stock"
+msgstr "Stock"
+
+#: .\product\models.py:38
+msgid "Promotion"
+msgstr "Promotion"
+
+#: .\product\models.py:43
+msgid "Product"
+msgstr "Produit"
+
+#: .\product\models.py:44
+msgid "Products"
+msgstr "Produits"
+
+#: .\templates\admin\base_site.html:27
+msgid "Lang:"
+msgstr "Lang:"
+
+#: .\unobackend\settings.py:160
+msgid "English"
+msgstr "Anglais"
+
+#: .\unobackend\settings.py:161
+msgid "Arabic"
+msgstr "Arabe"
+
+#: .\unobackend\settings.py:162
+msgid "French"
+msgstr "Français"
+
+#: .\unobackend\urls.py:43
+msgid "UNO Admin"
+msgstr "Administrateur de l'UNO"
+
+#: .\unobackend\urls.py:44
+msgid "UNO Admin Portal"
+msgstr "Portail d'administration de l'UNO"
+
+#: .\unobackend\urls.py:45
+msgid "Welcome to Uno Portal"
+msgstr "Bienvenue sur le portail Uno"
