@@ -220,3 +220,6 @@ SIMPLE_JWT = {
     "SLIDING_TOKEN_OBTAIN_SERIALIZER": "rest_framework_simplejwt.serializers.TokenObtainSlidingSerializer",
     "SLIDING_TOKEN_REFRESH_SERIALIZER": "rest_framework_simplejwt.serializers.TokenRefreshSlidingSerializer",
 }
+
+ADMIN_GROUP_NAME = os.environ.get("ADMIN_GROUP_NAME")
+USER_GROUP_NAME = os.environ.get("USER_GROUP_NAME")
