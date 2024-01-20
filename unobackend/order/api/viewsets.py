@@ -7,6 +7,8 @@ from rest_framework.response import Response
 from .serializers import OrderItemSerializer, OrderSerializer
 from order.models import Order
 
+from utils.views import reformat_number
+
 
 class OrderItemViewSet(viewsets.ViewSet):
     def create(self, request):
@@ -26,12 +28,12 @@ class OrderItemViewSet(viewsets.ViewSet):
             product_data = {
                 'product': ProductSerializer(product).data,
                 'quantity': quantity,
-                'individual_price': individual_price,
+                'individual_price': reformat_number(individual_price),
             }
             products_data.append(product_data)
 
         response_data = {
-            'total_price': total_price,
+            'total_price': reformat_number(total_price),
             'products': products_data,
         }
         return Response(response_data)
