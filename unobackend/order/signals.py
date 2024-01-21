@@ -21,17 +21,22 @@ def pre_delete_order(sender, instance, **kwargs):
 
 @receiver(post_save, sender=Order)
 def post_save_order(sender, instance, created, **kwargs):
-    old_instance = getattr(instance, '_pre_save_instance', None)
-    if old_instance and old_instance.status != instance.status and instance.status == "approved":
-        items = instance.orderitem_set.all()
-        for item in items:
-            product = item.product
-            product.stock -= int(item.quantity) if product.stock and instance.status == "approved" else 0
-            product.save()
-            if product.stock < 0:
-                instance.notes = "out of stock"
-
+    if not created:
+        old_instance = instance._pre_save_instance
+        if old_instance:
+            items = instance.orderitem_set.all()
+            for item in items:
+                product = item.product
+                if old_instance.status == "approved" and instance.status != "approved":
+                    product.stock += int(item.quantity) if product.stock else 0 + item.quantity
+                elif old_instance.status != "approved" and instance.status == "approved":
+                    product.stock -= int(item.quantity) if product.stock else 0 - item.quantity
+                product.save()
+                if product.stock < 0:
+                    instance.notes = "out of stock"
+        post_save.disconnect(post_save_order, sender=Order)
         instance.save()
+        post_save.connect(post_save_order, sender=Order)
 
 
 @receiver(post_delete, sender=Order)
@@ -41,7 +46,7 @@ def post_delete_order(sender, instance, **kwargs):
         items = instance.orderitem_set.all()
         for item in items:
             product = item.product
-            product.stock += int(item.quantity) if product.stock and instance.status == "approved" else 0
+            product.stock += int(item.quantity) if product.stock else 0 + item.quantity
             product.save()
             if product.stock < 0:
                 instance.notes = "out of stock"
@@ -63,16 +68,16 @@ def post_save_order_item(sender, instance, created, **kwargs):
     if created:
         if instance.order.status == "approved":
             product = instance.product
-            product.stock -= int(instance.quantity) if product.stock else 0
+            product.stock -= int(instance.quantity) if product.stock else 0 - instance.quantity
             product.save()
             if product.stock < 0:
                 instance.order.notes = "out of stock"
                 instance.order.save()
     else:
-        if old_instance and old_instance.order.status != instance.order.status and instance.order.status == "approved":
+        if old_instance and instance.order.status == "approved":
             product = instance.product
             quantity_diff = int(instance.quantity) - int(old_instance.quantity)
-            product.stock -= quantity_diff if product.stock else 0
+            product.stock -= quantity_diff if product.stock else 0 - quantity_diff
             product.save()
             if product.stock < 0:
                 instance.order.notes = "out of stock"
@@ -83,7 +88,7 @@ def post_save_order_item(sender, instance, created, **kwargs):
 def post_delete_order_item(sender, instance, **kwargs):
     if instance.order.status == "approved":
         product = instance.product
-        product.stock += int(instance.quantity) if product.stock else 0
+        product.stock += int(instance.quantity) if product.stock else 0 + instance.quantity
         product.save()
         if product.stock < 0:
             instance.order.notes = "out of stock"
