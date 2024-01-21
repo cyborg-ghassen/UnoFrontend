@@ -22,10 +22,13 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import RedirectView
 from rest_framework_simplejwt.views import TokenObtainSlidingView, TokenRefreshSlidingView
+from django.views.i18n import set_language
+from django.utils.translation import gettext_lazy as _
 
 urlpatterns = [
     path('', RedirectView.as_view(url='/admin/', permanent=False)),
     path('admin/', admin.site.urls),
+    path('i18n/', set_language, name='set_language'),
     path('api/v1/product/', include(('product.api.apiurls', 'product'), namespace='product-api')),
     path('api/v1/order/', include(('order.api.apiurls', 'order'), namespace='order-api')),
     path('api/v1/auth/', include(('accounts.api.apiurls', 'accounts'), namespace='accounts-api')),
@@ -37,6 +40,6 @@ urlpatterns = [
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) if not os.environ.get(
     'USE_S3') == 'on' else []
 
-admin.site.site_header = "UNO Admin"
-admin.site.site_title = "UNO Admin Portal"
-admin.site.index_title = "Welcome to Uno Portal"
+admin.site.site_header = _("UNO Admin")
+admin.site.site_title = _("UNO Admin Portal")
+admin.site.index_title = _("Welcome to Uno Portal")

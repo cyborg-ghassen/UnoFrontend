@@ -8,6 +8,7 @@ from .serializers import OrderItemSerializer, OrderSerializer
 from order.models import Order
 
 from utils.views import reformat_number
+from django.utils.translation import gettext_lazy as _
 
 
 class OrderItemViewSet(viewsets.ViewSet):
@@ -55,5 +56,5 @@ class OrderViewSet(viewsets.ModelViewSet):
             headers = self.get_success_headers(serializer.data)
             return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
         else:
-            return Response({"detail": "You do not have permission to perform this action"},
+            return Response({"detail": _("You do not have permission to perform this action")},
                             status=status.HTTP_401_UNAUTHORIZED)

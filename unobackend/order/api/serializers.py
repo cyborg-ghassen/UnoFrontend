@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
 from order.models import Order, OrderItem
+from django.utils.translation import gettext_lazy as _
 
 
 class OrderItemSerializer(serializers.ModelSerializer):
@@ -22,7 +23,7 @@ class OrderSerializer(serializers.ModelSerializer):
         errors = {}
 
         if not items or len(items) <= 0:
-            errors.update({"items": "Enter at least one item."})
+            errors.update({"items": _("Enter at least one item.")})
 
         if items:
             for item in items:
