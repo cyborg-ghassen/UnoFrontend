@@ -861,6 +861,7 @@ justify-content: space-around;
     align-items: center;    
     position: relative;
   bottom: 0;
+  margin-bottom: 0px;
     margin-top: 20px;
 justify-content: center;
 flex-direction: column;
@@ -906,7 +907,21 @@ flex-direction: column;
     margin-top: 30px;
     
 }
+.theFooter .Linkss button{
+
+    font-size: 15px;
+    padding:1px 20px;
+    text-decoration: none;
+    
+    color: aliceblue;
+    font-family: sans-serif;
+    background-color: transparent;
+    border: 0px;
+    padding-top: 15px;
+    /* border-left: 1px solid white; */
+}
 .theFooter .Linkss a{
+    /* padding-top: 10px; */
     font-size: 15px;
     padding:1px 20px;
     text-decoration: none;
@@ -1139,6 +1154,17 @@ justify-content: space-evenly;
 .propUpForMobile .Links67 .p9{
     margin-bottom: 20px;
     color: rgb(65, 111, 151);
+}
+.LogOut{
+    color: rgba(69, 69, 69, 0.779);
+    border: 0px ;
+    background-color: transparent;
+    /* margin-left: 10px; */
+    font-size: 21px;
+    font-weight: bold;
+    font-family: sans-serif;
+    padding: 10px 20px;
+
 }
 .propUpForMobile .Links67{
     margin-top: 20px;

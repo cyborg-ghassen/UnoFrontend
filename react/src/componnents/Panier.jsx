@@ -1,7 +1,7 @@
 import React  , { useEffect, useState } from "react";
 import "./Style/Panier.css"
 import Judy from './assetes/Judy2.jpg';
-import { resetBasket ,deleteOneItem } from "../reduxStores.js/authSlice";
+import { resetBasket ,deleteOneItem ,updateQuatity} from "../reduxStores.js/authSlice";
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import { api } from "../utils/api";
@@ -21,19 +21,27 @@ export const PanierData=()=>{
     const [isPopupOpen, setPopupOpen] = useState(false);
     const [PhoneNumber, setPhoneNumber] = useState("");
     const [itemsToBy, setItemsToBy] = useState([]);
-   
+    const [selectedValue, setSelectedValue] = useState('physic');
+    const [openEdit, setOpenEdit] = useState(false);
+    const [ItemToEdit, setItemToEdit] = useState({id:0,quantity:0});
+    // const [EditQuantity, setEditQuantity] = useState(0);
     const [Address, setAddress] = useState("");
     const [Email, setEmail] = useState("");
     const [FullName, setFullName] = useState("");
     const [Remark, setRemark] = useState("");
     const [Alert, setAlert] = useState("");
     const [AlertSucces, setAlertSucces] = useState("");
+    const handleRadioChange = (event) => {
+        setSelectedValue(event.target.value);
+      };
     const bas = useSelector((state) => state.Auth.basket);
     const deleteOneItemFromTheList=(id)=>{
         // console.log("in the dispatch")
         dispatch(deleteOneItem({id:id}))
         getItems()
-        .then(()=>{})
+        .then(()=>{
+            settotlaPrice("0.000")
+        })
         .catch(()=>{})
     }
    
@@ -128,7 +136,7 @@ export const PanierData=()=>{
         }).catch((e)=>{
 
         })
-    },[])
+    },[bas])
     const headers = {
         'Authorization':"Bearer "+localStorage.getItem("Token")  ,
           
@@ -140,13 +148,13 @@ export const PanierData=()=>{
     const getItems=()=>{
         return new Promise(async(resolve,reject)=>{
 
-            var data=await api.post("/order/items/",dataTosend()
-            ,
-            axiosConfig).then((res)=>{
-                
+            var data=await api.post("/order/items/",dataTosend(),axiosConfig).then((res)=>{
                 settotlaPrice(res?.data?.total_price)
+                if (res?.data?.total_price==0){
+                    settotlaPrice("0.000")
+                }
                 setItemsToBy(res?.data?.products)
-                resolve(res?.data)
+                resolve(res)
                 
             }).catch((e)=>{
                
@@ -155,11 +163,13 @@ export const PanierData=()=>{
         })
     }
     const sendCommend=()=>{
+
         return new Promise(async(resolve,reject)=>{
+            
             var data=await api.post("/order/order/",
             {
                 items: dataTosend(),
-                type: "passenger",
+                type: selectedValue,
                 status: "draft",
                 full_name: FullName,
                 email: Email,
@@ -175,9 +185,69 @@ export const PanierData=()=>{
             })
         })
     }
+    const OpenEdit=async(data)=>{
+        await setItemToEdit({id:data.id,quantity:data.quantity})
+        setOpenEdit(true)
+    }
+
+     const updateLL = () => {
+        return new Promise(async(resovle,reject)=>{
+            try{
+
+                await dispatch(updateQuatity({ id: ItemToEdit.id, quantity: ItemToEdit.quantity }));
+                resovle()
+            }catch(e){
+                reject()
+                
+            }
+
+        })
+     }
     
+      const ConfirmEditConfig = async () => {
+        try {
+          console.log(ItemToEdit);
+          updateLL().then(()=>{
+               
+              setOpenEdit(false);
+              console.log(bas);
+              
+          }).catch(()=>{})          // Wait for the updateQuatity action to complete
+      
+          // Wait for the getItems function to complete
+      
+        } catch (error) {
+          console.error('Error in ConfirmEditConfig:', error);
+        }
+        getItems().then(res => {
+            settotlaPrice(res?.data?.total_price)
+                setItemsToBy(res?.data?.products)
+                
+        })
+      };
+            
+
+
+
+
+  
+    const closeEditConfig=()=>{
+        setOpenEdit(false)
+
+    }
     return(
         <div className="ALLP">
+            {openEdit && (
+
+                <div className="EditItem">
+                <div className="Title">Edit One Item</div>
+                <div className="LALA">Quantity:</div> 
+                <input type="number" value={ItemToEdit.quantity}  onChange={(event)=>{setItemToEdit({id:ItemToEdit?.id,quantity:parseInt(event.target.value)})}}/>
+                <button  onClick={ConfirmEditConfig}>Confirm</button>
+                <button className="A1"  onClick={closeEditConfig}>Cancel</button>
+               
+            </div>
+                )}
              {isPopupOpen && (
 
                  <div className="Confirmation">
@@ -190,6 +260,15 @@ export const PanierData=()=>{
                 <input type="text"  value={PhoneNumber} onChange={(event)=>{setPhoneNumber(event.target.value)}}/>
                 <div className="LALA">Address:</div>
                 <input type="text"  value={Address} onChange={(event)=>{setAddress(event.target.value)}}/>
+                <div className="LALA">Client Type:</div>
+                <div className="TheRadios">
+                <label htmlFor="">physic</label>
+                <input type="radio" value={"physic"} name="T1" onChange={handleRadioChange} checked={selectedValue === 'physic'}/>
+                <label htmlFor="">company</label>
+                <input type="radio" value={"company"} name="T1" onChange={handleRadioChange} checked={selectedValue === 'company'}/>
+                <label htmlFor="">passenger</label>
+                <input type="radio" value={"passenger"} name="T1" onChange={handleRadioChange} checked={selectedValue === 'passenger'}/>
+                </div>
                 <div className="LALA">Remark:</div>
                 <input type="text"value={Remark} onChange={(event)=>setRemark(event.target.value)} />
                 {Alert!=="" &&
@@ -246,7 +325,8 @@ export const PanierData=()=>{
                     {item?.individual_price}dt
                 </div>
                 <div className="Buttons1">
-                    <button className="Edit">Edit</button>
+                    <button className="Edit" onClick={()=>
+                        {OpenEdit({id:item?.product?.id,quantity:item?.quantity})}}>Edit</button>
                     <button id="YY" className="Cancel" onClick={()=>{
                         deleteOneItemFromTheList(item?.product?.id)}}>Cancel</button>
                 </div>

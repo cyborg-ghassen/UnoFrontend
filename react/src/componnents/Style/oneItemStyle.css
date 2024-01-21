@@ -18,9 +18,9 @@
     position: fixed;
     top: 15%;
     /* transform: translateX(100%); */
-    animation: slideIn 0.5s ;
+    animation: slideIn1 0.5s ;
 }
-@keyframes slideIn {
+@keyframes slideIn1 {
     0% {
         top: -100%;
     }

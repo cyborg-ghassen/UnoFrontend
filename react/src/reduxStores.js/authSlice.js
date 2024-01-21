@@ -11,11 +11,16 @@ export const authSlice = createSlice({
       state.value = true
     },
     setFalse: (state) => {
-      state.value = false
+      return {
+        ...state,
+        value: false,
+      };
     },
     resetBasket:(state)=>{
-      state.basket = []
-
+      return {
+        ...state,
+        basket: [],
+      };
     },
     setNewItemToBasket:(state , action)=>{
       const updatedBasket = state.basket.filter(item => item.id !== action.payload.id);
@@ -39,9 +44,18 @@ export const authSlice = createSlice({
       
     },
     updateQuatity:(state,action)=>{
-      // state.basket=state.basket.filter(item => item.id !== action.payload.id);
-      var  i=state.basket.findIndex(item => item.id === action.payload.id)
-      state.basket[i].quantity=action.payload.quantity;
+
+      console.log(action.payload)
+      const index = state.basket.findIndex(item => item.id === action.payload.id);
+      
+      if (index !== -1) {
+        const updatedBasket = [...state.basket];
+        updatedBasket[index] = { ...updatedBasket[index], Quantity: action.payload.quantity };
+    
+        console.log(updatedBasket)
+        state.basket = [...updatedBasket];
+        console.log(state.basket)
+      }
     }
 
   },

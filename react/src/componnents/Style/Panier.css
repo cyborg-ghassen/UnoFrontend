@@ -1,7 +1,38 @@
+.EditItem .A1{
+   margin-bottom: 10px;
+   background-color: rgb(208, 47, 47);
+}
+.EditItem .Title{
+    margin-top: 10px;
+}
+.EditItem{
+    margin: auto;
+    margin: auto;
+    position: absolute;
+    position: fixed;
+    width: 50%;
+    min-width: 350px;
+    z-index: 100;
+    left:   25%;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 11px 11px 40px 0px rgba(178, 178, 178, 0.75);
+    background-image: url('../assetes/CercleProduct.jpg');
+  background-size: cover; /* This ensures that the background image covers the entire container */
+  background-repeat: no-repeat;
+  background-position: center center;
+  top: 6%;
+
+  animation: slideIn 0.5s ;
+
+}
+
 .Confirmation{
     width: 50%;
     min-width: 350px;
-    height: 600px ;
+    height: 650px ;
     /* border: 1px solid black; */
     margin: auto;
     position: absolute;
@@ -10,7 +41,7 @@
     left:   25%;
     /* margin: auto; */
     background-color: rgb(255, 255, 255);
-    z-index: 20;
+    z-index: 100;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -20,7 +51,7 @@
   background-repeat: no-repeat;
   background-position: center center;
   border-radius: 20px;
-  top: 15%;
+  top: 6%;
     /* transform: translateX(100%); */
     animation: slideIn 0.5s ;
 }
@@ -29,25 +60,19 @@
         top: -100%;
     }
     100% {
-        top: 15%;
+        top: 6%;
       /* top: 50%; Adjust as needed for the final position */
     }
   }
 @media only screen and (max-width: 680px) {
-    .Confirmation{
+    .Confirmation, .EditItem{
         left:   25%;
         
     }
 
 }
-@media only screen and (max-width: 449px) {
-    .Confirmation{
-        left:   5%;
-        
-    }
 
-}
-.Confirmation .TIO{
+.Confirmation .TIO, .EditItem .Title{
     color: black;
     font-size: 25px;
     padding: 10px 10px;
@@ -109,7 +134,7 @@
     background-color: rgb(38, 78, 169);
 
 }
-.Confirmation .THEB button{
+.Confirmation .THEB button, .EditItem button{
     padding: 7px 15px;
     font-weight: bold;
     border: 0px;
@@ -128,14 +153,35 @@
 flex-wrap: wrap;
 }
 /* .Confirmation input{} */
-.Confirmation input{
+    /* left:   25%; */
+.Confirmation input, .EditItem input{
     width: 50%;
     border-radius: 5px;
     border: 2px solid rgba(47, 95, 208);
     height: 20px;
     padding: 10px 10px;
 }
+.Confirmation .TheRadios input{
+    border: 1px solid black;
+    
+}
+.Confirmation .TheRadios{
+    width: 50%;
+    display: flex;
+    padding-bottom: 10px;
+    text-align: center;
+}
+@media only screen and (max-width: 449px) {
+    .Confirmation, .EditItem {
+        left:   5%;
+        
+    }
+.Confirmation .TheRadios{
+width: 90%;
+/* border: 1px solid black; */
+}
 
+}
 .ALLP{
     display: flex;
     background-image: url('../assetes/clean_boutique_desk.jpg');

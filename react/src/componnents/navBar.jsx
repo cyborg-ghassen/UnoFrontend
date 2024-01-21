@@ -6,13 +6,23 @@ import {  BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 // import {  BrowserRouter as Router } from 'react-router-dom';
 // >>>>>>> c014548f0b5cacf04c1bdca5f351077d724097ff
 // import "./assetes/uno logo.png" 
-import { useSelector } from 'react-redux';
+import { useDispatch,useSelector } from 'react-redux';
 import logo from "./assetes/uno logo.png" 
 // const logo="./assetes/uno logo.png"
+import { setFalse ,resetBasket } from "../reduxStores.js/authSlice";
 
 import "./styling.css"
 const NavBar=()=>{
     const [theLinks,setTheLinks]=useState(false)
+    const dispatch=useDispatch()
+  const LogOut=async()=>{
+    setTheLinks(false)
+    localStorage.removeItem("Token")
+    await dispatch(setFalse())
+    await dispatch(resetBasket())
+    // navigate('/home')
+    window.location.href = '/home';
+  }
     const toggleState=()=>{
         // console.log("in the toggle")
                 setTheLinks(!theLinks)
@@ -52,7 +62,11 @@ const NavBar=()=>{
                 {/* <a href="/Products?page=1">Sign Up</a> */}
                 </div>
                 
-                } 
+            } 
+                {authOrNot &&
+                <button className="LogOut" onClick={LogOut}>Log out</button>
+                    
+            }
             </div>
             )}
         <div className="NN">
