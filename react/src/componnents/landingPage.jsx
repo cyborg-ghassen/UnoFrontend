@@ -81,7 +81,7 @@ export const ProductExepmle = ({Per, data, action, getRelatedProducts}) => {
             name: item?.name,
             describtion: item?.slogan,
             promo: item?.promotion,
-            price: item?.price
+            price: item?.price_promotion
         }
     ))
     const Jugy = "./assetes/Judy2.jpg"
