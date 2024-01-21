@@ -7,7 +7,7 @@ import cover3 from "./assetes/Cover3.jpg"
 import useQuery from "../utils/useQuery";
 import {api} from "../utils/api";
 
-export const Filltre = ({getProducts}) => {
+export const Filltre = ({getProducts, source}) => {
     const [categories, setCategories] = useState([]);
     const [brands, setBrands] = useState([])
 
@@ -39,7 +39,7 @@ export const Filltre = ({getProducts}) => {
     const navigate = useNavigate();
 
     const handleButtonClick = () => {
-        navigate(`?${query.toString()}`)
+        navigate(source === "landing" ? `/Products?${query.toString()}` : `?${query.toString()}`)
         getProducts(query)
     };
 
@@ -58,11 +58,6 @@ export const Filltre = ({getProducts}) => {
         }
     }, [filterData]);
 
-    const ChackBoxs = ['Glass', 'Wood', 'Metal', 'Plastic', 'Ceramic', 'Leather',
-        'Fabric',
-        'Paper',
-        'Electronics',
-        'Organic',]
     return (
         <div className="Filltre">
             <div className="Title2">Find Your Product</div>
@@ -93,34 +88,29 @@ export const Filltre = ({getProducts}) => {
                        className="Boton" placeholder="Search"/>
                 <button onClick={handleButtonClick} className="AffectSerch">Find Products</button>
             </div>
-            <div className="Index">
-                {ChackBoxs.map(item => (
-
-                    <div>
-                        <label>{item}</label>
-                        <input type="checkbox"/>
-                    </div>
-                ))}
-
-
-            </div>
         </div>
     )
 }
 export const Covers = () => {
+    const [banners, setBanners] = useState([])
+    const query = useQuery()
+
+    const getBanners = async () => {
+        query.set("site", process.env.REACT_APP_SITE_ID)
+        await api.get(`/setting/poster/?${query.toString()}`).then(res => setBanners(res?.data?.results))
+    }
+
+    useEffect(() => {
+        getBanners()
+    }, []);
+
     return (
         <div className="Cover">
-            <a className="the1 all">
-                <img src={cover1} alt=""/>
-            </a>
-            <a className="the2 all">
-
-                <img src={cover2} alt=""/>
-            </a>
-            <a className="the3 all">
-                <img src={cover3} alt=""/>
-
-            </a>
+            {banners?.slice(0, 3).map(banner => (
+                <a className={`the${banner?.id} all`}>
+                    <img src={banner?.image} alt={banner?.name}/>
+                </a>
+            ))}
         </div>
     )
 }

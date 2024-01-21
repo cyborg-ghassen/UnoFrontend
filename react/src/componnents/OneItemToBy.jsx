@@ -3,17 +3,16 @@ import "./Style/oneItemStyle.css"
 import {ProductExepmle} from "./landingPage";
 import {useNavigate, useParams} from "react-router-dom";
 import {api} from "../utils/api";
-import { useDispatch,useSelector } from "react-redux";
-import { setNewItemToBasket } from "../reduxStores.js/authSlice";
+import {useDispatch, useSelector} from "react-redux";
+import {setNewItemToBasket} from "../reduxStores.js/authSlice";
 // import axios from "axios";
 // import 
 
-export const TheItemRendring = () => {
-    const navigate=useNavigate();
-    const dispatch=useDispatch();
-    const AuthenticatedOrNot=useSelector((state)=>state.Auth.value)
+export const TheItemRendring = ({product}) => {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const AuthenticatedOrNot = useSelector((state) => state.Auth.value)
     const [isPopupOpen, setPopupOpen] = useState(false);
-    const [product, setProduct] = useState({})
     const [Quantity, setQuantity] = useState(1)
 
     const {id} = useParams()
@@ -26,50 +25,14 @@ export const TheItemRendring = () => {
         setPopupOpen(false);
     };
     const setToBacket = () => {
-        dispatch(setNewItemToBasket({id:parseInt(id),Quantity:parseInt(Quantity)}))
+        dispatch(setNewItemToBasket({id: parseInt(id), Quantity: parseInt(Quantity)}))
         closePopup()
     };
 
     // const getProduct = async () => {
     //     return (await api.get(`/product/product/${id}/`)).data
     // }
-    const getProductbyId=()=>
-    {
-        return new Promise(async(resolve,reject)=>{
-        
-            try{
 
-                var data=await api.get(`/product/product/${id}/`).catch((e)=>{
-                console.log(e)
-                   
-                    if (e.response.status===404){
-                        navigate("/PageNotFound")
-                    }
-                })
-                console.log(data)
-                if (data.status!==200){
-                    reject("something Going wrong")
-                    
-                }
-                resolve(data.data)
-            }catch(e){
-                // console.log(e)
-                // if (e.status==404){
-                //     navigate("/*")
-                // }
-
-                reject("can not fetsh data")
-                /// redirect to 404
-            }
-            
-        })
-    }
-    useEffect(() => {
-        getProductbyId().then(res => setProduct(res)).catch((e)=>{
-            // redirect for a 404 page
-        })
-        // eslint-disable-next-line
-    }, []);
 
     const BlueStars = Array.from({length: product?.reviews}, (_, index) => index);
     const GrayStars = Array.from({length: 5 - product?.reviews}, (_, index) => index);
@@ -85,7 +48,7 @@ export const TheItemRendring = () => {
                         Clean Products offer a comprehensive solution for maintaining a pristine living environment.
                     </div>
                     <div class="buttons">
-                        <button onClick={setToBacket} >Add</button>
+                        <button onClick={setToBacket}>Add</button>
                         <button class="OO2" onClick={closePopup}>Cancel</button>
                     </div>
                 </div>
@@ -135,25 +98,28 @@ export const TheItemRendring = () => {
 
                     <label htmlFor="">(expert review)</label>
                 </div>
-                <div className="Price"><label htmlFor="" className="Prix">Price: </label> {product?.price} DT
-                    <label htmlFor="" className="ENPROMO">{product?.promotion !== 0 && `En Promo -${product?.promotion}%`}</label>
+                <div className="Price"><label htmlFor="" className="Prix">Price: </label> {product?.price_promotion} DT
+                    <label htmlFor=""
+                           className="ENPROMO">{product?.promotion !== 0 && `En Promo -${product?.promotion}%`}</label>
                 </div>
                 <div className="Decprition">
                     {product?.description}
                 </div>
                 <div className="Add">
-                    <input type="number" name={"quantity"} value={Quantity} onChange={(event)=>setQuantity(event.target.value)}/>
-                    <button onClick={()=>{
-                        if (AuthenticatedOrNot){
+                    <input type="number" name={"quantity"} value={Quantity}
+                           onChange={(event) => setQuantity(event.target.value)}/>
+                    <button onClick={() => {
+                        if (AuthenticatedOrNot) {
                             openPopup()
-                        }else{
+                        } else {
                             navigate("/LogIn")
                         }
-                    }}>Add To Cart</button>
-                    {!AuthenticatedOrNot && 
-                    <div className="LPLPLPMM">  
-                    <a className="LPLPLPMM" href="/LogIn">You have to authenticate to continue you shopping.</a>
-                    </div>
+                    }}>Add To Cart
+                    </button>
+                    {!AuthenticatedOrNot &&
+                        <div className="LPLPLPMM">
+                            <a className="LPLPLPMM" href="/LogIn">You have to authenticate to continue you shopping.</a>
+                        </div>
                     }
                 </div>
                 <div className="Price AA2"><label htmlFor="" className="Prix AA1">Category: </label>
@@ -170,10 +136,59 @@ export const TheItemRendring = () => {
     )
 }
 export const AllthePage = () => {
-    console.log("slmslmslmslm")
-      useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    const [relatedProducts, setRelatedProducts] = useState([])
+    const [product, setProduct] = useState({})
+    const { id } = useParams()
+    const navigate = useNavigate()
+
+    const getRelatedProducts = async () => {
+        await api.get(`/product/related_products/?product=${id}`).then(res => setRelatedProducts(res?.data))
+    }
+
+    const getProductbyId = () => {
+        return new Promise(async (resolve, reject) => {
+
+            try {
+
+                var data = await api.get(`/product/product/${id}/`).catch((e) => {
+                    console.log(e)
+
+                    if (e.response.status === 404) {
+                        navigate("/PageNotFound")
+                    }
+                })
+                console.log(data)
+                if (data.status !== 200) {
+                    reject("something Going wrong")
+
+                }
+                resolve(data.data)
+            } catch (e) {
+                // console.log(e)
+                // if (e.status==404){
+                //     navigate("/*")
+                // }
+
+                reject("can not fetsh data")
+                /// redirect to 404
+            }
+
+        })
+    }
+    useEffect(() => {
+        getProductbyId().then(res => setProduct(res)).catch((e) => {
+            // redirect for a 404 page
+        })
+        // eslint-disable-next-line
+    }, [id]);
+
+    useEffect(() => {
+        getRelatedProducts()
+    }, [id]);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
     const dataPer = {
         context: "Related Product",
         info: "More"
@@ -181,9 +196,9 @@ export const AllthePage = () => {
     return (
         <div className="MMMMMMMMMMMMMMM">
 
-            <TheItemRendring/>
+            <TheItemRendring product={product}/>
 
-            <ProductExepmle Per={dataPer}/>
+            <ProductExepmle Per={dataPer} data={relatedProducts} action={getProductbyId} getRelatedProducts={getRelatedProducts}/>
         </div>
     )
 }

@@ -34,6 +34,14 @@ class Order(models.Model):
         verbose_name = _("Order")
         verbose_name_plural = _("Orders")
 
+    @property
+    def total_cost(self):
+        total = 0
+        for item in self.orderitem_set.all():
+            total += item.total
+
+        return total
+
     def __str__(self):
         return f"{_('Order')} {self.get_type_display()}"
 
@@ -42,6 +50,10 @@ class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, verbose_name=_("Order"))
     product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name=_("Order"))
     quantity = models.IntegerField(verbose_name=_("Quantity"))
+
+    @property
+    def total(self):
+        return self.product.price_promoted * self.quantity if self.product else 0
 
     def __str__(self):
         return f'{self.product.name if self.product else ""} - {self.quantity}'

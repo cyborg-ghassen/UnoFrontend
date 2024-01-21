@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
+from utils.views import reformat_number
+
 
 # Create your models here.
 class Category(models.Model):
@@ -42,6 +44,14 @@ class Product(models.Model):
     class Meta:
         verbose_name = _("Product")
         verbose_name_plural = _("Products")
+
+    @property
+    def price_promoted(self):
+        return round(self.price - ((self.price * self.promotion) / 100), 3)
+
+    @property
+    def price_promotion(self):
+        return reformat_number(self.price_promoted)
 
     @property
     def image_url(self):

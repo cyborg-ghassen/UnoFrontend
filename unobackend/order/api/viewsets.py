@@ -23,7 +23,7 @@ class OrderItemViewSet(viewsets.ViewSet):
             quantity = item_data['quantity']
 
             product = Product.objects.get(pk=product.pk)
-            individual_price = product.price * quantity
+            individual_price = int(product.price_promoted) * quantity
             total_price += individual_price
 
             product_data = {

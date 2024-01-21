@@ -18,10 +18,14 @@ class BrandSerializer(serializers.ModelSerializer):
 class ProductSerializer(serializers.ModelSerializer):
     category_names = serializers.SerializerMethodField()
     image_url = serializers.SerializerMethodField()
+    price_promotion = serializers.SerializerMethodField()
 
     class Meta:
         model = Product
         fields = '__all__'
+
+    def get_price_promotion(self, obj):
+        return obj.price_promotion
 
     def get_category_names(self, obj):
         return [cat.name for cat in obj.category.all()]

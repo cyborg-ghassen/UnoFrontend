@@ -17,6 +17,7 @@ djangorestframework-simplejwt = "*"
 drf-spectacular = "*"
 django-cors-headers = "*"
 django-storages = "*"
+boto3 = "*"
 
 [dev-packages]
 

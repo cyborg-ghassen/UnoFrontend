@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-20 19:22+0100\n"
+"POT-Creation-Date: 2024-01-21 13:25+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -103,6 +103,8 @@ msgid "Quantity"
 msgstr ""
 
 #: .\product\models.py:7 .\product\models.py:18 .\product\models.py:29
+#: .\setting\models.py:9 .\setting\models.py:26 .\setting\models.py:39
+#: .\setting\models.py:52 .\setting\models.py:67
 msgid "Name"
 msgstr ""
 
@@ -126,11 +128,12 @@ msgstr ""
 msgid "Price"
 msgstr ""
 
-#: .\product\models.py:33
+#: .\product\models.py:33 .\setting\models.py:69
 msgid "Description"
 msgstr ""
 
-#: .\product\models.py:34
+#: .\product\models.py:34 .\setting\models.py:27 .\setting\models.py:53
+#: .\setting\models.py:68
 msgid "Image"
 msgstr ""
 
@@ -138,7 +141,7 @@ msgstr ""
 msgid "Reviews"
 msgstr ""
 
-#: .\product\models.py:36
+#: .\product\models.py:36 .\setting\models.py:54
 msgid "Slogan"
 msgstr ""
 
@@ -158,19 +161,84 @@ msgstr ""
 msgid "Products"
 msgstr ""
 
+#: .\setting\models.py:10
+msgid "Home cover"
+msgstr ""
+
+#: .\setting\models.py:12
+msgid "Product cover"
+msgstr ""
+
+#: .\setting\models.py:14
+msgid "About"
+msgstr ""
+
+#: .\setting\models.py:15 .\setting\models.py:28 .\setting\models.py:41
+#: .\setting\models.py:56 .\setting\models.py:70
+msgid "Site"
+msgstr ""
+
+#: .\setting\models.py:18
+msgid "Site Setting"
+msgstr ""
+
+#: .\setting\models.py:19
+msgid "Site Settings"
+msgstr ""
+
+#: .\setting\models.py:31
+msgid "Poster Setting"
+msgstr ""
+
+#: .\setting\models.py:32
+msgid "Poster Settings"
+msgstr ""
+
+#: .\setting\models.py:40
+msgid "Svg Code"
+msgstr ""
+
+#: .\setting\models.py:44
+msgid "Service Setting"
+msgstr ""
+
+#: .\setting\models.py:45
+msgid "Service Settings"
+msgstr ""
+
+#: .\setting\models.py:55
+msgid "Comment"
+msgstr ""
+
+#: .\setting\models.py:59
+msgid "Testimonial Setting"
+msgstr ""
+
+#: .\setting\models.py:60
+msgid "Testimonials"
+msgstr ""
+
+#: .\setting\models.py:73
+msgid "Magazine Setting"
+msgstr ""
+
+#: .\setting\models.py:74
+msgid "Magazines"
+msgstr ""
+
 #: .\templates\admin\base_site.html:27
 msgid "Lang:"
 msgstr ""
 
-#: .\unobackend\settings.py:160
+#: .\unobackend\settings.py:162
 msgid "English"
 msgstr ""
 
-#: .\unobackend\settings.py:161
+#: .\unobackend\settings.py:163
 msgid "Arabic"
 msgstr ""
 
-#: .\unobackend\settings.py:162
+#: .\unobackend\settings.py:164
 msgid "French"
 msgstr ""
 

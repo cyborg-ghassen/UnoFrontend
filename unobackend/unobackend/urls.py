@@ -31,6 +31,7 @@ urlpatterns = [
     path('i18n/', set_language, name='set_language'),
     path('api/v1/product/', include(('product.api.apiurls', 'product'), namespace='product-api')),
     path('api/v1/order/', include(('order.api.apiurls', 'order'), namespace='order-api')),
+    path('api/v1/setting/', include(('setting.api.apiurls', 'setting'), namespace='setting-api')),
     path('api/v1/auth/', include(('accounts.api.apiurls', 'accounts'), namespace='accounts-api')),
     path('api/v1/token/', TokenObtainSlidingView.as_view(), name='token_obtain'),
     path('api/v1/token/refresh/', TokenRefreshSlidingView.as_view(), name='token_refresh'),
