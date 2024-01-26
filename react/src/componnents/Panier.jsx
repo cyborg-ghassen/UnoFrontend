@@ -260,15 +260,6 @@ export const PanierData=()=>{
                 <input type="text"  value={PhoneNumber} onChange={(event)=>{setPhoneNumber(event.target.value)}}/>
                 <div className="LALA">Address:</div>
                 <input type="text"  value={Address} onChange={(event)=>{setAddress(event.target.value)}}/>
-                <div className="LALA">Client Type:</div>
-                <div className="TheRadios">
-                <label htmlFor="">physic</label>
-                <input type="radio" value={"physic"} name="T1" onChange={handleRadioChange} checked={selectedValue === 'physic'}/>
-                <label htmlFor="">company</label>
-                <input type="radio" value={"company"} name="T1" onChange={handleRadioChange} checked={selectedValue === 'company'}/>
-                <label htmlFor="">passenger</label>
-                <input type="radio" value={"passenger"} name="T1" onChange={handleRadioChange} checked={selectedValue === 'passenger'}/>
-                </div>
                 <div className="LALA">Remark:</div>
                 <input type="text"value={Remark} onChange={(event)=>setRemark(event.target.value)} />
                 {Alert!=="" &&

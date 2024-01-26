@@ -7,6 +7,7 @@ from django.utils.translation import gettext_lazy as _
 # Create your models here.
 class SiteSetting(models.Model):
     name = models.CharField(max_length=100, verbose_name=_('Name'))
+    slogan = models.CharField(max_length=100, verbose_name=_('Slogan'))
     home_cover = models.ImageField(upload_to="home_cover", verbose_name=_('Home cover'),
                                    default=static("clean_boutique_desk.jpg"), null=True, blank=True)
     product_cover = models.ImageField(upload_to="product_cover", verbose_name=_('Product cover'), null=True, blank=True,

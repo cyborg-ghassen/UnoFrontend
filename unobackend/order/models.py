@@ -5,11 +5,6 @@ from product.models import Product
 from django.utils.translation import gettext_lazy as _
 
 # Create your models here.
-ORDER_TYPES = (
-    ('physic', _('Physical')),
-    ('company', _('Company')),
-    ('passenger', _('Passenger'))
-)
 
 ORDER_STATUS = (
     ('draft', _('Draft')),
@@ -20,7 +15,6 @@ ORDER_STATUS = (
 
 class Order(models.Model):
     user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, verbose_name=_("User"))
-    type = models.CharField(max_length=100, choices=ORDER_TYPES, default='physic', null=True, blank=True, verbose_name=_("Type"))
     status = models.CharField(max_length=100, choices=ORDER_STATUS, default='draft', null=True, blank=True, verbose_name=_("Status"))
     full_name = models.CharField(max_length=100, verbose_name=_("Full name"))
     email = models.EmailField(null=True, blank=True, verbose_name=_("Email"))
@@ -43,7 +37,7 @@ class Order(models.Model):
         return total
 
     def __str__(self):
-        return f"{_('Order')} {self.get_type_display()}"
+        return f"{_('Order')} {self.get_status_display()}"
 
 
 class OrderItem(models.Model):

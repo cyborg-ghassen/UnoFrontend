@@ -30,7 +30,7 @@ export const Banner = () => {
         }}>
             <div className="TheBlurr">
                 <div className="theContent">
-                    <div className="start">The Best Place To</div>
+                    <div className="start">{siteSettings?.slogan}</div>
                     <div className="Canter">{siteSettings?.name}</div>
                     <div className="paragraphes">{siteSettings?.about_me}
                         {/* <!-- Simplify your cleaning routine with our cutting-edge tools and accessories. Whether you're a professional or a home enthusiast, discover the key to a sparkling space. Shop now for a cleaner, fresher lifestyle! --> */}
