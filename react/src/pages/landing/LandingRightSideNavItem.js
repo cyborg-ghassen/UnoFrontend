@@ -2,14 +2,14 @@ import React from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {Link, useNavigate} from 'react-router-dom';
 import {
+    Card,
+    Dropdown,
     Nav,
 } from 'react-bootstrap';
 import {faCartShopping, faUser} from "@fortawesome/free-solid-svg-icons";
+import Login from "../authentication/Login";
 
 const LandingRightSideNavItem = () => {
-
-
-    const navigate = useNavigate()
 
     return (
         <Nav navbar className="ms-auto">
@@ -20,19 +20,22 @@ const LandingRightSideNavItem = () => {
                     as={Link}
                     to="#contact"
                 >
-                    <FontAwesomeIcon icon={faCartShopping} size={"lg"} />
+                    <FontAwesomeIcon icon={faCartShopping} size={"lg"}/>
                 </Nav.Link>
             </Nav.Item>
 
-            <Nav.Item>
-                <Nav.Link
-                    as={Link}
-                    className={"bg-transparent btn-primary text-primary ms-2"}
-                    onClick={() => navigate('/authentication/card/login')}
-                >
-                    <FontAwesomeIcon icon={faUser} size={"lg"} />
-                </Nav.Link>
-            </Nav.Item>
+            <Dropdown>
+                <Dropdown.Toggle as={Link} to="#!" className="nav-link fw-semi-bold">
+                    <FontAwesomeIcon icon={faUser} size={"lg"} className={"text-primary"} />
+                </Dropdown.Toggle>
+                <Dropdown.Menu className="dropdown-menu-end dropdown-menu-card mt-0 dropdown-caret dropdown-caret-bg">
+                    <Card className="navbar-card-login shadow-none">
+                        <Card.Body className="fs--1 fw-normal p-4">
+                            <Login/>
+                        </Card.Body>
+                    </Card>
+                </Dropdown.Menu>
+            </Dropdown>
         </Nav>
     );
 };
