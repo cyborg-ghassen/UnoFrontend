@@ -22,7 +22,7 @@ const ProductSingleImage = ({ id, image, name, layout }) => {
     >
       <Image
         rounded={layout === 'list'}
-        src={image.src}
+        src={image}
         className={classNames('h-100 w-100 fit-cover', {
           'rounded-top': layout === 'grid'
         })}
@@ -39,30 +39,12 @@ const ProductImage = ({ name, id, isNew, files, layout }) => {
         'h-sm-100': layout === 'list'
       })}
     >
-      {files.length === 1 && (
         <ProductSingleImage
           id={id}
-          image={files[0]}
+          image={files}
           name={name}
           layout={layout}
         />
-      )}
-      {files.length > 1 && (
-        <Slider
-          {...sliderSettings}
-          className="product-image-slider slick-slider-arrow-inner h-100 full-height-slider"
-        >
-          {files.map(image => (
-            <ProductSingleImage
-              key={image.id}
-              id={id}
-              image={image}
-              name={name}
-              layout={layout}
-            />
-          ))}
-        </Slider>
-      )}
       {isNew && (
         <Badge
           pill

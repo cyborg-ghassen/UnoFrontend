@@ -5,7 +5,7 @@ import StarRating from 'components/common/StarRating';
 import createMarkup from 'helpers/createMarkup';
 
 const ProductDetailsFooter = ({
-  product: { desc, specification, reviews }
+  product: { description, reviews }
 }) => {
   return (
     <div className="mt-4">
@@ -40,45 +40,20 @@ const ProductDetailsFooter = ({
           <Tab.Pane eventKey="description">
             <div
               className="mt-3"
-              dangerouslySetInnerHTML={createMarkup(desc)}
+              dangerouslySetInnerHTML={createMarkup(description)}
             />
           </Tab.Pane>
           <Tab.Pane eventKey="specifications">
             <Table className="fs--1 mt-3">
               <tbody>
-                {Object.keys(specification).map(spec => (
-                  <tr key={spec}>
-                    <td className="bg-100" style={{ width: '30%' }}>
-                      {spec}
-                    </td>
-                    <td>{specification[spec]}</td>
-                  </tr>
-                ))}
+
               </tbody>
             </Table>
           </Tab.Pane>
           <Tab.Pane eventKey="reviews">
             <Row className="mt-3">
               <Col lg={6} className="mb-4 mb-lg-0">
-                {reviews.map((review, index) => (
-                  <div key={review.id}>
-                    <div className="mb-1">
-                      <StarRating
-                        className="fs--1"
-                        readonly
-                        rating={review.rating}
-                      />
-                      <span className="ms-3 text-dark fw-semi-bold">
-                        {review.title}
-                      </span>
-                    </div>
-                    <p className="fs--1 mb-2 text-600">
-                      By {review.author} • {review.date}
-                    </p>
-                    <p className="mb-0">{review.text}</p>
-                    {!(index === reviews.length - 1) && <hr className="my-4" />}
-                  </div>
-                ))}
+
               </Col>
               <Col lg={6} className="ps-lg-5">
                 <Form>

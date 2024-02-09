@@ -1,21 +1,28 @@
-import React, {useState} from 'react';
-import { Navigate, useParams } from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import { useParams } from 'react-router-dom';
 import { Card, Col, Row } from 'react-bootstrap';
 import ProductDetailsMedia from './ProductDetailsMedia';
 import ProductDetailsMain from './ProductDetailsMain';
 import ProductDetailsFooter from './ProductDetailsFooter';
 import CartModal from '../../cart/CartModal';
 import Flex from 'components/common/Flex';
+import {api} from "../../../utils/api";
 
 const ProductDetails = () => {
-  const { productId } = useParams();
-  const [products, setProducts] = useState([])
+  const { id } = useParams();
+  const [product, setProduct] = useState({})
 
-  const product = products.find(product => product.id === productId);
+  const getProduct = async () => {
+    await api.get(`/product/product/${id}/`).then(res => setProduct(res?.data))
+  }
+
+  useEffect(() => {
+    getProduct()
+  }, []);
 
   return product && (
     <>
-      <Card>
+      <Card className={"mb-6"}>
         <Card.Body>
           <Row>
             <Col lg={6} className="mb-4 mb-lg-0">
@@ -23,13 +30,6 @@ const ProductDetails = () => {
             </Col>
             <Col lg={6} as={Flex} justifyContent="between" direction="column">
               <ProductDetailsMain
-                product={product}
-              />
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={12}>
-              <ProductDetailsFooter
                 product={product}
               />
             </Col>

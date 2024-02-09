@@ -1,13 +1,24 @@
-import {Container, Nav} from "react-bootstrap";
-import React, {useEffect} from "react";
+import {Nav} from "react-bootstrap";
+import React, {useEffect, useState} from "react";
 import handleNavbarTransparency from "../../helpers/handleNavbarTransparency";
 import {Link} from "react-router-dom";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faCartShopping, faUser} from "@fortawesome/free-solid-svg-icons";
 import Section from "../../components/common/Section";
 import Flex from "../../components/common/Flex";
+import useQuery from "../../hooks/useQuery";
+import {api} from "../../utils/api";
 
 const CategoryBanner = () => {
+    const [categories, setCatergories] = useState([])
+
+    let query = useQuery()
+
+    const getCategories = async () => {
+        api.get(`/product/category/?${query.toString()}`).then(res => setCatergories(res?.data?.results))
+    }
+
+    useEffect(() => {
+        getCategories()
+    }, []);
 
     useEffect(() => {
         window.addEventListener('scroll', handleNavbarTransparency);
@@ -22,115 +33,17 @@ const CategoryBanner = () => {
         >
             <Flex justifyContent={"between"} alignItems={"center"}>
                 <Nav navbar>
-
-                    <Nav.Item>
-                        <Nav.Link
-                            className={"text-primary me-2"}
-                            as={Link}
-                            to="#contact"
-                        >
-                            Promotion
-                        </Nav.Link>
-                    </Nav.Item>
-
-                    <Nav.Item>
-                        <Nav.Link
-                            as={Link}
-                            className={"bg-transparent btn-primary text-primary ms-2"}
-                        >
-                            Hygiène et Beauté
-                        </Nav.Link>
-                    </Nav.Item>
-
-                    <Nav.Item>
-                        <Nav.Link
-                            className={"text-primary me-2"}
-                            as={Link}
-                            to="#contact"
-                        >
-                            Promotion
-                        </Nav.Link>
-                    </Nav.Item>
-
-                    <Nav.Item>
-                        <Nav.Link
-                            className={"text-primary me-2"}
-                            as={Link}
-                            to="#contact"
-                        >
-                            Maison et extérieur
-                        </Nav.Link>
-                    </Nav.Item>
-
-                    <Nav.Item>
-                        <Nav.Link
-                            className={"text-primary me-2"}
-                            as={Link}
-                            to="#contact"
-                        >
-                            Promotion
-                        </Nav.Link>
-                    </Nav.Item>
-
-                    <Nav.Item>
-                        <Nav.Link
-                            className={"text-primary me-2"}
-                            as={Link}
-                            to="#contact"
-                        >
-                            Promotion
-                        </Nav.Link>
-                    </Nav.Item>
-
-                    <Nav.Item>
-                        <Nav.Link
-                            className={"text-primary me-2"}
-                            as={Link}
-                            to="#contact"
-                        >
-                            Promotion
-                        </Nav.Link>
-                    </Nav.Item>
-
-                    <Nav.Item>
-                        <Nav.Link
-                            className={"text-primary me-2"}
-                            as={Link}
-                            to="#contact"
-                        >
-                            Promotion
-                        </Nav.Link>
-                    </Nav.Item>
-
-                    <Nav.Item>
-                        <Nav.Link
-                            className={"text-primary me-2"}
-                            as={Link}
-                            to="#contact"
-                        >
-                            Promotion
-                        </Nav.Link>
-                    </Nav.Item>
-
-                    <Nav.Item>
-                        <Nav.Link
-                            className={"text-primary me-2"}
-                            as={Link}
-                            to="#contact"
-                        >
-                            Promotion
-                        </Nav.Link>
-                    </Nav.Item>
-
-                    <Nav.Item>
-                        <Nav.Link
-                            className={"text-primary me-2"}
-                            as={Link}
-                            to="#contact"
-                        >
-                            Promotion
-                        </Nav.Link>
-                    </Nav.Item>
+                    {categories?.slice(0, 11).map((category, index) => (
+                        <Nav.Item key={index}>
+                            <Nav.Link
+                                className={"text-primary me-2"}
+                                as={Link}
+                                to="#contact"
+                            >
+                                {category?.name}
+                            </Nav.Link>
+                        </Nav.Item>
+                    ))}
 
                 </Nav>
             </Flex>

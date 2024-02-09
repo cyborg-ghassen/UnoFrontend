@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { blogPostList, menuList1, menuList2 } from 'data/footer';
 import { bgWhiteIcons } from 'data/socialIcons';
 import { version } from 'config';
+import {faPaperclip, faPhone, faShippingFast, faSquarePhone} from "@fortawesome/free-solid-svg-icons";
 
 const FooterTitle = ({ children }) => (
   <h5 className="text-uppercase text-white opacity-85 mb-3">{children}</h5>
@@ -75,61 +76,27 @@ const FooterStandard = () => {
         </div>
         <Row>
           <Col lg={4}>
-            <FooterTitle>Our Mission</FooterTitle>
-            <p className="text-600">
-              Falcon enables front end developers to build custom streamlined
-              user interfaces in a matter of hours, while it gives backend
-              developers all the UI elements they need to develop their web
-              app.And it's rich design can be easily integrated with backends
-              whether your app is based on ruby on rails, laravel, express or
-              any other server side system.
-            </p>
+            <FooterTitle>Uno</FooterTitle>
             <IconGroup className="mt-4" icons={bgWhiteIcons} />
           </Col>
           <Col className="ps-lg-6 ps-xl-8">
             <Row className="mt-5 mt-lg-0">
-              <Col xs={6} md={3}>
-                <FooterTitle>Company</FooterTitle>
-                <FooterList list={menuList1} />
-              </Col>
-              <Col xs={6} md={3}>
-                <FooterTitle>Product</FooterTitle>
-                <FooterList list={menuList2} />
+              <Col className="mt-5 mt-md-0">
+                <FooterTitle><FontAwesomeIcon icon={faSquarePhone} /> Service Client</FooterTitle>
+                (+216) 42 639 582
               </Col>
               <Col className="mt-5 mt-md-0">
-                <FooterTitle>From the Blog</FooterTitle>
-                <FooterBlogList list={blogPostList} />
+                <FooterTitle><FontAwesomeIcon icon={faShippingFast} /> Livraison rapide</FooterTitle>
+                (+216) 42 639 582
+              </Col>
+              <Col className="mt-5 mt-md-0">
+                <FooterTitle><FontAwesomeIcon icon={faPaperclip} /> Livraison rapide</FooterTitle>
+                info@uno.tn
               </Col>
             </Row>
           </Col>
         </Row>
       </Section>
-
-      <section className=" bg-dark py-0 text-center fs--1 light">
-        <hr className="my-0 border-600 opacity-25" />
-        <div className="container py-3">
-          <Row className="justify-content-between">
-            <Col xs={12} sm="auto">
-              <p className="mb-0 text-600">
-                Thank you for creating with Falcon{' '}
-                <span className="d-none d-sm-inline-block">| </span>
-                <br className="d-sm-none" /> {new Date().getFullYear()} &copy;{' '}
-                <a
-                  className="text-white opacity-85"
-                  href="https://themewagon.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  ThemeWagon
-                </a>
-              </p>
-            </Col>
-            <Col xs={12} sm="auto">
-              <p className="mb-0 text-600">v{version}</p>
-            </Col>
-          </Row>
-        </div>
-      </section>
     </>
   );
 };

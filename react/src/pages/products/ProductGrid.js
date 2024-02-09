@@ -9,26 +9,12 @@ import StarRating from 'components/common/StarRating';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const ProductGrid = ({ product, ...rest }) => {
-  const {
-    name,
-    category,
-    id,
-    price,
-    salePrice,
-    shippingCost,
-    rating,
-    totalReview,
-    isInStock,
-    isNew,
-    files
-  } = product;
-
   const handleAddToCart = () => {
 
   }
 
   return (
-    <Col className="mb-4" {...rest}>
+    <Col className="mb-4" lg={3} {...rest}>
       <Flex
         direction="column"
         justifyContent="between"
@@ -36,55 +22,51 @@ const ProductGrid = ({ product, ...rest }) => {
       >
         <div className="overflow-hidden">
           <ProductImage
-            name={name}
-            id={id}
-            isNew={isNew}
-            files={files}
+            name={product?.name}
+            id={product?.id}
+            files={product?.image}
             layout="grid"
           />
           <div className="p-3">
             <h5 className="fs-0">
               <Link
                 className="text-dark"
-                to={`/e-commerce/product/product-details/${id}`}
+                to={`/products/${product?.id}`}
               >
-                {name}
+                {product?.name}
               </Link>
             </h5>
             <p className="fs--1 mb-3">
               <Link to="#!" className="text-500">
-                {category}
+                {product?.category_names?.map(category => <>{category}, </>)}
               </Link>
             </p>
             <h5 className="fs-md-2 text-warning mb-0 d-flex align-items-center mb-3">
-              {`$${salePrice ? salePrice : price}`}
-              {salePrice && <del className="ms-2 fs--1 text-500">${price}</del>}
+              {`$${product?.price_promotion}`}
+              {product?.price_promotion !== product?.price && <del className="ms-2 fs--1 text-500">${product?.price}</del>}
             </h5>
-            <p className="fs--1 mb-1">
-              Shipping Cost: <strong>${shippingCost}</strong>
-            </p>
             <p className="fs--1 mb-1">
               Stock:{' '}
               <strong
                 className={classNames({
-                  'text-success': isInStock,
-                  'text-danger': !isInStock
+                  'text-success': product?.stock > 0,
+                  'text-danger': product?.stock < 0
                 })}
               >
-                {isInStock ? 'Available' : 'Sold-Out'}
+                {product?.stock > 0 ? 'En stock' : 'Hors stock'}
               </strong>
             </p>
           </div>
         </div>
         <Flex alignItems="center" className="px-3">
           <div className="flex-1">
-            <StarRating readonly rating={rating} />
-            <span className="ms-1">({totalReview})</span>
+            <StarRating readonly rating={product?.reviews} />
+            <span className="ms-1">({product?.reviews})</span>
           </div>
           <OverlayTrigger
             placement="top"
             overlay={
-              <Tooltip style={{ position: 'fixed' }}>Add to Cart</Tooltip>
+              <Tooltip style={{ position: 'fixed' }}>Ajouter au panier</Tooltip>
             }
           >
             <Button

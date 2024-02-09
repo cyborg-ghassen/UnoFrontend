@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     Card,
     Col,
@@ -19,6 +19,8 @@ import Flex from 'components/common/Flex';
 import Section from "../../components/common/Section";
 import ProductFilters from "./ProductFilters";
 import {breakpoints} from "../../helpers/utils";
+import {api} from "../../utils/api";
+import useQuery from "../../hooks/useQuery";
 
 const Products = () => {
     const [products, setProducts] = useState([])
@@ -26,6 +28,10 @@ const Products = () => {
     const [sortBy, setSortBy] = useState('price');
     const [isAsc, setIsAsc] = useState(true);
     const [productPerPage, setProductPerPage] = useState(6);
+    let query = useQuery()
+    const getProducts = async () => {
+        await api.get(`/product/product/?${query.toString()}`).then(res => setProducts(res?.data?.results))
+    }
 
     const {
         paginationState: {
@@ -44,6 +50,10 @@ const Products = () => {
         goToPage,
         setItemsPerPage
     } = usePagination(products, productPerPage);
+
+    useEffect(() => {
+        getProducts()
+    }, []);
 
     return (
         <Section>
@@ -139,8 +149,7 @@ const Products = () => {
                         <Card.Body
                             className={"pb-0"}
                         >
-                            <Row
-                            >
+                            <Row>
                                 {paginatedProducts.map((product, index) =>
                                     <ProductGrid
                                         product={product}
