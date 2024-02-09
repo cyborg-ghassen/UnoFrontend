@@ -1,5 +1,4 @@
 import {Route, Routes} from "react-router-dom";
-import ProductMap from "../componnents/ProductMap";
 import {AllthePage} from "../componnents/OneItemToBy";
 import {Panier} from "../componnents/Panier";
 import {Magazine} from "../componnents/Magazine";
@@ -9,14 +8,19 @@ import {PageNotFound} from "../componnents/PageNotFount";
 import React from "react";
 import {useSelector} from "react-redux";
 import Landing from "../pages/landing/Landing";
+import Products from "../pages/products/Products";
+import ProductLayout from "../layouts/ProductLayout";
+import ProductDetails from "../pages/products/product-details/ProductDetails";
 
 const AppRoutes = () => {
     const authOrNot = useSelector((state) => state.Auth.value);
     return (
         <Routes>
             <Route path="/" element={<Landing/>}/>
-            <Route path="/Products" element={<ProductMap/>}/>
-            <Route path="/Product/:id" element={<AllthePage/>}/>
+            <Route element={<ProductLayout />}>
+                <Route path="/products" element={<Products/>}/>
+                <Route path="/products/:id" element={<ProductDetails/>}/>
+            </Route>
             {authOrNot && (
                 <Route path="/Panier" element={<Panier/>}/>
             )}
