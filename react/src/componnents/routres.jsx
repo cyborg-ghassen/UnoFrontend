@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import {LandingPage} from './landingPage';
@@ -23,7 +23,7 @@ export const Myrouters=()=>{
     return(
         <Router>
       		<Routes>
-        		<Route path="/home" element={<LandingPage />} />
+        		<Route path="/" element={<LandingPage />} />
         		<Route path="/Products" element={<ProductMap />} />
         		<Route path="/Product/:id" element={<AllthePage />} />
         		{authOrNot && (

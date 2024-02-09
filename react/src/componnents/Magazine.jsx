@@ -1,6 +1,6 @@
 import React, {Fragment, useEffect, useState} from "react";
 import "./Style/Magazine.css"
-import useQuery from "../utils/useQuery";
+import useQuery from "../hooks/useQuery";
 import {api} from "../utils/api";
 export const Magazine=()=>{
     const [testimonials, setTestimonials] = useState([])

@@ -4,7 +4,7 @@ import "./styling.css"
 import cover1 from "./assetes/Cover1.jpg"
 import cover2 from "./assetes/Cover2.jpg"
 import cover3 from "./assetes/Cover3.jpg"
-import useQuery from "../utils/useQuery";
+import useQuery from "../hooks/useQuery";
 import {api} from "../utils/api";
 
 export const Filltre = ({getProducts, source}) => {
