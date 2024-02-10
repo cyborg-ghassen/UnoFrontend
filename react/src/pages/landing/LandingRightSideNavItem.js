@@ -6,9 +6,10 @@ import {
     Dropdown,
     Nav,
 } from 'react-bootstrap';
-import {faCartShopping, faUser} from "@fortawesome/free-solid-svg-icons";
+import {faUser} from "@fortawesome/free-solid-svg-icons";
 import Login from "../authentication/Login";
 import "./styles.css"
+import CartNotification from "../../components/navbar/top/CartNotification";
 
 
 const LandingRightSideNavItem = () => {
@@ -22,11 +23,11 @@ const LandingRightSideNavItem = () => {
                     as={Link}
                     to="/panier"
                 >
-                    <FontAwesomeIcon icon={faCartShopping} size={"lg"}/>
+                    <CartNotification />
                 </Nav.Link>
             </Nav.Item>
 
-            <Dropdown>
+            <Dropdown className="d-none d-sm-block">
                 <Dropdown.Toggle as={Link} to="#!" className="nav-link fw-semi-bold text-primary">
                     <FontAwesomeIcon icon={faUser} size={"lg"} />
                 </Dropdown.Toggle>
