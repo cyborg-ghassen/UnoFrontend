@@ -8,7 +8,8 @@ const ProductDetailsMedia = ({ product: { image} }) => {
     <div className="position-relative h-sm-100 overflow-hidden">
         <Image
           fluid
-          className="fit-cover w-sm-100 h-sm-100 rounded"
+          className="fit-cover w-sm-100 h-sm-100 rounded img-thumbnail"
+          style={{maxHeight: "450px"}}
           src={image}
           alt="product media"
         />
