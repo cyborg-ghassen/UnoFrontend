@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 import classNames from 'classnames';
+import "./style.css"
+import discount from "../../assets/img/discount1.2.png"
 
 const sliderSettings = {
   autoplay: false,
@@ -31,6 +33,7 @@ const ProductSingleImage = ({ id, image, name, layout }) => {
         })}
         alt={name}
       />
+      
     </Link>
   );
 };
@@ -38,11 +41,26 @@ const ProductSingleImage = ({ id, image, name, layout }) => {
 const ProductImage = ({ name, id, isNew, files, layout }) => {
   return (
     <div
-      className={classNames('position-relative rounded-top overflow-hidden', {
+      className={classNames('i11 mt-2  position-relative rounded-top overflow-hidden', {
         'h-sm-100': layout === 'list'
       })}
     >
+      <div className='i13'>
+      <Image
+        rounded={layout === 'list'}
+        src={discount}
+        style={{
+          maxHeight: "250px"
+        }}
+        className={classNames('h-100 w-100 fit-cover img-thumbnail', {
+          'rounded-top': layout === 'grid'
+        })}
+        alt={name}
+      />
+      {/* // add here the value of the discount */}
+      </div>
         <ProductSingleImage
+        // className="m-auto"
           id={id}
           image={files}
           name={name}

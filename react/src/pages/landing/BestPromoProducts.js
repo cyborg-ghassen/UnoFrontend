@@ -1,6 +1,7 @@
 import Section from "../../components/common/Section";
 import React, {useEffect, useState} from "react";
 import {Row} from "react-bootstrap";
+import Slider from "react-slick"
 import ProductGrid from "../products/ProductGrid";
 import SectionHeader from "./SectionHeader";
 import {api} from "../../utils/api";
@@ -15,6 +16,7 @@ import {Navigation, Pagination} from 'swiper/modules';
 
 const BestPromoProducts = () => {
     const [products, setProducts] = useState([])
+    const [nav, setNav] = useState()
 
     const getBestProducts = async () => {
         await api.get("/product/daily_deals/").then(res => setProducts(res?.data))
@@ -22,8 +24,12 @@ const BestPromoProducts = () => {
 
     useEffect(() => {
         getBestProducts()
+        
     }, []);
-
+    let slider;
+    useEffect(() => {
+        setNav(slider)
+    }, [slider]);
     return (
         <Section>
             <SectionHeader
@@ -32,19 +38,33 @@ const BestPromoProducts = () => {
             />
             <Row>
                 
-                <Swiper navigation={true} pagination={true} modules={[Navigation, Pagination]}>
+                <Slider
+                slidesToShow={products?.length>4 && 3}
+                asNavFor={nav}
+                ref={slider=>{(slider=slider)}}
+                swipeToSlide={true}
+                focusOnSelect={true}
+                centerMode={true}
+                arrows={!false}
+                className="slick-slider-arrow-inner mt-1 mr-n1"
+                // navigation={true}
+                // pagination={true}
+                // modules={[Navigation, Pagination]}
+                >
                     {products?.slice(0, 3).map((product, index) =>
-                        <SwiperSlide>
+                        <div>
+
                             <ProductGrid
+                                className='fit-cover w-sm-100 h-sm-50'
                                 product={product}
                                 key={product.id}
                                 md={6}
                                 lg={4}
                                 index={index}
-                            />
-                        </SwiperSlide>
+                                />
+                        </div>
                     )}
-                </Swiper>
+                </Slider>
             </Row>
         </Section>
     )

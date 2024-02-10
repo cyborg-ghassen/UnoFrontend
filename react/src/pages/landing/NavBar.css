@@ -1,0 +1,153 @@
+/* Header styling */
+header {
+    background-color: #ffffff;
+    color: #fff;
+    text-align: center;
+    padding: 1em 0;
+    /* height: 120px; */
+  }
+  
+  .LOLGO {
+    /* border: 1px solid black; */
+    width: 100px;
+    height: 50px; /* Set the height of the container */
+    /* background-image: url("../assetes/uno_logo.png"); */
+    background-size: cover; /* Make the background image cover the entire container */
+    background-position: center; /* Center the background image within the container */
+    z-index: 100;
+    /* border: 1px solid black; */
+    
+
+    /* margin: auto; */
+    /* margin-bottom: 10px; */
+  }
+  
+  nav ul {
+    list-style: none;
+  }
+  
+  nav ul li {
+    display: inline-block;
+    margin-right: 20px;
+  }
+  
+  nav a {
+    text-decoration: none;
+    color: #396093;
+    font-weight: bold;
+  }
+  
+  nav a:hover {
+    color: #ffc107; /* Change the color on hover */
+  }
+  .MMMMMMMMMMM{
+    width: 100%;
+  }
+  .AllInfo{
+      width: 100%;
+      height: 60px;
+      display: flex;
+      justify-content: space-around;
+align-items: center;
+      background-color: #396093;
+      visibility: visible;
+      position: relative;
+    }
+    
+    .AllInfo .Icons{
+        width: 150px;
+        height: 39px;
+        /* border: 1px solid black; */
+        display: flex;
+        justify-content: space-evenly;
+    }
+    .AllInfo .Contact{
+        width: 400px;
+        height: 30px;
+        /* width: ; */
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        /* border: 1px solid black; */
+        
+    }
+    .AllInfo .Icons .theSvg svg{
+        margin: auto;
+    }
+    .AllInfo .Icons .theSvg{
+        display: flex;
+        /* border: 1px solid black; */
+        width: 35px;
+        height: 35px;
+    }
+    .AllInfo .Contact .ee {
+        display: flex;
+
+        /* background-color: black solid 1px; */
+        align-items: center;
+    }
+    .AllInfo .Contact .ee .teliphon span{
+        font-weight: bold;
+    }
+    .AllInfo .Contact .ee .teliphon{
+            color: #fff;
+            margin-left: 5px;
+            font-size: 10px;
+            /* background-color: black solid 1px; */
+    }
+    .AllInfo .Contact .ee .thesvg{
+        width: 20px;
+        height: 20px;
+        display: flex;
+        /* background-color: #ffc107; */
+        /* background-color:  solid 1px black; */
+    }
+    .AllInfo .Contact .ee .thesvg svg{
+        margin: auto;
+    }
+    @media screen and (max-width: 461px) {
+  .AllInfo{
+    visibility: hidden;
+    position: absolute;
+}
+    }
+    .AllInfo .Contact .Tel{
+        
+    }
+    .AllInfo .Contact .Mail{
+
+    }
+    .OOOOOOOOO{
+        /* border: 1px solid black; */
+        display: flex;
+        justify-content: space-around;
+    align-items: center;
+    margin-bottom: 10px;
+    }
+    .OOOOOOOOO .Panier{
+        width: 35px;
+        height: 35px;
+        /* border: 1px solid black; */
+        position: relative;
+        /* position: fixed; */
+        /* position: absolute; */
+        /* right:  80px; */
+        /* top: 65px; */
+        margin-top: 12px;
+        display: flex;
+    }
+    .OOOOOOOOO .Panier  .NNNN{
+        position: absolute;
+
+        color: white;
+        background-color: red;
+        font-weight: bold;
+        padding: 1px 3px;
+        top: -8px;
+        right: -5px;
+        font-size: 15px;
+        border-radius: 50%;
+    }
+    .OOOOOOOOO .Panier svg{
+        margin: auto;
+    }
