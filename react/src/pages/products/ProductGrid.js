@@ -24,6 +24,7 @@ const ProductGrid = ({ product, ...rest }) => {
         <Card>
         <div className="overflow-hidden">
           <ProductImage
+            // className="mt-3"
             name={product?.name}
             id={product?.id}
             files={product?.image}
@@ -58,15 +59,17 @@ const ProductGrid = ({ product, ...rest }) => {
                 {product?.stock > 0 ? 'En stock' : 'Hors stock'}
               </strong>
             </p>
+            <Button className='mt-4 pt-2 pb-2 pr-2 pl-2 btn-primary '>Ajouter au panier</Button>
           </div>
         </div>
-        <Flex alignItems="center" className="px-3">
+        {/* <Flex alignItems="center" className="px-3">
           <div className="flex-1">
             <StarRating readonly rating={product?.reviews} />
             <span className="ms-1">({product?.reviews})</span>
           </div>
           
-        </Flex>
+        </Flex> */}
+        
        < CardFooter></CardFooter>
         </Card>
         

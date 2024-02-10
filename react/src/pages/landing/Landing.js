@@ -7,7 +7,7 @@ import BestSellingProducts from "./BestSellingProducts";
 import BestPromoProducts from "./BestPromoProducts";
 import PhotosBanner from "./PhotosBanner";
 import MoreProducts from "./MoreProducts";
-
+import "./NavBar.css"
 const Landing = () => {
     return (
         <>
