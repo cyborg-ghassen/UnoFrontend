@@ -23,7 +23,10 @@ const ProductSingleImage = ({ id, image, name, layout }) => {
       <Image
         rounded={layout === 'list'}
         src={image}
-        className={classNames('h-100 w-100 fit-cover', {
+        style={{
+          maxHeight: "250px"
+        }}
+        className={classNames('h-100 w-100 fit-cover img-thumbnail', {
           'rounded-top': layout === 'grid'
         })}
         alt={name}
