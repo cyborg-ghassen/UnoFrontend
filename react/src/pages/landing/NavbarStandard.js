@@ -8,7 +8,8 @@ import LandingRightSideNavItem from './LandingRightSideNavItem';
 import { topNavbarBreakpoint } from 'config';
 import AppContext from 'context/Context';
 import SearchBox from "../../components/navbar/top/SearchBox";
-
+import "./styles.css"
+import Logo from 'components/common/Logo';
 const NavbarStandard = () => {
   const {
     config: { isDark }
@@ -25,14 +26,15 @@ const NavbarStandard = () => {
       variant={isDark ? 'light' : 'dark'}
       expand={topNavbarBreakpoint}
       fixed={"top"}
-      className={classNames('navbar-standard navbar-theme', {
+      className={classNames('i3 navbar-wrapper navbar-standard navbar-theme', {
         'bg-100': !navbarCollapsed && isDark,
+        
         'bg-transparent': !navbarCollapsed && !isDark
       })}
     >
-      <Container>
+      <Container className='i1' fluid={true}>
         <Navbar.Brand as={Link} to="/">
-          UNO
+        <Logo/>
         </Navbar.Brand>
         <Navbar.Toggle onClick={() => setNavbarCollapsed(!navbarCollapsed)} />
         <Navbar.Collapse className="scrollbar">
@@ -43,6 +45,7 @@ const NavbarStandard = () => {
           <LandingRightSideNavItem />
         </Navbar.Collapse>
       </Container>
+      {/* <CategoryBar /> */}
     </Navbar>
   );
 };

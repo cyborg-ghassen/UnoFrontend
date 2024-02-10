@@ -2,11 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Flex from 'components/common/Flex';
 import { Link } from 'react-router-dom';
-import { Button, Col, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { Button, Col, OverlayTrigger, Tooltip,Card,CardFooter } from 'react-bootstrap';
 import classNames from 'classnames';
 import ProductImage from './ProductImage';
 import StarRating from 'components/common/StarRating';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import "./style.css"
 
 const ProductGrid = ({ product, ...rest }) => {
   const handleAddToCart = () => {
@@ -20,6 +21,7 @@ const ProductGrid = ({ product, ...rest }) => {
         justifyContent="between"
         className="border rounded-1 h-100 pb-3"
       >
+        <Card>
         <div className="overflow-hidden">
           <ProductImage
             name={product?.name}
@@ -27,7 +29,7 @@ const ProductGrid = ({ product, ...rest }) => {
             files={product?.image}
             layout="grid"
           />
-          <div className="p-3">
+          <div className="i10 p-3 ">
             <h5 className="fs-0">
               <Link
                 className="text-dark"
@@ -63,21 +65,11 @@ const ProductGrid = ({ product, ...rest }) => {
             <StarRating readonly rating={product?.reviews} />
             <span className="ms-1">({product?.reviews})</span>
           </div>
-          <OverlayTrigger
-            placement="top"
-            overlay={
-              <Tooltip style={{ position: 'fixed' }}>Ajouter au panier</Tooltip>
-            }
-          >
-            <Button
-              variant="falcon-default"
-              size="sm"
-              onClick={() => handleAddToCart(1, true, true)}
-            >
-              <FontAwesomeIcon icon="cart-plus" />
-            </Button>
-          </OverlayTrigger>
+          
         </Flex>
+       < CardFooter></CardFooter>
+        </Card>
+        
       </Flex>
     </Col>
   );

@@ -23,9 +23,12 @@ const Hero = () => {
     }, []);
 
     return (
-        <Swiper navigation={true} pagination={true} modules={[Navigation, Pagination]}>
+        <Swiper className="i8" navigation={true} pagination={true} modules={[Navigation, Pagination]}>
             {posters?.slice(0, 3)?.map(poster => (
-                <SwiperSlide><img src={poster?.image} className={"w-100"} alt={poster?.name}/></SwiperSlide>
+                
+                <SwiperSlide className='i8'><img src={poster?.image} 
+                className={"i8 d-flex justify-content-center  "}
+                 alt={poster?.name}/></SwiperSlide>
             ))}
         </Swiper>
     );

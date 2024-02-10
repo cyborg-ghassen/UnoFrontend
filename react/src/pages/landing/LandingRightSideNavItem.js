@@ -8,11 +8,13 @@ import {
 } from 'react-bootstrap';
 import {faCartShopping, faUser} from "@fortawesome/free-solid-svg-icons";
 import Login from "../authentication/Login";
+import "./styles.css"
+
 
 const LandingRightSideNavItem = () => {
 
     return (
-        <Nav navbar className="ms-auto">
+        <Nav navbar className="i6 ms-auto">
 
             <Nav.Item>
                 <Nav.Link

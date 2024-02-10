@@ -6,14 +6,20 @@ import Section from "../../components/common/Section";
 import Flex from "../../components/common/Flex";
 import useQuery from "../../hooks/useQuery";
 import {api} from "../../utils/api";
+import "./styles.css"
 
 const CategoryBanner = () => {
-    const [categories, setCatergories] = useState([])
+    const [categories, setCatergories] = useState(["Promotion","Promotion","Promotion","Promotion"])
 
     let query = useQuery()
 
     const getCategories = async () => {
-        api.get(`/product/category/?${query.toString()}`).then(res => setCatergories(res?.data?.results))
+        api.get(`/product/category/?${query.toString()}`).then(res => 
+            // setCatergories(prevstate=>{
+            // [...prevstate,...res?.data?.results]}
+            // )
+            {}
+            )
     }
 
     useEffect(() => {
@@ -27,21 +33,23 @@ const CategoryBanner = () => {
 
     return (
         <Section
-            className="py-6 overflow-hidden light"
+            className="i4 py-3 overflow-hidden content-center light"
             position="center"
             overlay
         >
-            <Flex justifyContent={"between"} alignItems={"center"}>
-                <Nav navbar>
+            <Flex className={"i5"} justifyContent={"center"} alignItems={"center"}>
+                <Nav navbar className="justify-content-center" >
                     {categories?.slice(0, 11).map((category, index) => (
                         <Nav.Item key={index}>
                             <Nav.Link
-                                className={"text-primary me-2"}
+                                className={"text-white text-center me-2"}
                                 as={Link}
                                 to="#contact"
                             >
-                                {category?.name}
+                                {category}
+                                
                             </Nav.Link>
+                                
                         </Nav.Item>
                     ))}
 

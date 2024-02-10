@@ -1051,6 +1051,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
   --falcon-navbar-light-toggler-border-color: rgba(0, 0, 0, 0.1);
   --falcon-navbar-light-brand-color: #2c7be5;
   --falcon-navbar-dark-brand-color: #2c7be5;
+  
   /* -------------------------------------------------------------------------- */
   /*                               Navbar Vertical                              */
   /* -------------------------------------------------------------------------- */
@@ -20057,7 +20058,10 @@ pre[class*=language-] {
 .token.deleted {
   color: var(--falcon-danger);
 }
-
+.navbar-wrapper {
+  display: flex;
+  flex-direction: column;
+}
 .token.punctuation {
   color: var(--falcon-gray-400);
 }

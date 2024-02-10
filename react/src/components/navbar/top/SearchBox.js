@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import Avatar from 'components/common/Avatar';
 import Flex from 'components/common/Flex';
 import FalconCloseButton from 'components/common/FalconCloseButton';
+import "../../../pages/landing/styles.css"
 
 const MediaSearchContent = ({ item }) => {
   return (
@@ -43,7 +44,7 @@ const SearchBox = () => {
           type="search"
           placeholder="Recherche..."
           aria-label="Search"
-          className="rounded-pill search-input"
+          className="py-2 i6 rounded search-input "
           value={searchInputValue}
           onChange={({ target }) => setSearchInputValue(target.value)}
           onFocus={() => setDropdownOpen(true)}
