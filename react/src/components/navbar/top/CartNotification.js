@@ -13,7 +13,7 @@ const CartNotification = () => {
             <Nav.Link
                 as={Link}
                 to="/cart"
-                className={classNames('px-0', {
+                className={classNames('px-0 mb-3', {
                     'notification-indicator notification-indicator-warning position-relative notification-indicator-fill':
                     bas?.length
                 })}
