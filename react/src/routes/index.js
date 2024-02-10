@@ -1,6 +1,4 @@
 import {Route, Routes} from "react-router-dom";
-import {AllthePage} from "../componnents/OneItemToBy";
-import {Panier} from "../componnents/Panier";
 import {Magazine} from "../componnents/Magazine";
 import {LogIn} from "../componnents/LogIn";
 import {Register} from "../componnents/Register";
@@ -11,6 +9,7 @@ import Landing from "../pages/landing/Landing";
 import Products from "../pages/products/Products";
 import ProductLayout from "../layouts/ProductLayout";
 import ProductDetails from "../pages/products/product-details/ProductDetails";
+import ShoppingCart from "../pages/cart/ShoppingCart";
 
 const AppRoutes = () => {
     const authOrNot = useSelector((state) => state.Auth.value);
@@ -22,7 +21,7 @@ const AppRoutes = () => {
                 <Route path="/products/:id" element={<ProductDetails/>}/>
             </Route>
             {authOrNot && (
-                <Route path="/Panier" element={<Panier/>}/>
+                <Route path="/panier" element={<ShoppingCart/>}/>
             )}
             <Route path="/OurMagazine" element={<Magazine/>}/>
             {!authOrNot && (

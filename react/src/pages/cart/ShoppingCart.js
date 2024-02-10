@@ -1,20 +1,15 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Card, Col, Form, Row } from 'react-bootstrap';
 import IconButton from 'components/common/IconButton';
 import { Link } from 'react-router-dom';
 import CartItem from './CartItem';
 import CartModal from './CartModal';
-import { ProductContext } from 'context/Context';
 import { getSubtotal } from 'helpers/utils';
 
 const ShoppingCart = () => {
   const [totalCost, setTotalCost] = useState(0);
   const [promoCode, setPromoCode] = useState('');
-
-  const {
-    productsState: { cartItems },
-    productsDispatch
-  } = useContext(ProductContext);
+  const [cartItems, setCartItems] = useState([])
 
   useEffect(() => {
     setTotalCost(getSubtotal(cartItems));
@@ -22,12 +17,7 @@ const ShoppingCart = () => {
 
   const applyPromo = e => {
     e.preventDefault();
-    productsDispatch({
-      type: 'APPLY_PROMO',
-      payload: {
-        promoCode
-      }
-    });
+
     setPromoCode('');
   };
 

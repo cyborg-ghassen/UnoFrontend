@@ -18,7 +18,7 @@ const LandingRightSideNavItem = () => {
                 <Nav.Link
                     className={"text-primary me-2"}
                     as={Link}
-                    to="#contact"
+                    to="/panier"
                 >
                     <FontAwesomeIcon icon={faCartShopping} size={"lg"}/>
                 </Nav.Link>

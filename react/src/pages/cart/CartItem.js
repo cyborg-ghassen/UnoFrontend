@@ -1,25 +1,17 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Col, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import useProductHook from '../product/useProductHook';
-import { ProductContext } from 'context/Context';
-import QuantityController from '../QuantityController';
+import QuantityController from '../products/QuantityController';
 
 const CartItem = ({ product }) => {
   const { id, files, name, quantity, totalPrice } = product;
 
-  const { handleAddToCart } = useProductHook(product);
+  const handleAddToCart = () => {
 
-  const { productsDispatch } = useContext(ProductContext);
-
+  }
   const handleRemove = () => {
-    productsDispatch({
-      type: 'REMOVE_FROM_CART',
-      payload: {
-        product
-      }
-    });
+
   };
 
   const handleIncrease = () => {
