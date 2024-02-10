@@ -6,7 +6,7 @@ import bannet1 from "./assetes/Bannet1.jpg";
 import Profile from "./assetes/profile.jpg";
 import {Filltre, Covers} from "./filtre";
 import {Link, useNavigate} from "react-router-dom";
-import useQuery from "../utils/useQuery";
+import useQuery from "../hooks/useQuery";
 import {api} from "../utils/api";
 import MainSlider from "./MainSlider";
 // const bannet1="./assetes/Bannet1.jpg"

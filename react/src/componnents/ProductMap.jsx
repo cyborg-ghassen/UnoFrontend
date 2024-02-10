@@ -5,7 +5,7 @@ import "./styling.css"
 import {Link, useNavigate, useLocation} from 'react-router-dom';
 
 import {Filltre} from "./filtre";
-import useQuery from "../utils/useQuery";
+import useQuery from "../hooks/useQuery";
 import {api} from "../utils/api";
 // const { id } = useParams();
 
