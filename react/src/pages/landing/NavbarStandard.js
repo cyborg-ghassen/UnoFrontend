@@ -1,9 +1,8 @@
 import classNames from 'classnames';
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import {Container, Nav, Navbar} from 'react-bootstrap';
+import {Container, Navbar} from 'react-bootstrap';
 import handleNavbarTransparency from 'helpers/handleNavbarTransparency';
-import NavbarTopDropDownMenus from 'components/navbar/top/NavbarTopDropDownMenus';
 import LandingRightSideNavItem from './LandingRightSideNavItem';
 import { topNavbarBreakpoint } from 'config';
 import AppContext from 'context/Context';
@@ -23,24 +22,20 @@ const NavbarStandard = () => {
 
   return (
     <Navbar
-      variant={isDark ? 'light' : 'dark'}
+      variant={'light'}
       expand={topNavbarBreakpoint}
       fixed={"top"}
-      className={classNames('i3 navbar-wrapper navbar-standard navbar-theme', {
+      className={classNames('i3 bg-light navbar-wrapper navbar-standard navbar-theme', {
         'bg-100': !navbarCollapsed && isDark,
-        
-        'bg-transparent': !navbarCollapsed && !isDark
+        'bg-light': !navbarCollapsed && !isDark,
       })}
     >
-      <Container className='i1' fluid={true}>
+      <Container className='i1' fluid={true} >
         <Navbar.Brand as={Link} to="/">
         <Logo/>
         </Navbar.Brand>
         <Navbar.Toggle onClick={() => setNavbarCollapsed(!navbarCollapsed)} />
-        <Navbar.Collapse className="scrollbar">
-          <Nav>
-            <NavbarTopDropDownMenus setNavbarCollapsed={setNavbarCollapsed} />
-          </Nav>
+        <Navbar.Collapse className={"scrollbar w-100 bg-light"}>
           <SearchBox />
           <LandingRightSideNavItem />
         </Navbar.Collapse>

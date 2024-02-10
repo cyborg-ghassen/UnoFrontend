@@ -17,18 +17,28 @@ const PhotosBanner = () => {
         <Section>
             <Row>
                 {posters?.slice(3, 4)?.map(poster => (
-                    <Image src={poster?.image} alt={poster?.name} height={300}/>
+                    <Image src={poster?.image} alt={poster?.name} style={{
+                        maxHeight: "300px", maxWidth: "90vw"
+                    }}/>
                 ))}
             </Row>
             <Row className={"mt-3"}>
                 <Col lg={4}>
                     {posters?.slice(4, 5)?.map(poster => (
-                        <Image src={poster?.image} alt={poster?.name} height={400} className={""}/>
+                        <Image src={poster?.image} alt={poster?.name} className={""}
+                               style={{
+                                   maxHeight: "300px", maxWidth: "80vw"
+                               }}
+                        />
                     ))}
                 </Col>
                 <Col lg={8}>
                     {posters?.slice(5, 6)?.map(poster => (
-                        <Image src={poster?.image} alt={poster?.name} height={400} className={"ms-4"}/>
+                        <Image src={poster?.image} alt={poster?.name}
+                        style={{
+                        maxHeight: "300px", maxWidth: "80vw"
+                    }}
+                        />
                     ))}
                 </Col>
             </Row>
