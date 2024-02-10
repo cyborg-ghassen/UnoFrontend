@@ -35,24 +35,27 @@ const BestPromoProducts = () => {
             <SectionHeader
                 title="Notre Meilleure Promo"
                 subtitle={""}
+                // className="i17"
             />
-            <Row>
-                
+            <div className="i17">
+                <div className="i16">
+                    {/* //the cover of the promo */}
+                </div>
                 <Slider
-                slidesToShow={products?.length>4 && 3}
+                slidesToShow={products?.length>0 && 1}
                 asNavFor={nav}
                 ref={slider=>{(slider=slider)}}
                 swipeToSlide={true}
                 focusOnSelect={true}
                 centerMode={true}
                 arrows={!false}
-                className="slick-slider-arrow-inner mt-1 mr-n1"
+                className="i19 slick-slider-arrow-inner mt-1 mr-n1"
                 // navigation={true}
                 // pagination={true}
                 // modules={[Navigation, Pagination]}
                 >
                     {products?.slice(0, 3).map((product, index) =>
-                        <div>
+                        <div className="i20">
 
                             <ProductGrid
                                 className='fit-cover w-sm-100 h-sm-50'
@@ -65,7 +68,7 @@ const BestPromoProducts = () => {
                         </div>
                     )}
                 </Slider>
-            </Row>
+            </div>
         </Section>
     )
 }

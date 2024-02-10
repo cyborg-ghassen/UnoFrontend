@@ -21,7 +21,7 @@ const ProductGrid = ({ product, ...rest }) => {
         justifyContent="between"
         className="border rounded-1 h-100 pb-3"
       >
-        <Card>
+        <Card style={{minWidth:"300px"}}>
         <div className="overflow-hidden">
           <ProductImage
             // className="mt-3"
