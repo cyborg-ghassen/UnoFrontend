@@ -25,8 +25,8 @@ const LandingRightSideNavItem = () => {
             </Nav.Item>
 
             <Dropdown>
-                <Dropdown.Toggle as={Link} to="#!" className="nav-link fw-semi-bold">
-                    <FontAwesomeIcon icon={faUser} size={"lg"} className={"text-primary"} />
+                <Dropdown.Toggle as={Link} to="#!" className="nav-link fw-semi-bold text-primary">
+                    <FontAwesomeIcon icon={faUser} size={"lg"} />
                 </Dropdown.Toggle>
                 <Dropdown.Menu className="dropdown-menu-end dropdown-menu-card mt-0 dropdown-caret dropdown-caret-bg">
                     <Card className="navbar-card-login shadow-none">
