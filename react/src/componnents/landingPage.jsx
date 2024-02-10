@@ -8,6 +8,7 @@ import {Filltre, Covers} from "./filtre";
 import {Link, useNavigate} from "react-router-dom";
 import useQuery from "../hooks/useQuery";
 import {api} from "../utils/api";
+import MainSlider from "./MainSlider";
 // const bannet1="./assetes/Bannet1.jpg"
 
 export const Banner = () => {
@@ -174,7 +175,9 @@ export const LandingPage = () => {
     return (
         <div className="FFFFFFFF">
 
-            <Banner/>
+            {/* <Banner/> */}
+
+            <MainSlider/>   
             <Filltre getProducts={getDailyDeals} source={"landing"}/>
 
             <ProductExepmle Per={dataPer} data={dailyDeals}/>

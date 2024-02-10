@@ -1,0 +1,90 @@
+.LLLLLLLL{
+    width: 100%;
+}
+.carousel {
+    /* z-index: 100; */
+    margin-top: 100px;
+    width: 100%;
+    height: 500px; /* Set the height of the carousel, adjust as needed */
+/* margin-top: 50px;   */
+}
+  
+  .carousel-inner {
+    width: 100%;
+    height: 100%; /* Ensure the carousel-inner takes the full height of the carousel */
+    position: relative;
+    /* z-index: 100; */
+    overflow: hidden;
+  }
+  
+  .carousel-item {
+    width: 100%; /* Ensure the carousel-item takes the full width of the carousel-inner */
+    height: 100%; /* Ensure the carousel-item takes the full height of the carousel-inner */
+    /* z-index: 100; */
+  }
+  
+  .carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    /* z-index: 100; */
+  }
+  .Txt .Find button{
+    margin-left: 30px;
+  }
+  .Txt .Find{
+    display: flex;
+    background-color: #396093;
+    padding: 10px 10px;
+    border-radius: 10px;
+    background-color: #cfcfcf80;
+}
+.Txt .TheText{
+      border-radius: 3px;
+    text-align: center;
+    padding:0px 2px ;
+    padding-top: 10px;
+    font-size: 30px;
+    color: rgb(255, 255, 255);
+    /* text-decoration: underline; */
+    font-weight: bold;
+    /* background-color: #28e54580; */
+  }
+  .Txt{
+      display: flex;
+      /* height: 150px ; */
+      width:80%;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      /* background-color: rgb(255, 255, 255); */
+      margin: auto;
+      margin-bottom: -70px;
+      /* margin-top: -80px; */
+      position: relative;
+      z-index: 200;
+    }
+        /* @media screen and (max-width: 1330px) {
+            .Txt{
+                margin-bottom: -120px;
+                
+            }
+    .Txt .Find{
+    margin-top: 10px;  
+    }
+            
+        }
+        @media screen and (max-width: 918px) {
+            
+            .Txt{
+                margin-bottom: -180px;
+                
+            }
+        }
+        @media screen and (max-width: 468px) {
+
+            .Txt{
+                margin-bottom: -230px;
+                
+        }
+        } */
