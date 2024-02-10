@@ -8,13 +8,13 @@ body{
     width: 100%;
     /* height: 50px; */
 }
-.navbar{
+.navbar ,#navbar{
     width: 100%;
     height: 50px;
     box-shadow: 2px 2px 4px 0px rgba(178, 178, 178, 0.75);
 
-    display: flex;
-    position: fixed;
+    display: flex !important;
+    position: fixed !important;
     top: 0px;
     z-index: 100;
     background-color: white;
@@ -23,7 +23,7 @@ body{
 /* justify-content: space-between; */
 justify-content: space-around
 }
-.navbar .TheLogo{
+#navbar #TheLogo{
     width: 200px;
     height: 90%;
     /* width: 40px; */
@@ -45,23 +45,58 @@ justify-content: space-around
     border: 3px solid black;
     /* height: 100%; */
 }
-.navbar .TheLogo .DA3{
+#navbar #TheLogo .DA3{
     width: 40px;
     height: 40px;
     /* border: 1px solid black; */
     visibility: hidden;
     position: absolute;
 }
-.navbar .TheLogo .LOGO{
+#navbar #TheLogo .LOGO{
     width: 40px;
     height: 40px;
     /* border: 1px solid black; */
 
 }
-.navbar .Links{
+#navbar #Links #ddd #III svg{
+    margin: auto;
+}
+#navbar #Links #ddd #III{
+    height: 40px;
+    display: flex;
+    width: 40px;
+    background-color: transparent;
+    border: 0px;
+}
+#navbar #Links #ddd {
+    width: 90%;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    margin-top: -10px;
+
+align-items: center;
+}
+#navbar #Links #ddd #OPOPOPOPOPOPOPOPO:hover{
+    border: 1px solid  rgb(82, 139, 205);
+}
+#navbar #Links #ddd #OPOPOPOPOPOPOPOPO:focus{
+    border: 1px solid  rgb(82, 139, 205);
+}
+#navbar #Links #ddd #OPOPOPOPOPOPOPOPO{
+    width: 80% !important;
+    height: 20px !important;
+    min-width: 300px !important;
+    padding: 10px 10px !important;
+    /* height: 30%; */
+}
+#navbar #Links{
+    /* border: 1px solid black; */
     /* border: 1px solid black; */
     padding: 10px 10px;
     display: flex;
+    width: 70%;
     visibility: visible;
     
     
@@ -127,12 +162,12 @@ margin-right: -30px;
     
     
 }
-.navbar .Account{
+#navbar #Account{
     padding: 10px 10px;
     /* border: 1px solid black; */
     
 }
-.navbar .Account a{
+#navbar #Account a{
     padding: 10px 10px;
     font-size: 10px;
     font-size: 17px;
@@ -177,6 +212,45 @@ margin-right: -30px;
     margin-left: -15px;
 justify-content: center;
     /* margin-top: -10px; */
+}
+#LOGO{
+    margin-top: -10px;
+}
+.OOOOOOOOO{
+    /* border: 1px solid black; */
+    display: flex;
+    justify-content: space-around;
+align-items: center;
+margin-top: -10px;
+margin-bottom: 10px;
+}
+.OOOOOOOOO .Panier{
+    margin-left: 13px;
+    width: 35px;
+    height: 35px;
+    /* border: 1px solid black; */
+    position: relative;
+    /* position: fixed; */
+    /* position: absolute; */
+    /* right:  80px; */
+    /* top: 65px; */
+    margin-top: 12px;
+    display: flex;
+}
+.OOOOOOOOO .Panier  .NNNN{
+    position: absolute;
+
+    color: white;
+    background-color: red;
+    font-weight: bold;
+    padding: 1px 3px;
+    top: -8px;
+    right: -5px;
+    font-size: 15px;
+    border-radius: 50%;
+}
+.OOOOOOOOO .Panier svg{
+    margin: auto;
 }
 /* The Navbar Desgin §§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§*/
 /* The Filltre Desgin §§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§*/
