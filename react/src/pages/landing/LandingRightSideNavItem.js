@@ -11,15 +11,17 @@ import Login from "../authentication/Login";
 import "./styles.css"
 import CartNotification from "../../components/navbar/top/CartNotification";
 import Flex from "../../components/common/Flex";
+import {useSelector} from "react-redux";
 
 
 const LandingRightSideNavItem = () => {
+    const authOrNot = useSelector((state) => state.Auth.value);
 
     return (
         <Nav navbar className="i6 ms-auto">
 
             <Flex justifyContent={"between"} alignItems={"center"}>
-                <CartNotification/>
+                {authOrNot && <CartNotification/>}
 
                 <Dropdown className="d-none d-sm-block">
                     <Dropdown.Toggle as={Link} to="#!" className="nav-link fw-semi-bold text-primary">
