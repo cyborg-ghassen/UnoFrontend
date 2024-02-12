@@ -1,0 +1,84 @@
+body.no-scroll {
+    overflow: hidden;
+  }
+.i29{
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    height: 850px;
+    background-color: rgba(0, 0, 0, 0.568);
+    z-index: 900;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.lo .p1{
+    /* font-weight: bold; */
+    /* font-size: 14px; */
+}
+.lo{
+    width: 90%;
+    display: flex;
+    align-items: center;
+}
+.io1{
+    text-decoration: underline;
+
+}
+.i29 .TheAuthForm{
+    /* margin: auto; */
+    /* margin-top: 150px; */
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-top: -200px;
+    width: 40%;
+    background-color: rgba(255, 255, 255, 0.952);
+    min-width: 370px;
+    border-radius: 30px;
+    /* height: 400px; */
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    /* align-items: flex-start; */
+    /* border: 1px solid black; */
+}
+.i29 .TheAuthForm .Error{
+    padding-top: 10px;
+    text-align: center;
+    color: red;
+    margin: auto;
+}
+.i29 .TheAuthForm .button1{
+    margin-top: 10px;
+    padding: 10px 30px;
+    color: white;
+    border-radius: 5px;
+    border: 0px;
+    background-color: rgb(86, 86, 255);
+}
+.i29 .TheAuthForm .desclaim{
+    padding-top: 10px;
+    width: 80%;
+    text-align: center;
+}
+.i29 .TheAuthForm .desclaim .h12{
+    color: red;
+}
+.i29 .TheAuthForm .w1{
+    padding-top: 20px;
+    
+}
+.i29 .TheAuthForm .w1 input{
+    border: 1px solid rgba(0, 0, 0, 0.297);
+}
+.i29 .TheAuthForm .createAccount{
+    padding-top: 10px;
+}
+.i29 .TheAuthForm .w1 .w2{
+    font-size: 16px;
+}
+.i29 .TheAuthForm .title{
+    font-weight: bold;
+    font-size: 35px;
+    width: 90%;
+}

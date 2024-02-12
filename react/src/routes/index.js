@@ -11,11 +11,11 @@ import ProductLayout from "../layouts/ProductLayout";
 import ProductDetails from "../pages/products/product-details/ProductDetails";
 import ShoppingCart from "../pages/cart/ShoppingCart";
 
-const AppRoutes = () => {
+const AppRoutes = ({OpenAuth}) => {
     const authOrNot = useSelector((state) => state.Auth.value);
     return (
         <Routes>
-            <Route path="/" element={<Landing/>}/>
+            <Route path="/" element={<Landing OpenAuth={OpenAuth}/>}/>
             <Route element={<ProductLayout />}>
                 <Route path="/products" element={<Products/>}/>
                 <Route path="/products/:id" element={<ProductDetails/>}/>

@@ -48,7 +48,7 @@ const BestPromoProducts = () => {
                 swipeToSlide={true}
                 focusOnSelect={true}
                 centerMode={true}
-                arrows={!false}
+                arrows={true}
                 className="i19 slick-slider-arrow-inner mt-1 mr-n1"
                 // navigation={true}
                 // pagination={true}
@@ -58,7 +58,7 @@ const BestPromoProducts = () => {
                         <div className="i20">
 
                             <ProductGrid
-                                className='fit-cover w-sm-100 h-sm-50'
+                                className='i21 fit-cover w-sm-100 h-sm-50'
                                 product={product}
                                 key={product.id}
                                 md={6}

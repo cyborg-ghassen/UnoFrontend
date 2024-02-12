@@ -19,9 +19,14 @@ const ProductGrid = ({ product, ...rest }) => {
       <Flex
         direction="column"
         justifyContent="between"
-        className="border rounded-1 h-100 pb-3"
+        className="border rounded-1 h-100 "
       >
-        <Card style={{minWidth:"300px"}}>
+        <Card style={
+          {
+            minWidth:"300px"
+          }
+        }
+          >
         <div className="overflow-hidden">
           <ProductImage
             // className="mt-3"

@@ -8,10 +8,10 @@ import BestPromoProducts from "./BestPromoProducts";
 import PhotosBanner from "./PhotosBanner";
 import MoreProducts from "./MoreProducts";
 import "./NavBar.css"
-const Landing = () => {
+const Landing = ({OpenAuth}) => {
     return (
         <>
-            <NavbarStandard/>
+            <NavbarStandard OpenAuth={OpenAuth}/>
             <CategoryBanner/>
             <Hero/>
             <BestSellingProducts />

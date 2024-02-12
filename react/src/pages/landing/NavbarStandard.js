@@ -9,7 +9,7 @@ import AppContext from 'context/Context';
 import SearchBox from "../../components/navbar/top/SearchBox";
 import "./styles.css"
 import Logo from 'components/common/Logo';
-const NavbarStandard = () => {
+const NavbarStandard = ({OpenAuth}) => {
   const {
     config: { isDark }
   } = useContext(AppContext);
@@ -37,7 +37,7 @@ const NavbarStandard = () => {
         <Navbar.Toggle onClick={() => setNavbarCollapsed(!navbarCollapsed)} />
         <Navbar.Collapse className={"scrollbar w-100 bg-light"}>
           <SearchBox />
-          <LandingRightSideNavItem />
+          <LandingRightSideNavItem onClick={OpenAuth} />
         </Navbar.Collapse>
       </Container>
       {/* <CategoryBar /> */}
