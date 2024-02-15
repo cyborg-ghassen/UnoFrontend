@@ -32,7 +32,7 @@ class Product(models.Model):
     price = models.DecimalField(verbose_name=_("Price"), max_digits=7, decimal_places=3)
     category = models.ManyToManyField(verbose_name=_("Category"), to=Category)
     brand = models.ForeignKey(Brand, on_delete=models.SET_NULL, null=True, verbose_name=_("Brand"))
-    description = models.TextField(verbose_name=_("Description"))
+    description = models.TextField(verbose_name=_("Description"), null=True, blank=True)
     image = models.ImageField(upload_to='products', verbose_name=_("Image"))
     reviews = models.IntegerField(default=0, verbose_name=_("Reviews"))
     slogan = models.CharField(max_length=100, verbose_name=_("Slogan"))
