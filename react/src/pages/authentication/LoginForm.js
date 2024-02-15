@@ -1,4 +1,3 @@
-import Divider from 'components/common/Divider';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { Button, Col, Form, Row } from 'react-bootstrap';
