@@ -1,6 +1,4 @@
 import {useSelector} from 'react-redux';
-import {ToastContainer} from 'react-toastify';
-import {CloseButton} from 'components/common/Toast';
 import {BrowserRouter as Router} from "react-router-dom";
 import AppRoutes from "./routes";
 import {LogInPopUp} from 'components/LogInPopUp';
@@ -36,11 +34,6 @@ function App() {
         <div>
             <Router basename={process.env.PUBLIC_URL}>
                 <AppRoutes OpenAuth={OpenAuth}/>
-                <ToastContainer
-                    closeButton={CloseButton}
-                    icon={false}
-                    position={"bottom-left"}
-                />
                 {(!AuthenticatedOrNot && ForceToauthenticate) &&
                     <LogInPopUp closePopUp={handleClose}/>
                 }
