@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import SimpleBarReact from 'simplebar-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -7,17 +7,38 @@ import { slugifyText } from 'helpers/utils';
 import Flex from 'components/common/Flex';
 import SoftBadge from 'components/common/SoftBadge';
 import {productFilters} from "../../data/productFilters";
+import { api } from 'utils/api';
+import useQuery from 'hooks/useQuery';
 
 const ProductFilters = ({ setShow, isOffcanvas }) => {
   const [filterOptions, setFilterOptions] = useState([]);
+    const [brands, setBrands] = useState([])
+    const [categories, setCategories] = useState([]);
+    //let query = useQuery();
 
-  const handleFilterOptions = e => {
+    const getCategories = async () => {
+      await api.get("/product/category/").then(res => setCategories(res?.data?.results))
+  }
+  //getCategories()
+  
+  const getBrands = async () => {
+    await api.get("/product/brand/").then(res => setBrands(res?.data?.results))
+  }
+  //getBrands()
+  useEffect(()=>{
+    getCategories()
+    getBrands()
+
+  },[])
+  const handleFilterOptions = (e,k) => {
     const { type, name, value, checked } = e.target;
+    
     if (type === 'checkbox') {
       let options = [...filterOptions];
       options = options.filter(option => option.value !== value);
 
       checked && options.push({ name, value });
+      console.log(options)
       setFilterOptions(options);
     }
 
@@ -65,10 +86,11 @@ const ProductFilters = ({ setShow, isOffcanvas }) => {
             <Flex wrap="wrap" className="gap-2 mb-3">
               {filterOptions.map(tag => (
                 <SoftBadge
-                  key={tag.value}
+                  // key={tag.value}
+                   key={filterOptions.key}
                   className="text-capitalize bg-300 text-700 py-0"
                 >
-                  {tag.value}
+                  {filterOptions.name}
                   <Button
                     size="sm"
                     variant="link"
@@ -86,16 +108,27 @@ const ProductFilters = ({ setShow, isOffcanvas }) => {
             </Flex>
           )}
           <ul className="list-unstyled">
-            {productFilters.map((filter, index) => (
-              <FilterItem
-                key={slugifyText(filter.label)}
-                index={index}
-                filter={filter}
-                filterOptions={filterOptions}
-                setFilterOptions={setFilterOptions}
-                handleFilterOptions={handleFilterOptions}
+               <FilterItem
+              // key={filter?.id}
+              // index={index}
+              name={"brands"}
+              filter={brands}
+              filterOptions={brands}
+              setFilterOptions={setFilterOptions}
+              handleFilterOptions={(e)=>{
+                handleFilterOptions(e,"brands")}}
               />
-            ))}
+                <FilterItem
+                // key={filter?.id}
+                // index={0}
+                name={"categories"}
+                filter={categories}
+                filterOptions={categories}
+                setFilterOptions={setFilterOptions}
+                handleFilterOptions={(e)=>{
+                  handleFilterOptions(e,"categories")}}
+                
+              />
           </ul>
         </Card.Body>
       </SimpleBarReact>
@@ -108,36 +141,36 @@ ProductFilters.propTypes = {
   isOffcanvas: PropTypes.bool
 };
 
-const FilterItem = ({ filter, index, filterOptions, handleFilterOptions }) => {
+const FilterItem = ({  filter , filterOptions, handleFilterOptions,name }) => {
   const [open, setOpen] = useState(false);
 
   return (
-    <li className={`${productFilters.length - 1 !== index && 'border-bottom'}`}>
+    <li className={`${'border-bottom'}`}>
       <Button
         variant="link"
         onClick={() => setOpen(!open)}
-        aria-controls={`${slugifyText(filter.label)}-collapse`}
-        aria-expanded={index === 0 || index === 1 ? !open : open}
+        aria-controls={`${slugifyText(name)}-collapse`}
+        aria-expanded={ open}
         className="collapse-indicator-plus w-100 fs--2 fw-medium text-start text-600 text-decoration-none py-3 px-0"
       >
-        {filter.label}
+        {name}
       </Button>
       <Collapse
-        in={index === 0 || index === 1 ? !open : open}
-        id={`${slugifyText(filter.label)}-collapse`}
+        in={ open}
+        id={`${slugifyText(filter?.name)}-collapse`}
       >
         <ul className="list-unstyled">
-          {filter.options &&
-            filter.options.map(option => (
-              <li key={slugifyText(option.label)}>
+          {filter &&
+            filter?.map(option => (
+              <li key={slugifyText(option?.id)}>
                 <Form.Check
                   type={option.type}
                   className="form-check d-flex ps-0"
                 >
                   <Form.Check.Label
                     className="fs--1 flex-1 text-truncate"
-                    htmlFor={`filter-${slugifyText(filter.label)}-${slugifyText(
-                      option.label
+                    htmlFor={`filter-${slugifyText(filter?.name)}-${slugifyText(
+                      option?.name
                     )}`}
                   >
                     {option.icon && (
@@ -156,11 +189,12 @@ const FilterItem = ({ filter, index, filterOptions, handleFilterOptions }) => {
                         className="me-3"
                       />
                     )}
-                    {option.label}
+                    {option?.name}
                   </Form.Check.Label>
 
                   <Form.Check.Input
                     type={option.type}
+                    
                     onChange={e => handleFilterOptions(e)}
                     checked={
                       option.type === 'checkbox'
@@ -172,8 +206,8 @@ const FilterItem = ({ filter, index, filterOptions, handleFilterOptions }) => {
                     id={`filter-${slugifyText(filter.label)}-${slugifyText(
                       option.label
                     )}`}
-                    name={option.name}
-                    value={option.value}
+                    name={option?.name}
+                    value={option?.id}
                   />
                 </Form.Check>
               </li>
@@ -185,18 +219,8 @@ const FilterItem = ({ filter, index, filterOptions, handleFilterOptions }) => {
 };
 
 FilterItem.propTypes = {
-  index: PropTypes.number,
-  filter: PropTypes.shape({
-    label: PropTypes.string,
-    options: PropTypes.arrayOf(
-      PropTypes.shape({
-        label: PropTypes.string,
-        name: PropTypes.string,
-        type: PropTypes.string,
-        value: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-      })
-    )
-  }),
+  // index: PropTypes.number,
+  
   handleFilterOptions: PropTypes.func,
   filterOptions: PropTypes.array
 };

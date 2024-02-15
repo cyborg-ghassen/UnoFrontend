@@ -30,6 +30,7 @@ const Products = () => {
     const [productPerPage, setProductPerPage] = useState(6);
     let query = useQuery()
     const getProducts = async () => {
+        console.log(query.toString())
         await api.get(`/product/product/?${query.toString()}`).then(res => setProducts(res?.data?.results))
     }
 
@@ -56,8 +57,8 @@ const Products = () => {
     }, []);
 
     return (
-        <Section>
-            <Row className={"g-3"}>
+        <Section fluid>
+            <Row className={"g-3" }>
                 <Col xl={3}>
                     <ProductFilters/>
                 </Col>
@@ -147,7 +148,7 @@ const Products = () => {
                     </Card>
                     <Card>
                         <Card.Body
-                            className={"pb-0"}
+                            className={"pb-0 "}
                         >
                             <Row>
                                 {paginatedProducts.map((product, index) =>

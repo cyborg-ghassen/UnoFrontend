@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Form, Dropdown } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Avatar from 'components/common/Avatar';
 import Flex from 'components/common/Flex';
 import FalconCloseButton from 'components/common/FalconCloseButton';
 import "../../../pages/landing/styles.css"
+import useQuery from 'hooks/useQuery';
 
 const MediaSearchContent = ({ item }) => {
   return (
@@ -36,16 +37,28 @@ const MediaSearchContent = ({ item }) => {
 const SearchBox = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [searchInputValue, setSearchInputValue] = useState('');
-
+  const navigate=useNavigate()
+  let query = useQuery();
+  const handleSubmit = (event) => {
+    if(searchInputValue==""){
+    query.delete("search" )
+    }else{
+    query.set("search",searchInputValue )
+    }
+    window.location="/products?"+query.toString()
+  };
   return (
     <Dropdown show={dropdownOpen} className="search-box w-100">
-      <Form className="position-relative">
+      <Form className="position-relative"
+      onSubmit={handleSubmit}
+        >
         <Form.Control
           type="search"
           placeholder="Recherche..."
           aria-label="Search"
           className="py-2 i6 rounded search-input "
           value={searchInputValue}
+          name={"search"}
           onChange={({ target }) => setSearchInputValue(target.value)}
           onFocus={() => setDropdownOpen(true)}
           onBlur={() => setDropdownOpen(false)}

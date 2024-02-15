@@ -479,9 +479,9 @@ export const chunk = (arr, chunkSize = 1, cache = []) => {
 // Slugify text
 export const slugifyText = str =>
     str
-        .toLowerCase()
-        .replace(/\s+/g, '-')
-        .replace(/[\u0300-\u036f]/g, '')
-        .replace(/--+/g, '-')
-        .replace(/^-+/, '')
-        .replace(/-+$/, '');
+        // .toLowerCase()
+        // .replace(/\s+/g, '-')
+        // .replace(/[\u0300-\u036f]/g, '')
+        // .replace(/--+/g, '-')
+        // .replace(/^-+/, '')
+        // .replace(/-+$/, '');

@@ -11,14 +11,14 @@ import "./NavBar.css"
 const Landing = ({OpenAuth}) => {
     return (
         <>
-            <NavbarStandard OpenAuth={OpenAuth}/>
-            <CategoryBanner/>
+            {/* <NavbarStandard OpenAuth={OpenAuth}/> */}
+            {/* <CategoryBanner/> */}
             <Hero/>
             <BestSellingProducts />
             <BestPromoProducts />
             <PhotosBanner />
             <MoreProducts />
-            <FooterStandard />
+            {/* <FooterStandard />   */}
         </>
     );
 };

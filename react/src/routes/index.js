@@ -15,8 +15,8 @@ const AppRoutes = ({OpenAuth}) => {
     const authOrNot = useSelector((state) => state.Auth.value);
     return (
         <Routes>
-            <Route path="/" element={<Landing OpenAuth={OpenAuth}/>}/>
             <Route element={<ProductLayout />}>
+            <Route path="/" element={<Landing OpenAuth={OpenAuth}/>}/>
                 <Route path="/products" element={<Products/>}/>
                 <Route path="/products/:id" element={<ProductDetails/>}/>
             {authOrNot && (
