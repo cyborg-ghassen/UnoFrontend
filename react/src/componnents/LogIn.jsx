@@ -80,7 +80,7 @@ export const LogInPopUp=({closePopUp})=>{
     }
     const PostReq=()=>{
         return new Promise(async(resolve,reject)=>{
-            var data= await  api.post("/auth/user/",{is_active:true,username:username,email:Email,password:password}).catch((e)=>{
+            var data= await  api.post("/auth/register/",{is_active:true,username:username,email:Email,password:password}).catch((e)=>{
                    if(e.response?.data?.username){
                     setLogInAlert(e.response?.data?.username)
                        

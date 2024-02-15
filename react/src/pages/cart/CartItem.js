@@ -1,42 +1,73 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Col, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import QuantityController from '../products/QuantityController';
+import { useDispatch } from 'react-redux';
+import { deleteOneItem, updateQuatity } from 'reduxStores.js/authSlice';
 
-const CartItem = ({ product }) => {
-  const { id, files, name, quantity, totalPrice } = product;
+const CartItem = ({ product,getItems }) => {
+  console.log("AAAAAAAA")
+  console.log(product)
+  const dispatch=useDispatch();
+  const [totlaPrice, settotlaPrice] = useState(0);
 
+  
+  // const { id, files, name, quantity, totalPrice } = product;
+  const [Quantity, setQuantity] = useState(product?.quantity)
   const handleAddToCart = () => {
-
+    
   }
-  const handleRemove = () => {
-
+  
+  const handleRemove = async(id) => {
+    await dispatch(deleteOneItem({id:id}))
+    await getItems()
+    .then(()=>{
+        settotlaPrice("0.000")
+    })
+    .catch(()=>{})
+    
   };
 
-  const handleIncrease = () => {
-    handleAddToCart(parseInt(quantity + 1));
+  const handleIncrease = async() => {
+    await handleAddToCart(parseInt(product?.quantity + 1));
+    await setQuantity(parseInt(Quantity+1))
+    console.log(Quantity)
+    handleDispatch()
   };
-
-  const handleDecrease = () => {
-    if (quantity > 1) {
-      handleAddToCart(parseInt(quantity - 1));
+  
+  const handleDecrease = async() => {
+    if (product?.quantity > 1) {
+      await handleAddToCart(parseInt(product?.quantity - 1));
+      await setQuantity(parseInt(Quantity-1))
+      await console.log(Quantity)
+      handleDispatch()
     }
   };
-
-  const handleChange = e => {
-    handleAddToCart(parseInt(e.target.value < 1 ? 1 : e.target.value));
+  const handleDispatch=async()=>{
+    await dispatch(updateQuatity({ id: product?.product?.id, quantity: Quantity }));
+    await getItems();
+  }
+  useEffect(()=>{
+    console.log(Quantity)
+  },[Quantity])
+  
+  const handleChange = async(e) => {
+    await handleAddToCart(parseInt(e.target.value < 1 ? 1 : e.target.value));
+    await setQuantity(parseInt(e.target.value < 1 ? 1 : e.target.value))
+    console.log(Quantity)
+    handleDispatch()
+    
   };
-
   return (
     <Row className="gx-card mx-0 align-items-center border-bottom border-200">
       <Col xs={8} className="py-3">
         <div className="d-flex align-items-center">
           <Link to="/e-commerce/product/product-details">
             <img
-              src={files[0].src}
+              src={product?.product?.image_url              }
               width="60"
-              alt={name}
+              alt={product?.product?.name}
               className="img-fluid rounded-1 me-3 d-none d-md-block"
             />
           </Link>
@@ -46,7 +77,7 @@ const CartItem = ({ product }) => {
                 to="/e-commerce/product/product-details"
                 className="text-900"
               >
-                {name}
+                {product?.product?.name}
               </Link>
             </h5>
             <div className="fs--2 fs-md--1">
@@ -54,7 +85,7 @@ const CartItem = ({ product }) => {
                 variant="link"
                 size="sm"
                 className="text-danger fs--2 fs-md--1 fw-normal p-0"
-                onClick={() => handleRemove(id)}
+                onClick={() => handleRemove(product?.product?.id)}
               >
                 Remove
               </Button>
@@ -71,7 +102,7 @@ const CartItem = ({ product }) => {
           >
             <div>
               <QuantityController
-                quantity={quantity}
+                quantity={Quantity}
                 handleChange={handleChange}
                 handleIncrease={handleIncrease}
                 handleDecrease={handleDecrease}
@@ -84,7 +115,7 @@ const CartItem = ({ product }) => {
             xs={{ order: 0 }}
             className="text-end ps-0 mb-2 mb-md-0 text-600"
           >
-            ${totalPrice}
+            {parseFloat(product?.individual_price).toFixed(2)} dt
           </Col>
         </Row>
       </Col>

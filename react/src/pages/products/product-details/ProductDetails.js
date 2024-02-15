@@ -7,11 +7,20 @@ import ProductDetailsFooter from './ProductDetailsFooter';
 import CartModal from '../../cart/CartModal';
 import Flex from 'components/common/Flex';
 import {api} from "../../../utils/api";
+import { useDispatch, useSelector } from 'react-redux';
+import { setNewItemToBasket } from 'reduxStores.js/authSlice';
 
 const ProductDetails = () => {
+  const dispatch = useDispatch();
+  const AuthenticatedOrNot = useSelector((state) => state.Auth.value)
+  const [Quantity, setQuantity] = useState(1)
   const { id } = useParams();
-  const [product, setProduct] = useState({})
 
+  const [product, setProduct] = useState({})
+  const setToBacket = () => {
+    dispatch(setNewItemToBasket({id: parseInt(id), Quantity: parseInt(Quantity)}))
+  
+};
   const getProduct = async () => {
     await api.get(`/product/product/${id}/`).then(res => setProduct(res?.data))
   }
@@ -30,6 +39,8 @@ const ProductDetails = () => {
             </Col>
             <Col lg={6} as={Flex} justifyContent="between" direction="column">
               <ProductDetailsMain
+                setQuantity={setQuantity}
+                setToBacket={setToBacket}
                 product={product}
               />
             </Col>

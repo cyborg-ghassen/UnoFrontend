@@ -12,17 +12,20 @@ const CartNotification = () => {
         <Nav.Item as="li" className="d-none d-sm-block">
             <Nav.Link
                 as={Link}
-                to="/cart"
-                className={classNames('px-0 mb-3', {
+                to="/panier"
+                className={classNames('px-0  ', {
                     'notification-indicator notification-indicator-warning position-relative notification-indicator-fill':
                     bas?.length
+                    
                 })}
             >
-                {bas?.length && (
-                    <span className="notification-indicator-number text-primary">
-                {bas?.length}
+                <span className="notification-indicator-number text-primary">
+                {(bas?.length!=0) &&
+                    <>
+                    {bas?.length} 
+                    </>
+                }
           </span>
-                )}
                 <FontAwesomeIcon
                     icon="shopping-cart"
                     transform="shrink-7"

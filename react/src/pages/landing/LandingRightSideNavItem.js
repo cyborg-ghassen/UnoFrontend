@@ -6,23 +6,43 @@ import {
     Dropdown,
     Nav,
 } from 'react-bootstrap';
-import {faUser} from "@fortawesome/free-solid-svg-icons";
+import {faSignOutAlt, faUser} from "@fortawesome/free-solid-svg-icons";
 import Login from "../authentication/Login";
 import "./styles.css"
 import CartNotification from "../../components/navbar/top/CartNotification";
 import Flex from "../../components/common/Flex";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import { resetBasket, setFalse } from 'reduxStores.js/authSlice';
 
 
 const LandingRightSideNavItem = () => {
     const authOrNot = useSelector((state) => state.Auth.value);
+    const dispatch=useDispatch()
 
+    const LogOut=async ()=>{
+        localStorage.removeItem("Token")
+        await dispatch(setFalse())
+        await dispatch(resetBasket())
+        // navigate('/home')
+        window.location.href = '/';
+    }
     return (
         <Nav navbar className="i6 ms-auto">
 
             <Flex justifyContent={"between"} alignItems={"center"}>
-                {authOrNot && <CartNotification/>}
-
+                {authOrNot && 
+                <>
+                <CartNotification/>
+                <FontAwesomeIcon
+                    icon={faSignOutAlt}
+                    onClick={LogOut}
+                    transform="shrink-7"
+                    className="fs-4 text-primary"
+                />
+                </>
+                }
+                {!authOrNot &&
+                
                 <Dropdown className="d-none d-sm-block">
                     <Dropdown.Toggle as={Link} to="#!" className="nav-link fw-semi-bold text-primary">
                         <FontAwesomeIcon icon={faUser} size={"lg"}/>
@@ -36,6 +56,7 @@ const LandingRightSideNavItem = () => {
                         </Card>
                     </Dropdown.Menu>
                 </Dropdown>
+                }
             </Flex>
 
         </Nav>

@@ -19,10 +19,10 @@ const AppRoutes = ({OpenAuth}) => {
             <Route element={<ProductLayout />}>
                 <Route path="/products" element={<Products/>}/>
                 <Route path="/products/:id" element={<ProductDetails/>}/>
-            </Route>
             {authOrNot && (
                 <Route path="/panier" element={<ShoppingCart/>}/>
             )}
+            </Route>
             <Route path="/OurMagazine" element={<Magazine/>}/>
             {!authOrNot && (
                 <Route path="/LogIn" element={<LogIn/>}/>

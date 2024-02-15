@@ -8,7 +8,7 @@ const QuantityController = ({
   handleChange,
   handleIncrease,
   handleDecrease,
-  btnClassName
+  btnClassName,setQuantity
 }) => {
   return (
     <InputGroup size="sm">
@@ -25,7 +25,7 @@ const QuantityController = ({
         type="number"
         min="1"
         value={quantity}
-        onChange={handleChange}
+        onChange={setQuantity}
         style={{ width: '50px' }}
       />
       <Button

@@ -1,31 +1,37 @@
 import classNames from 'classnames';
 import IconButton from 'components/common/IconButton';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Col, Row} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import StarRating from 'components/common/StarRating';
 import QuantityController from '../QuantityController';
 
-const ProductDetailsMain = ({product}) => {
+const ProductDetailsMain = ({product,setQuantity,setToBacket}) => {
 
     const [productCount, setProductCount] = useState(1);
 
     const handleQuantityChange = e => {
         setProductCount(parseInt(e.target.value < 1 ? 1 : e.target.value));
+        setQuantity(parseInt(e.target.value < 1 ? 1 : e.target.value));
     };
 
     const handleQuantityIncrease = () => {
         setProductCount(productCount + 1);
+        setQuantity(productCount + 1);
     };
 
     const handleQuantityDecrease = () => {
         productCount > 1 && setProductCount(productCount - 1);
+        productCount > 1 && setQuantity(productCount - 1);
     };
 
     const handleAddToCart = () => {
 
     }
+    useEffect(()=>{
+
+    },[productCount])
 
     return (
         <>
@@ -88,6 +94,7 @@ const ProductDetailsMain = ({product}) => {
                     <div className="">
                         <QuantityController
                             quantity={productCount}
+                            setQuantity={setQuantity}
                             handleChange={handleQuantityChange}
                             handleIncrease={handleQuantityIncrease}
                             handleDecrease={handleQuantityDecrease}
@@ -100,7 +107,10 @@ const ProductDetailsMain = ({product}) => {
                         variant="primary"
                         size="sm"
                         icon="cart-plus"
-                        onClick={() => handleAddToCart(productCount, true)}
+                        onClick={async() =>{
+                           await setQuantity(productCount);
+                           await  setToBacket()}
+                        }
                     >
                         <span className="d-none d-sm-inline-block">Ajouter au panier</span>
                     </IconButton>

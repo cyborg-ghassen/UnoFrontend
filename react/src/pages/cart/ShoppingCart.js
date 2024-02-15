@@ -5,14 +5,60 @@ import { Link } from 'react-router-dom';
 import CartItem from './CartItem';
 import CartModal from './CartModal';
 import { getSubtotal } from 'helpers/utils';
+import { api } from 'utils/api';
+import { useSelector } from 'react-redux';
 
 const ShoppingCart = () => {
+  const [totlaPrice, settotlaPrice] = useState(0);
+
   const [totalCost, setTotalCost] = useState(0);
   const [promoCode, setPromoCode] = useState('');
   const [cartItems, setCartItems] = useState([])
+  const bas = useSelector((state) => state.Auth.basket);
 
+  const dataTosend=()=>{
+    return bas.map(item => ({
+        product: item.id,
+        quantity: item.Quantity
+      }));          
+}
+  const getItems=()=>{
+    return new Promise(async(resolve,reject)=>{
+
+        var data=await api.post("/order/items/",dataTosend(),axiosConfig).then((res)=>{
+            settotlaPrice(res?.data?.total_price)
+            if (res?.data?.total_price==0){
+                settotlaPrice("0.000")
+            }
+            console.log(res?.data)
+            setCartItems(res?.data?.products)
+            resolve(res)
+            
+        }).catch((e)=>{
+           
+            reject(e)
+        })
+    })
+}
+useEffect(()=>{
+  getItems().then((data)=>{
+
+  }).catch((e)=>{
+
+  })
+},[bas])
+console.log(bas)
+const headers = {
+  'Authorization':"Bearer "+localStorage.getItem("Token")  ,
+    
+};
+const axiosConfig = {
+  headers: headers,
+  
+};
   useEffect(() => {
     setTotalCost(getSubtotal(cartItems));
+    
   }, [cartItems]);
 
   const applyPromo = e => {
@@ -74,7 +120,9 @@ const ShoppingCart = () => {
                 </Col>
               </Row>
               {cartItems.map(product => (
-                <CartItem key={product.id} product={product} />
+                <CartItem key={product.id}
+                getItems={getItems}
+                product={product} />
               ))}
               <Row className="fw-bold gx-card mx-0">
                 <Col xs={9} md={8} className="py-2 text-end text-900">
