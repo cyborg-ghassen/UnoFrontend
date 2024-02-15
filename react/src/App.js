@@ -1,48 +1,50 @@
-import {Provider, useSelector} from 'react-redux';
-import {storeAuth} from './reduxStores.js/AuthStore.js';
+import {useSelector} from 'react-redux';
 import {ToastContainer} from 'react-toastify';
 import {CloseButton} from 'components/common/Toast';
 import {BrowserRouter as Router} from "react-router-dom";
 import AppRoutes from "./routes";
-import { LogInPopUp } from 'componnents/LogIn.jsx';
-import { useState } from 'react';
+import {LogInPopUp} from 'components/LogInPopUp';
+import {useState} from 'react';
 
 function App() {
-    const [ForceToauthenticate,setForceToauthenticate]=useState(false)
+    const [ForceToauthenticate, setForceToauthenticate] = useState(false)
     const AuthenticatedOrNot = useSelector((state) => state.Auth.value)
-    const OpenAuth=()=>{
+    const OpenAuth = () => {
         setForceToauthenticate(true)
     }
+
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
-      }
+    }
+
     async function openAuthPopUp() {
-        
+
         await sleep(3000);
-        if (!AuthenticatedOrNot){
-           setForceToauthenticate(true)
+        if (!AuthenticatedOrNot) {
+            setForceToauthenticate(true)
         }
     }
-    const handleClose=()=>{
+
+    const handleClose = () => {
         setForceToauthenticate(false)
-        if (!AuthenticatedOrNot){
+        if (!AuthenticatedOrNot) {
             openAuthPopUp()
         }
-    } 
+    }
     openAuthPopUp()
     return (
         <div>
-               <Router basename={process.env.PUBLIC_URL}>
-                    <AppRoutes OpenAuth={OpenAuth} />
-                    <ToastContainer
-                        closeButton={CloseButton}
-                        icon={false}
-                    />
-                </Router>
+            <Router basename={process.env.PUBLIC_URL}>
+                <AppRoutes OpenAuth={OpenAuth}/>
+                <ToastContainer
+                    closeButton={CloseButton}
+                    icon={false}
+                    position={"bottom-left"}
+                />
                 {(!AuthenticatedOrNot && ForceToauthenticate) &&
                     <LogInPopUp closePopUp={handleClose}/>
                 }
-            
+            </Router>
         </div>
     );
 }
