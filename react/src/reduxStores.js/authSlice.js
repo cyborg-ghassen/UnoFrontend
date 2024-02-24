@@ -24,12 +24,14 @@ export const authSlice = createSlice({
     },
     setNewItemToBasket:(state , action)=>{
       const updatedBasket = state.basket.filter(item => item.id !== action.payload.id);
-      
-      // Add the new item to the updatedBasket
-  updatedBasket.push(action.payload);
+      if(action?.payload?.id!=null && action?.payload?.Quantity!=null){
 
-  // Update the state with the new basket
-  state.basket = updatedBasket;
+        // Add the new item to the updatedBasket
+        updatedBasket.push(action.payload);
+        
+        // Update the state with the new basket
+        state.basket = updatedBasket;
+      }
   
   // console.log(action.payload);
   // console.log("hello");
@@ -45,16 +47,16 @@ export const authSlice = createSlice({
     },
     updateQuatity:(state,action)=>{
 
-      console.log(action.payload)
+      //console.log(action.payload)
       const index = state.basket.findIndex(item => item.id === action.payload.id);
       
       if (index !== -1) {
         const updatedBasket = [...state.basket];
         updatedBasket[index] = { ...updatedBasket[index], Quantity: action.payload.quantity };
     
-        console.log(updatedBasket)
+        //console.log(updatedBasket)
         state.basket = [...updatedBasket];
-        console.log(state.basket)
+       // console.log(state.basket)
       }
     }
 

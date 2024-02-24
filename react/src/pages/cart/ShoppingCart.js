@@ -31,6 +31,7 @@ const ShoppingCart = () => {
                 }
                 console.log(res?.data)
                 setCartItems(res?.data?.products)
+                setTotalCost(res?.data?.total_price)
                 resolve(res)
 
             }).catch((e) => {
@@ -56,7 +57,7 @@ const ShoppingCart = () => {
 
     };
     useEffect(() => {
-        setTotalCost(getSubtotal(cartItems));
+       // setTotalCost(getSubtotal(cartItems));
 
     }, [cartItems]);
 
@@ -130,7 +131,7 @@ const ShoppingCart = () => {
                                             md={5}
                                             className="text-end py-2 text-nowrap px-x1"
                                         >
-                                            ${totalCost}
+                                            {parseFloat(totalCost).toFixed(3)} dt
                                         </Col>
                                     </Row>
                                 </Col>
