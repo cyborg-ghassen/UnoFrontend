@@ -2,11 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Flex from 'components/common/Flex';
 import { Link } from 'react-router-dom';
-import { Button, Col, OverlayTrigger, Tooltip,Card,CardFooter } from 'react-bootstrap';
+import { Button, Col,  Card,CardFooter } from 'react-bootstrap';
 import classNames from 'classnames';
 import ProductImage from './ProductImage';
-import StarRating from 'components/common/StarRating';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import "./style.css"
 import { setNewItemToBasket } from 'reduxStores.js/authSlice';
 import { useDispatch } from 'react-redux';

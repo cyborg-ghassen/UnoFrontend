@@ -12,6 +12,7 @@ class SiteSetting(models.Model):
                                    default=static("clean_boutique_desk.jpg"), null=True, blank=True)
     product_cover = models.ImageField(upload_to="product_cover", verbose_name=_('Product cover'), null=True, blank=True,
                                       default=static("CleanProducts.jpg"))
+    banner_best_products = models.ImageField(upload_to="banner_best_products", verbose_name=_('Best products Picture'), null=True, blank=True)
     about_me = models.TextField(verbose_name=_('About'))
     site = models.OneToOneField(Site, on_delete=models.CASCADE, verbose_name=_('Site'))
 

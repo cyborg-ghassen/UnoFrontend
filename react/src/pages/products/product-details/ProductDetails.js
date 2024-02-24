@@ -3,18 +3,16 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Button, Card, Col, Row } from 'react-bootstrap';
 import ProductDetailsMedia from './ProductDetailsMedia';
 import ProductDetailsMain from './ProductDetailsMain';
-import ProductDetailsFooter from './ProductDetailsFooter';
 import CartModal from '../../cart/CartModal';
 import Flex from 'components/common/Flex';
 import {api} from "../../../utils/api";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setNewItemToBasket } from 'reduxStores.js/authSlice';
 import ProductGrid from '../ProductGrid';
 import Section from 'components/common/Section';
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
-  const AuthenticatedOrNot = useSelector((state) => state.Auth.value)
   const [Quantity, setQuantity] = useState(1)
   const { id } = useParams();
 
@@ -29,6 +27,7 @@ const ProductDetails = () => {
 
   useEffect(() => {
     getProduct()
+    // eslint-disable-next-line
   }, []);
 
   return product && (
