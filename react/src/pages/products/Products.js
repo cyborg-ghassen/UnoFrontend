@@ -16,16 +16,15 @@ const Products = () => {
     const [products, setProducts] = useState([])
     const [count, setCount] = useState(1)
     let query = useQuery()
-    const getProducts = async () => {
-        console.log(query.toString())
-        await api.get(`/product/product/?${query.toString()}`).then(res => {
+    const getProducts = async (q) => {
+        await api.get(`/product/product/?${q.toString()}`).then(res => {
             setProducts(res?.data?.results)
             setCount(res?.data?.count)
         })
     }
 
     useEffect(() => {
-        getProducts()
+        getProducts(query)
         // eslint-disable-next-line
     }, []);
 
@@ -33,7 +32,7 @@ const Products = () => {
         <Section fluid>
             <Row className={"g-3" }>
                 <Col xl={3}>
-                    <ProductFilters/>
+                    <ProductFilters getProducts={getProducts}/>
                 </Col>
                 <Col xl={9}>
                     <Card>
