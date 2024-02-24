@@ -41,29 +41,29 @@ const BestPromoProducts = () => {
                 subtitle={""}
                 // className="i17"
             />
-            <div className="i17">
+            <div className="d-flex justify-content-between align-items-center flex-wrap">
                 <div className="i16" style={{
                     background: `url(${settings[0]?.banner_best_products}) no-repeat`,
                     backgroundSize: "cover"
                 }}>
                 </div>
                 <Slider
-                    slidesToShow={products?.length > 0 && 1}
+                    slidesToShow={products?.length > 1 && 2}
                     asNavFor={nav}
                     swipeToSlide={true}
                     focusOnSelect={true}
                     centerMode={true}
                     arrows={true}
-                    className="i19 slick-slider-arrow-inner mt-1 mr-n1"
+                    className="slick-slider-arrow-inner mt-1 mr-n1 position-relative w-sm-100 w-lg-50"
                     // navigation={true}
                     // pagination={true}
                     // modules={[Navigation, Pagination]}
                 >
                     {products?.slice(0, 3).map((product, index) =>
-                        <div className="i20">
+                        <div className="overflow-visible">
 
                             <ProductGrid
-                                className='i21 fit-cover w-sm-100 h-sm-50'
+                                className='i21 fit-cover h-sm-50'
                                 product={product}
                                 key={product.id}
                                 md={6}
