@@ -8,10 +8,17 @@ import ProductImage from './ProductImage';
 import StarRating from 'components/common/StarRating';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import "./style.css"
+import { setNewItemToBasket } from 'reduxStores.js/authSlice';
+import { useDispatch } from 'react-redux';
 
-const ProductGrid = ({ product, ...rest }) => {
+const ProductGrid = ({ product,key, ...rest }) => {
+  const dispatch = useDispatch();
+
   const handleAddToCart = () => {
+    
+    dispatch(setNewItemToBasket({id: parseInt(product?.id), Quantity: 1}))
 
+      
   }
 
   return (
@@ -64,7 +71,7 @@ const ProductGrid = ({ product, ...rest }) => {
                 {product?.stock > 0 ? 'En stock' : 'Hors stock'}
               </strong>
             </p>
-            <Button className='mt-4 pt-2 pb-2 pr-2 pl-2 btn-primary '>Ajouter au panier</Button>
+            <Button onClick={handleAddToCart} className='mt-4 pt-2 pb-2 pr-2 pl-2 btn-primary '>Ajouter au panier</Button>
           </div>
         </div>
         {/* <Flex alignItems="center" className="px-3">

@@ -115,7 +115,7 @@ const CartItem = ({ product,getItems }) => {
             xs={{ order: 0 }}
             className="text-end ps-0 mb-2 mb-md-0 text-600"
           >
-            {parseFloat(product?.individual_price).toFixed(2)} dt
+            {parseFloat(product?.individual_price).toFixed(3)} dt
           </Col>
         </Row>
       </Col>
