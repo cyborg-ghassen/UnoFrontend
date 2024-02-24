@@ -6,9 +6,7 @@ import { Button, Collapse, Form, Image, Card } from 'react-bootstrap';
 import { slugifyText } from 'helpers/utils';
 import Flex from 'components/common/Flex';
 import SoftBadge from 'components/common/SoftBadge';
-import {productFilters} from "../../data/productFilters";
 import { api } from 'utils/api';
-import useQuery from 'hooks/useQuery';
 
 const ProductFilters = ({ setShow, isOffcanvas }) => {
   const [filterOptions, setFilterOptions] = useState([]);

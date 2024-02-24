@@ -2,15 +2,8 @@ import React, {useEffect, useState} from 'react';
 import {
     Card,
     Col,
-    Form,
-    OverlayTrigger,
     Row,
-    Tooltip,
-    Button,
-    InputGroup
 } from 'react-bootstrap';
-import {Link} from 'react-router-dom';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import ProductGrid from './ProductGrid';
 import CartModal from '../cart/CartModal';
 import Section from "../../components/common/Section";
@@ -22,23 +15,18 @@ import AdvanceTablePagination from "../../components/common/AdvanceTablePaginati
 const Products = () => {
     const [products, setProducts] = useState([])
     const [count, setCount] = useState(1)
-    const [sortBy, setSortBy] = useState('price');
-    const [isAsc, setIsAsc] = useState(true);
     let query = useQuery()
     const getProducts = async () => {
-<<<<<<< HEAD
         console.log(query.toString())
-        await api.get(`/product/product/?${query.toString()}`).then(res => setProducts(res?.data?.results))
-=======
         await api.get(`/product/product/?${query.toString()}`).then(res => {
             setProducts(res?.data?.results)
             setCount(res?.data?.count)
         })
->>>>>>> 355b1459d84d62632c97effecbee595e4d7371a3
     }
 
     useEffect(() => {
         getProducts()
+        // eslint-disable-next-line
     }, []);
 
     return (
