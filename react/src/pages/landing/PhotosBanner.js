@@ -34,7 +34,7 @@ const PhotosBanner = () => {
                 </Col>
                 <Col lg={8}>
                     {posters?.slice(5, 6)?.map(poster => (
-                        <Image src={poster?.image} alt={poster?.name}
+                        <Image src={poster?.image} alt={poster?.name} className={"m-auto"}
                         style={{
                         maxHeight: "300px", maxWidth: "80vw"
                     }}
