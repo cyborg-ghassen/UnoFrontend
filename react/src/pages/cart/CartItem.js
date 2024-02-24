@@ -18,15 +18,21 @@ const CartItem = ({ product,getItems }) => {
   const handleAddToCart = () => {
     
   }
-  
-  const handleRemove = async(id) => {
-    await dispatch(deleteOneItem({id:id}))
-    await getItems()
-    .then(()=>{
-        settotlaPrice("0.000")
+  const deleteFormBas=(id)=>{
+    return new Promise(async(resolve,reject)=>{
+      await dispatch(deleteOneItem({id:id}))
+      resolve()
     })
-    .catch(()=>{})
-    
+  }
+  const handleRemove = async(id) => {
+    deleteFormBas(id)
+    // .then(()=>{
+    //   getItems()
+    //   .then(()=>{
+    //       settotlaPrice("0.000")
+    //   })
+    //   .catch(()=>{})
+    // })
   };
 
   const handleIncrease = async() => {

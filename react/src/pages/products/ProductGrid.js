@@ -11,7 +11,7 @@ import "./style.css"
 import { setNewItemToBasket } from 'reduxStores.js/authSlice';
 import { useDispatch } from 'react-redux';
 
-const ProductGrid = ({ product,key, ...rest }) => {
+const ProductGrid = ({ product, ...rest }) => {
   const dispatch = useDispatch();
 
   const handleAddToCart = () => {

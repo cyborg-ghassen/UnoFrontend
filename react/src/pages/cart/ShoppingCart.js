@@ -23,7 +23,8 @@ const ShoppingCart = () => {
     }
     const getItems = () => {
         return new Promise(async (resolve, reject) => {
-
+         
+            console.log(bas)
             var data = await api.post("/order/items/", dataTosend(), axiosConfig).then((res) => {
                 settotlaPrice(res?.data?.total_price)
                 if (res?.data?.total_price == 0) {
@@ -47,7 +48,7 @@ const ShoppingCart = () => {
 
         })
     }, [bas])
-    console.log(bas)
+    // console.log(bas)
     const headers = {
         'Authorization': "Bearer " + localStorage.getItem("Token"),
 
@@ -58,8 +59,10 @@ const ShoppingCart = () => {
     };
     useEffect(() => {
        // setTotalCost(getSubtotal(cartItems));
+      // handleRemove()
 
     }, [cartItems]);
+
 
     return (
         <>
@@ -115,6 +118,7 @@ const ShoppingCart = () => {
                             {cartItems.map(product => (
                                 <CartItem key={product.id}
                                           getItems={getItems}
+                                      //    handleRemove={handleRemove}
                                           product={product}/>
                             ))}
                             <Row className="fw-bold gx-card mx-0">
