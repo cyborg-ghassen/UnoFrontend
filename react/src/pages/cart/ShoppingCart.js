@@ -4,12 +4,11 @@ import IconButton from 'components/common/IconButton';
 import {Link} from 'react-router-dom';
 import CartItem from './CartItem';
 import CartModal from './CartModal';
-import {getSubtotal} from 'helpers/utils';
 import {api} from 'utils/api';
 import {useSelector} from 'react-redux';
 
 const ShoppingCart = () => {
-    const [totlaPrice, settotlaPrice] = useState(0);
+    const [, settotlaPrice] = useState(0);
     const [show, setShow] = useState(false)
     const [totalCost, setTotalCost] = useState(0);
     const [cartItems, setCartItems] = useState([])
@@ -24,9 +23,9 @@ const ShoppingCart = () => {
     const getItems = () => {
         return new Promise(async (resolve, reject) => {
 
-            var data = await api.post("/order/items/", dataTosend(), axiosConfig).then((res) => {
+            await api.post("/order/items/", dataTosend(), axiosConfig).then((res) => {
                 settotlaPrice(res?.data?.total_price)
-                if (res?.data?.total_price == 0) {
+                if (res?.data?.total_price === 0) {
                     settotlaPrice("0.000")
                 }
                 console.log(res?.data)
@@ -46,6 +45,7 @@ const ShoppingCart = () => {
         }).catch((e) => {
 
         })
+        // eslint-disable-next-line
     }, [bas])
     console.log(bas)
     const headers = {
