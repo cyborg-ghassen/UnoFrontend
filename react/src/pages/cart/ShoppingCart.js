@@ -22,14 +22,8 @@ const ShoppingCart = () => {
     }
     const getItems = () => {
         return new Promise(async (resolve, reject) => {
-<<<<<<< HEAD
-         
             console.log(bas)
-            var data = await api.post("/order/items/", dataTosend(), axiosConfig).then((res) => {
-=======
-
             await api.post("/order/items/", dataTosend(), axiosConfig).then((res) => {
->>>>>>> 09be37bcc918d10dbeb59dc0ba17facefb0524c5
                 settotlaPrice(res?.data?.total_price)
                 if (res?.data?.total_price === 0) {
                     settotlaPrice("0.000")
