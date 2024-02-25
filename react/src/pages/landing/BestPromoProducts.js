@@ -8,6 +8,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 
 import './styles.css';
+import Flex from "../../components/common/Flex";
 
 const BestPromoProducts = () => {
     const [products, setProducts] = useState([])
@@ -35,45 +36,42 @@ const BestPromoProducts = () => {
         setNav(slider)
     }, [slider]);
     return (
-        <Section>
+        <Section fluid>
             <SectionHeader
                 title="Notre Meilleure Promo"
                 subtitle={""}
                 // className="i17"
             />
-            <div className="i17">
+            <Flex justifyContent={"between"} alignItems={"center"} alignContent={"center"} breakpoint={"sm"}>
                 <div className="i16" style={{
                     background: `url(${settings[0]?.banner_best_products}) no-repeat`,
-                    backgroundSize: "cover"
+                    backgroundSize: "contain"
                 }}>
                 </div>
                 <Slider
-                    slidesToShow={products?.length > 0 && 1}
+                    slidesToShow={products?.length > 2 && 3}
                     asNavFor={nav}
                     swipeToSlide={true}
                     focusOnSelect={true}
                     centerMode={true}
                     arrows={true}
-                    className="i19 slick-slider-arrow-inner mt-1 mr-n1"
+                    className="slick-slider-arrow-inner mt-1 mr-n1 position-relative w-sm-100 w-lg-75"
                     // navigation={true}
                     // pagination={true}
                     // modules={[Navigation, Pagination]}
                 >
-                    {products?.slice(0, 3).map((product, index) =>
-                        <div className="i20">
-
-                            <ProductGrid
-                                className='i21 fit-cover w-sm-100 h-sm-50'
-                                product={product}
-                                key={product.id}
-                                md={6}
-                                lg={4}
-                                index={index}
-                            />
-                        </div>
+                    {products?.map((product, index) =>
+                        <ProductGrid
+                            className='h-sm-50 overflow-visible'
+                            product={product}
+                            key={product.id}
+                            md={6}
+                            lg={3}
+                            index={index}
+                        />
                     )}
                 </Slider>
-            </div>
+            </Flex>
         </Section>
     )
 }

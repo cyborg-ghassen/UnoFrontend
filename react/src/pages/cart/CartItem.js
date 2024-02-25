@@ -10,7 +10,6 @@ const CartItem = ({ product,getItems }) => {
   console.log("AAAAAAAA")
   console.log(product)
   const dispatch=useDispatch();
-  const [totlaPrice, settotlaPrice] = useState(0);
 
   
   // const { id, files, name, quantity, totalPrice } = product;
