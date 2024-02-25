@@ -8,7 +8,7 @@ import {api} from "../../utils/api";
 import "./styles.css"
 
 const The2ndNavBar = ({sendDataToParent, sendContentToParent}) => {
-    const [categories,] = useState(["Promotion", "Promotion", "Promotion", "Promotion"])
+    const [categories,] = useState(["Promotion", "Hygiène et beauté", "Promotion", "Maison exteriors"])
     const [Bar, setBar] = useState(false)
     let query = useQuery()
     const sendData = () => {

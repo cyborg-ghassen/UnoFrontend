@@ -38,6 +38,7 @@ const ProductGrid = ({ product, ...rest }) => {
             name={product?.name}
             id={product?.id}
             files={product?.image}
+            product={product}
             layout="grid"
           />
           <div className="i10 p-3 ">
@@ -54,10 +55,10 @@ const ProductGrid = ({ product, ...rest }) => {
                 {product?.category_names?.map(category => <>{category}, </>)}
               </Link>
             </p>
-            <h5 className="fs-md-2 text-warning mb-0 d-flex align-items-center mb-3">
+            {/* <h5 className="fs-md-2 text-warning mb-0 d-flex align-items-center mb-3">
               {`$${product?.price_promotion}`}
               {product?.price_promotion !== product?.price && <del className="ms-2 fs--1 text-500">${product?.price}</del>}
-            </h5>
+            </h5> */}
             <p className="fs--1 mb-1">
               Stock:{' '}
               <strong

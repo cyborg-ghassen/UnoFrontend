@@ -12,11 +12,56 @@
     align-items: center;
     justify-content: center;
 }
+
 .i13{
     position: absolute;
-    top:  0;
-    width: 100px;
+    bottom:  0;
+    right: 0px;
+    /* left: 0px; */
+    width: 150px;
     height: 100px;
-    background-color: yellowgreen;
+    /* background-color: yellowgreen; */
     left:  0px;
+    background-color: transparent;
+    border: 0px;
+    /* border: 1px solid black; */
+    z-index: 350;
+}
+.i13 img{
+    width: 100%;
+    height: 100%;
+    /* border: 1px solid black; */
+    z-index: 350;
+}
+.i13 div{
+    position: absolute;
+    z-index: 351;
+    top: 0px;
+    /* border: 1px solid black; */
+    font-family: system-ui;
+    color: rgb(255, 255, 255);
+    
+}
+.i13 .promo{
+    top: 42px;
+    font-weight: bold;
+    left: 85px;
+    font-size: 13px;
+    transform: rotate(45deg);
+    
+}
+.i13 .priceWithoutPromo{
+    top: 50px;
+    left: 25px;
+    font-size: 12px;
+    text-decoration: line-through;
+    padding: 2px 2px;
+    
+}
+.i13 .priceWithPromo{
+    font-weight: bold;
+    left: 10px;
+    font-size: 14px;
+    top: 68px;
+
 }

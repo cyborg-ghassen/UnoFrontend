@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 import classNames from 'classnames';
 import "./style.css"
-import discount from "../../assets/img/discount1.2.png"
+import discount from "../../assets/img/g42.png"
 
 const sliderSettings = {
   autoplay: false,
@@ -38,7 +38,8 @@ const ProductSingleImage = ({ id, image, name, layout }) => {
   );
 };
 
-const ProductImage = ({ name, id, isNew, files, layout }) => {
+const ProductImage = ({ name, id, isNew, files,product, layout }) => {
+  console.log(product)
   return (
     <div
       className={classNames('i11 mt-2  position-relative rounded-top overflow-hidden', {
@@ -46,7 +47,15 @@ const ProductImage = ({ name, id, isNew, files, layout }) => {
       })}
     >
       <div className='i13'>
-      <Image
+        <img src={discount}/>
+        {product?.promotion!=0 &&
+        <>
+        <div className='promo'>{product?.promotion}%</div>
+        <div className='priceWithoutPromo'>{product?.price} </div>
+        </>
+        }
+        <div className='priceWithPromo'>{product?.price_promotion} TND</div>
+              {/* <Image
         rounded={layout === 'list'}
         src={discount}
         style={{
@@ -56,7 +65,7 @@ const ProductImage = ({ name, id, isNew, files, layout }) => {
           'rounded-top': layout === 'grid'
         })}
         alt={name}
-      />
+      /> */}
       {/* // add here the value of the discount */}
       </div>
         <ProductSingleImage
