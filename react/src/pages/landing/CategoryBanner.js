@@ -1,65 +1,21 @@
-import {Nav} from "react-bootstrap";
+import {Nav, Navbar, NavDropdown} from "react-bootstrap";
 import React, {useEffect, useState} from "react";
 import handleNavbarTransparency from "../../helpers/handleNavbarTransparency";
-import {Link} from "react-router-dom";
 import Section from "../../components/common/Section";
 import useQuery from "../../hooks/useQuery";
 import {api} from "../../utils/api";
 import "./styles.css"
+import Flex from "../../components/common/Flex";
 
-const The2ndNavBar = ({sendDataToParent, sendContentToParent}) => {
-    const [categories,] = useState(["Promotion", "Hygiène et beauté", "Promotion", "Maison exteriors"])
-    const [Bar, setBar] = useState(false)
+const The2ndNavBar = () => {
+    const [categories, setCategories] = useState([])
     let query = useQuery()
-    const sendData = () => {
-        // const data = 'Hello from Child!';
-        sendDataToParent(Bar);
-    };
-    const sendDataContnet = (a) => {
-        // const data = 'Hello from Child!';
-        sendContentToParent(a);
-    };
+
     const getCategories = async () => {
-        api.get(`/product/category/?${query.toString()}`).then(res =>
-                // setCatergories(prevstate=>{
-                // [...prevstate,...res?.data?.results]}
-                // )
-            {
+        api.get(`/setting/link/?${query.toString()}`).then(res => {
+                setCategories(res?.data?.results)
             }
         )
-    }
-    const dataToNav = {
-        title: "hygiène et beauté",
-        subCategorys: [
-            {
-                SubTitle: "En Promotion",
-                categories: ["Shampooing", "Gel douche", "Dentifrice"]
-            },
-            {
-                SubTitle: "Soins de la peau",
-                categories: ["Crème hydratante", "Nettoyant visage", "Masque facial"]
-            },
-            {
-                SubTitle: "Maquillage",
-                categories: ["Fond de teint", "Mascara", "Rouge à lèvres"]
-            },
-            {
-                SubTitle: "Maquillage",
-                categories: ["Fond de teint"
-                    , "Mascara", "Rouge à lèvres"
-                    , "Mascara", "Rouge à lèvres"
-                    , "Mascara", "Rouge à lèvres"
-                ]
-            },
-            {
-                SubTitle: "Maquillage",
-                categories: ["Fond de teint", "Mascara", "Rouge à lèvres"]
-            },
-            {
-                SubTitle: "Maquillage",
-                categories: ["Fond de teint", "Mascara", "Rouge à lèvres"]
-            }
-        ]
     }
 
     useEffect(() => {
@@ -74,93 +30,54 @@ const The2ndNavBar = ({sendDataToParent, sendContentToParent}) => {
 
     return (
         <Section
-            className="i4 py-3 overflow-hidden content-center light"
+            className="i4 py-3 overflow-visible content-center light"
             position="center"
             overlay
         >
-            {/* <Flex className={"i5"} justifyContent={"center"} alignItems={"center"}> */}
-            <Nav navbar className="i5">
-                {categories?.slice(0, 11).map((category, index) => (
-                    <Nav.Item key={index}>
-                        <Nav.Link
-                            className={"text-white text-center me-2"}
-                            as={Link}
-                            to="#contact"
-                            onClick={() => {
-                                setBar(!Bar);
-                                sendData();
-                                sendDataContnet(dataToNav)
-                            }}
-                        >
-                            {category}
+            <Navbar expand={"lg"}>
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className={"i5"} navbar>
+                        {categories?.slice(0, 4)?.map((category, index) => (
+                            <BarCategories data={category} key={index}/>
+                        ))}
+                    </Nav>
+                </Navbar.Collapse>
 
-                        </Nav.Link>
-
-                    </Nav.Item>
-                ))}
-
-            </Nav>
-            {/* {Bar &&
-                <BarCategorys visible={Bar}/>
-                } */}
-
-            {/* <div className="i22"></div> */}
-            {/* </Flex> */}
+            </Navbar>
         </Section>
     )
 }
-const BarCategorys = ({visible, data}) => {
+const BarCategories = ({data, key}) => {
     console.log("data", data)
     return (
-        < Section
-            className="i22 py-3 overflow-hidden content-center light"
-        >
-            <div alignItems="flex-start"
-                 alignContents="flex-start"
-                 flexWrap="wrap"
-                 flexDirection="row">
-                <div className="i25 p-2">
-                    {data?.title}
-                </div>
-                <div className="oo">
-                    {data?.subCategorys.map((items) => (
+        <NavDropdown title={data?.name} key={key} className={"i22 text-white text-center me-2"}>
+            <div>
 
-                        <div className="i26" alignItems="center" flexDirection="column">
-                            {/* the is the title of the subCategory     */}
-                            <div className="i27">{items?.SubTitle}</div>
-                            {items?.categories.map((item) => (
-
-                                <a className="i28" href={"#!"}>{item}</a>
+                <p className={"i25 p-2 bg-primary"}>{data?.name}</p>
+                <div className={"oo"}>
+                    {data?.sublink_set?.map((items) => (
+                        <div className={""}>
+                            <Flex className="i26" alignItems="center" direction="column">
+                                {/* the is the title of the subCategory     */}
+                                <div className="i27 p-2">{items?.name}</div>
+                            </Flex>
+                            {items?.categories_set?.map((item) => (
+                                <NavDropdown.Item title={item?.name} className="i28" href={`/products?category=${item?.id}`}>
+                                    {item?.name}
+                                </NavDropdown.Item>
                             ))}
-
                         </div>
                     ))}
                 </div>
-
             </div>
-        </Section>
-
+        </NavDropdown>
     )
 }
 const CategoryBanner = () => {
-    const [barSection, setbarSectionVisiblibity] = useState('');
-    const [dataList, setDataList] = useState('')
-    const handleDataFromChildToChild = (data) => {
-        setbarSectionVisiblibity(data);
-    };
-    const handleDataContent = (data) => {
-        setDataList(data);
-    };
+
     return (
         <div className="i23">
-            <The2ndNavBar
-                sendDataToParent={handleDataFromChildToChild}
-                sendContentToParent={handleDataContent}/>
-            {barSection &&
-
-                <BarCategorys visible={barSection} data={dataList}/>
-            }
-
+            <The2ndNavBar/>
         </div>
     )
 }

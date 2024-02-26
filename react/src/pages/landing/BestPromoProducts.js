@@ -42,7 +42,7 @@ const BestPromoProducts = () => {
                 subtitle={""}
                 // className="i17"
             />
-            <Flex justifyContent={"between"} alignItems={"center"} alignContent={"center"} breakpoint={"sm"}>
+            <Flex justifyContent={"between"} alignItems={"center"} alignContent={"center"} breakpoint={"md"}>
                 <div className="i16" style={{
                     background: `url(${settings[0]?.banner_best_products}) no-repeat`,
                     backgroundSize: "contain"
@@ -55,7 +55,7 @@ const BestPromoProducts = () => {
                     focusOnSelect={true}
                     centerMode={true}
                     arrows={true}
-                    className="slick-slider-arrow-inner mt-1 mr-n1 position-relative w-sm-100 w-lg-75"
+                    className="slick-slider-arrow-inner mt-1 mr-n1 position-relative w-md-100 w-lg-75"
                     // navigation={true}
                     // pagination={true}
                     // modules={[Navigation, Pagination]}

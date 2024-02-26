@@ -4,91 +4,15 @@ import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import classNames from 'classnames';
 import "./style.css"
-<<<<<<< HEAD
-import discount from "../../assets/img/g42.png"
 
-const sliderSettings = {
-  autoplay: false,
-  infinite: true,
-  speed: 500,
-  slidesToShow: 1,
-  slidesToScroll: 1
-};
-
-const ProductSingleImage = ({ id, image, name, layout }) => {
-  return (
-    <Link
-      to={`/products/${id}`}
-      className="d-block h-sm-100"
-      key={image.id}
-    >
-      <Image
-        rounded={layout === 'list'}
-        src={image}
-        style={{
-          maxHeight: "250px"
-        }}
-        className={classNames('h-100 w-100 fit-cover img-thumbnail', {
-          'rounded-top': layout === 'grid'
-        })}
-        alt={name}
-      />
-      
-    </Link>
-  );
-};
-
-const ProductImage = ({ name, id, isNew, files,product, layout }) => {
-  console.log(product)
-  return (
-    <div
-      className={classNames('i11 mt-2  position-relative rounded-top overflow-hidden', {
-        'h-sm-100': layout === 'list'
-      })}
-    >
-      <div className='i13'>
-        <img src={discount}/>
-        {product?.promotion!=0 &&
-        <>
-        <div className='promo'>{product?.promotion}%</div>
-        <div className='priceWithoutPromo'>{product?.price} </div>
-        </>
-        }
-        <div className='priceWithPromo'>{product?.price_promotion} TND</div>
-              {/* <Image
-        rounded={layout === 'list'}
-        src={discount}
-        style={{
-          maxHeight: "250px"
-        }}
-        className={classNames('h-100 w-100 fit-cover img-thumbnail', {
-          'rounded-top': layout === 'grid'
-        })}
-        alt={name}
-      /> */}
-      {/* // add here the value of the discount */}
-      </div>
-        <ProductSingleImage
-        // className="m-auto"
-          id={id}
-          image={files}
-          name={name}
-          layout={layout}
-        />
-      {isNew && (
-        <Badge
-          pill
-          bg="success"
-          className="position-absolute top-0 end-0 me-2 mt-2 fs--2 z-index-2"
-=======
 import StarComponent from "../../components/common/StarComponent";
+
 const ProductSingleImage = ({id, image, name, layout}) => {
     return (
         <Link
             to={`/products/${id}`}
             className="d-block h-sm-100"
             key={image.id}
->>>>>>> eeddf92b66fce3f68a86af250cd801279a7d6198
         >
             <Image
                 rounded={layout === 'list'}

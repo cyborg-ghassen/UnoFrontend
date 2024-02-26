@@ -126,7 +126,6 @@
 .i25{
   
   font-size: 30px;
-  background-color: #2cdd73;
   /* width: none; */
   color: white;
   font-weight: bold;
@@ -151,4 +150,9 @@
   padding-top: 3px;
   /* text-decoration: none; */
   /* padding-top: 3px; */
+}
+
+.nav-item.dropdown:hover .dropdown-menu {
+  display: block;
+  transition: 0.3s ease-in-out;
 }

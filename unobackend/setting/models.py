@@ -3,6 +3,8 @@ from django.db import models
 from django.template.context_processors import static
 from django.utils.translation import gettext_lazy as _
 
+from product.models import Category
+
 
 # Create your models here.
 class SiteSetting(models.Model):
@@ -74,6 +76,22 @@ class MagazineSetting(models.Model):
     class Meta:
         verbose_name = _('Magazine Setting')
         verbose_name_plural = _('Magazines')
+
+    def __str__(self):
+        return self.name
+
+
+class Link(models.Model):
+    name = models.CharField(max_length=100, verbose_name=_('Name'))
+
+    def __str__(self):
+        return self.name
+
+
+class SubLink(models.Model):
+    name = models.CharField(max_length=100, verbose_name=_('Name'))
+    categories = models.ManyToManyField(Category, verbose_name=_('Categories'), blank=True)
+    link = models.ForeignKey(Link, on_delete=models.CASCADE, verbose_name=_('Link'))
 
     def __str__(self):
         return self.name
