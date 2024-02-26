@@ -25,7 +25,7 @@ const QuantityController = ({
         type="number"
         min="1"
         value={quantity}
-        onChange={setQuantity}
+        onChange={handleChange}
         style={{ width: '50px' }}
       />
       <Button

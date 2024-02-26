@@ -69,7 +69,7 @@ const ShoppingCart = () => {
                     <Row className="justify-content-between">
                         <Col md="auto">
                             <h5 className="mb-3 mb-md-0">
-                                Shopping Cart ({cartItems.length} Items)
+                                Panier ({cartItems?.length} Articles)
                             </h5>
                         </Col>
                         <Col md="auto">
@@ -83,14 +83,14 @@ const ShoppingCart = () => {
                                 as={Link}
                                 to="/products"
                             >
-                                Continue Shopping
+                                Continuer vos achats
                             </IconButton>
                             <Button
                                 onClick={() => setShow(true)}
                                 variant="primary"
                                 size="sm"
                             >
-                                Checkout
+                                Vérifier
                             </Button>
                         </Col>
                     </Row>
@@ -141,8 +141,8 @@ const ShoppingCart = () => {
                         </>
                     ) : (
                         <p className="p-x1 mb-0 bg-light">
-                            You have no items in your shopping cart. Go ahead and start
-                            shopping!
+                            Vous n'avez aucun article dans votre panier. Allez-y et commencez
+                             achats!
                         </p>
                     )}
                 </Card.Body>
@@ -154,7 +154,7 @@ const ShoppingCart = () => {
                             variant="primary"
                             size="sm"
                         >
-                            Checkout
+                            Vérifier
                         </Button>
                     </Card.Footer>
                 )}
