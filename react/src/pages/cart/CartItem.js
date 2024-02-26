@@ -14,9 +14,7 @@ const CartItem = ({product, getItems}) => {
 
     // const { id, files, name, quantity, totalPrice } = product;
     const [Quantity, setQuantity] = useState(product?.quantity)
-    const handleAddToCart = () => {
 
-    }
     const deleteFormBas = (id) => {
         return new Promise(async (resolve, reject) => {
             await dispatch(deleteOneItem({id: id}))
@@ -25,44 +23,25 @@ const CartItem = ({product, getItems}) => {
     }
     const handleRemove = async (id) => {
         deleteFormBas(id)
-        // .then(()=>{
-        //   getItems()
-        //   .then(()=>{
-        //       settotlaPrice("0.000")
-        //   })
-        //   .catch(()=>{})
-        // })
     };
 
-    const handleIncrease = async () => {
-        await handleAddToCart(parseInt(product?.quantity + 1));
-        await setQuantity(parseInt(Quantity + 1))
-        console.log(Quantity)
-        handleDispatch()
+    const handleIncrease = () => {
+        setQuantity(prevState => parseInt(prevState + 1))
     };
 
-    const handleDecrease = async () => {
-        if (product?.quantity > 1) {
-            await handleAddToCart(parseInt(product?.quantity - 1));
-            await setQuantity(parseInt(Quantity - 1))
-            await console.log(Quantity)
-            handleDispatch()
-        }
+    const handleDecrease = () => {
+            setQuantity(prevState => parseInt(prevState - 1))
     };
     const handleDispatch = async () => {
         await dispatch(updateQuatity({id: product?.product?.id, quantity: Quantity}));
-        await getItems();
     }
     useEffect(() => {
-        console.log(Quantity)
+        handleDispatch()
+        // eslint-disable-next-line
     }, [Quantity])
 
-    const handleChange = async (e) => {
-        await handleAddToCart(parseInt(e.target.value < 1 ? 1 : e.target.value));
-        await setQuantity(parseInt(e.target.value < 1 ? 1 : e.target.value))
-        console.log(Quantity)
-        handleDispatch()
-
+    const handleChange = (e) => {
+        setQuantity(parseInt(e.target.value))
     };
     return (
         <Row className="gx-card mx-0 align-items-center border-bottom border-200">
