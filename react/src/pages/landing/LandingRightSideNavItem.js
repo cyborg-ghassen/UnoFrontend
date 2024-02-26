@@ -25,7 +25,7 @@ const LandingRightSideNavItem = () => {
         window.location.href = '/';
     }
     return (
-        <Nav navbar className="i6 ms-auto">
+        <Nav navbar className="ms-auto">
 
             <Flex justifyContent={"between"} alignItems={"center"}>
                 {authOrNot && 
