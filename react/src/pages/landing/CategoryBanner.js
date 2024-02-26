@@ -51,7 +51,7 @@ const BarCategories = ({data, key}) => {
     console.log("data", data)
     return (
         <NavDropdown title={data?.name} key={key} className={"i22 text-white text-center me-2"}>
-            <div>
+            <Nav.Item>
 
                 <p className={"i25 p-2 bg-primary"}>{data?.name}</p>
                 <div className={"oo"}>
@@ -69,7 +69,7 @@ const BarCategories = ({data, key}) => {
                         </div>
                     ))}
                 </div>
-            </div>
+            </Nav.Item>
         </NavDropdown>
     )
 }
