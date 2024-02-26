@@ -34,8 +34,9 @@ const LandingRightSideNavItem = () => {
                 <FontAwesomeIcon
                     icon={faSignOutAlt}
                     onClick={LogOut}
-                    transform="shrink-7"
-                    className="fs-4 text-primary"
+                    size={"lg"}
+                    transform="shrink-3"
+                    className="fs-4 text-primary cursor-pointer ms-3"
                 />
                 </>
                 }

@@ -25,6 +25,7 @@ const NavbarStandard = ({OpenAuth}) => {
       variant={'light'}
       expand={topNavbarBreakpoint}
       fixed={"top"}
+      style={{height: "90px"}}
       className={classNames('i3 bg-light navbar-wrapper navbar-standard navbar-theme', {
         'bg-100': !navbarCollapsed && isDark,
         'bg-light': !navbarCollapsed && !isDark,
@@ -35,7 +36,7 @@ const NavbarStandard = ({OpenAuth}) => {
         <Logo/>
         </Navbar.Brand>
         <Navbar.Toggle onClick={() => setNavbarCollapsed(!navbarCollapsed)} />
-        <Navbar.Collapse className={"scrollbar w-100 bg-light"}>
+        <Navbar.Collapse className={"scrollbar w-100 bg-light mt-2"}>
           <SearchBox />
           <LandingRightSideNavItem onClick={OpenAuth} />
         </Navbar.Collapse>

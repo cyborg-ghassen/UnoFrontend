@@ -50,7 +50,7 @@ const SearchBox = () => {
     };
 
     return (
-        <Dropdown show={dropdownOpen} className="search-box w-100">
+        <Dropdown show={dropdownOpen} className="search-box w-100 mt-2">
             <Form className="position-relative"
                   onSubmit={handleSubmit}
             >

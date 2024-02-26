@@ -153,7 +153,7 @@ const CartModal = ({show, setShow, cartItems}) => {
                             </Flex>
                         </Col>
                         <Col sm="auto" className="ps-sm-3 d-none d-sm-block">
-                            {item?.individual_price} TND
+                            {parseFloat(item?.individual_price)?.toFixed(3)} TND
                         </Col>
                     </Row>
                 ))}

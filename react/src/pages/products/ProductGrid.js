@@ -17,15 +17,15 @@ const ProductGrid = ({product, index, ...rest}) => {
         dispatch(setNewItemToBasket({id: parseInt(product?.id), Quantity: 1}))
     }
     return (
-        <Col className="mb-4" lg={3} {...rest}>
+        <Col className="mb-4 h-100" lg={3} {...rest}>
             <Flex
                 direction="column"
                 justifyContent="between"
-                className="border rounded-1 h-100 "
+                className="border rounded-1"
             >
                 <Card style={
                     {
-                        minWidth: "300px"
+                        minWidth: "300px",
                     }
                 }
                 >
@@ -57,6 +57,9 @@ const ProductGrid = ({product, index, ...rest}) => {
                                     </>
                                 )}
                             </p>
+                            <h5 className="fs-md-2 text-warning mb-0 d-flex align-items-center mb-3">
+                                {product?.promotion === 0 && `${product?.price_promotion} TND`}
+                            </h5>
                             <p className="fs--1 mb-1">
                                 Stock:{' '}
                                 <strong

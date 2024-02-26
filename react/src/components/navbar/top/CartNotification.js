@@ -28,8 +28,8 @@ const CartNotification = () => {
           </span>
                 <FontAwesomeIcon
                     icon="shopping-cart"
-                    transform="shrink-7"
-                    className="fs-4 text-primary"
+                    transform="shrink-3"
+                    className="fs-4 text-primary ms-4 me-2"
                 />
             </Nav.Link>
         </Nav.Item>

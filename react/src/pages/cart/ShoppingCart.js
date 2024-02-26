@@ -133,7 +133,7 @@ const ShoppingCart = () => {
                                             md={5}
                                             className="text-end py-2 text-nowrap px-x1"
                                         >
-                                            {parseFloat(totalCost).toFixed(3)} dt
+                                            {parseFloat(totalCost).toFixed(3)} TND
                                         </Col>
                                     </Row>
                                 </Col>

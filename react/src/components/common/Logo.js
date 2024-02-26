@@ -25,7 +25,7 @@ const Logo = ({ at, className, ...rest }) => {
           className
         )}
       >
-        <img className="me-2" src={logo} alt="Logo" height={50} width={150} />
+        <img className="me-2 mt-4" src={logo} alt="Logo" height={80} width={150} />
       </div>
     </Link>
   );

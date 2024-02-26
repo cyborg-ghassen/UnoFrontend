@@ -25,12 +25,11 @@ const ProductSingleImage = ({id, image, name, layout}) => {
                 })}
                 alt={name}
             />
-
         </Link>
     );
 };
 
-const ProductImage = ({name, id, isNew = true, files, layout, promo}) => {
+const ProductImage = ({name, id, isNew = true, files, layout, product}) => {
     return (
         <div
             className={classNames('i11 mt-2  position-relative rounded-top overflow-visible', {
@@ -44,7 +43,7 @@ const ProductImage = ({name, id, isNew = true, files, layout, promo}) => {
                 name={name}
                 layout={layout}
             />
-            <StarComponent/>
+            {product?.promotion !== 0 && <StarComponent promo={product?.promotion} price={product?.price_promotion}/>}
         </div>
     );
 };
