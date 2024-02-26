@@ -73,9 +73,9 @@ const LoginForm = ({hasLabel, layout}) => {
     return (
         <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3">
-                {hasLabel && <Form.Label>Username</Form.Label>}
+                {hasLabel && <Form.Label>Nom d'utilisateur</Form.Label>}
                 <Form.Control
-                    placeholder={!hasLabel ? 'Username' : ''}
+                    placeholder={!hasLabel ? 'Nom d\'utilisateur' : ''}
                     value={formData.username}
                     name="username"
                     onChange={handleFieldChange}
@@ -85,9 +85,9 @@ const LoginForm = ({hasLabel, layout}) => {
             </Form.Group>
 
             <Form.Group className="mb-3">
-                {hasLabel && <Form.Label>Password</Form.Label>}
+                {hasLabel && <Form.Label>Mot de passe</Form.Label>}
                 <Form.Control
-                    placeholder={!hasLabel ? 'Password' : ''}
+                    placeholder={!hasLabel ? 'Mot de passe' : ''}
                     value={formData.password}
                     name="password"
                     onChange={handleFieldChange}
@@ -111,7 +111,7 @@ const LoginForm = ({hasLabel, layout}) => {
                             }
                         />
                         <Form.Check.Label className="mb-0 text-700">
-                            Remember me
+                            Souviens-toi de moi
                         </Form.Check.Label>
                     </Form.Check>
                 </Col>
@@ -123,7 +123,7 @@ const LoginForm = ({hasLabel, layout}) => {
                     color="primary"
                     className="mt-3 w-100"
                 >
-                    Log in
+                    Se connecter
                 </Button>
                 <FormError error={errors?.detail} />
             </Form.Group>

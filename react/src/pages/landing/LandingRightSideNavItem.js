@@ -44,7 +44,7 @@ const LandingRightSideNavItem = () => {
                 
                 <Dropdown className="d-none d-sm-block">
                     <Dropdown.Toggle as={Link} to="#!" className="nav-link fw-semi-bold text-primary">
-                        <FontAwesomeIcon icon={faUser} size={"lg"}/>
+                        <FontAwesomeIcon icon={faUser} size={"lg"} transform="shrink-3" className="fs-4 text-primary cursor-pointer ms-3"/>
                     </Dropdown.Toggle>
                 </Dropdown>
                 }

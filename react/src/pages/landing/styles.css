@@ -118,6 +118,7 @@
   /* margin-top: ; */
   /* opacity: 0; Initially hide the component */
   transition:    5s;
+  font-size: 30px;
   /* background-color: white; */
 }
 .i23{
@@ -138,7 +139,7 @@
 .i27{
   font-weight: bold;
 
-  font-size: 22px;
+  font-size: 26px;
 
   
 }
@@ -148,6 +149,7 @@
 }
 .i28{
   padding-top: 3px;
+  font-size: 18px;
   /* text-decoration: none; */
   /* padding-top: 3px; */
 }
