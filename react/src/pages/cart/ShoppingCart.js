@@ -100,15 +100,15 @@ const ShoppingCart = () => {
                         <>
                             <Row className="gx-card mx-0 bg-200 text-900 fs--1 fw-semi-bold">
                                 <Col xs={9} md={8} className="py-2">
-                                    Name
+                                    Nom
                                 </Col>
                                 <Col xs={3} md={4}>
                                     <Row>
                                         <Col md={8} className="py-2 d-none d-md-block text-center">
-                                            Quantity
+                                            Quantité
                                         </Col>
                                         <Col xs={12} md={4} className="text-end py-2">
-                                            Price
+                                            Prix
                                         </Col>
                                     </Row>
                                 </Col>
@@ -126,7 +126,7 @@ const ShoppingCart = () => {
                                 <Col className="px-0">
                                     <Row className="gx-card mx-0">
                                         <Col md={7} className="py-2 d-none d-md-block text-center">
-                                            {cartItems.length} (items)
+                                            {cartItems.length} (Articles)
                                         </Col>
                                         <Col
                                             xs={12}
