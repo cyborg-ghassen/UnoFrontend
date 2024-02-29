@@ -34,9 +34,9 @@ function App() {
         <div>
             <Router basename={process.env.PUBLIC_URL}>
                 <AppRoutes OpenAuth={OpenAuth}/>
-                {(!AuthenticatedOrNot && ForceToauthenticate) &&
-                    <LogInPopUp closePopUp={handleClose}/>
-                }
+                {/*{(!AuthenticatedOrNot && ForceToauthenticate) &&*/}
+                {/*    <LogInPopUp closePopUp={handleClose}/>*/}
+                {/*}*/}
             </Router>
         </div>
     );

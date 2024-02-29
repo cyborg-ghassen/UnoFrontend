@@ -30,7 +30,7 @@ const The2ndNavBar = () => {
 
     return (
         <Section
-            className="i4 py-3 overflow-visible content-center light"
+            className="i4 py-0 overflow-visible content-center light"
             position="center"
             overlay
         >
@@ -48,27 +48,21 @@ const The2ndNavBar = () => {
     )
 }
 const BarCategories = ({data, key}) => {
-    console.log("data", data)
     return (
         <NavDropdown title={data?.name} key={key} className={"i22 text-white text-center me-2"}>
-            <Nav.Item>
-
-                <p className={"i25 p-2 bg-primary"}>{data?.name}</p>
-                <div className={"oo"}>
-                    {data?.sublink_set?.map((items) => (
-                        <div className={""}>
-                            <Flex className="i26" alignItems="center" direction="column">
-                                {/* the is the title of the subCategory     */}
-                                <div className="i27 p-2">{items?.name}</div>
-                            </Flex>
-                            {items?.categories_set?.map((item) => (
-                                <NavDropdown.Item title={item?.name} className="i28" href={`/products?category=${item?.id}`}>
-                                    {item?.name}
-                                </NavDropdown.Item>
-                            ))}
-                        </div>
-                    ))}
-                </div>
+            <p className={"i25 p-2 bg-primary"}>{data?.name}</p>
+            <Nav.Item className={"oo"}>
+                {data?.sublink_set?.map((items) => (
+                    <div className={"w-100"}>
+                        <div className="i27 p-2">{items?.name}</div>
+                        {items?.categories_set?.map((item) => (
+                            <NavDropdown.Item title={item?.name} className="i28"
+                                              href={`/products?category=${item?.id}`}>
+                                {item?.name}
+                            </NavDropdown.Item>
+                        ))}
+                    </div>
+                ))}
             </Nav.Item>
         </NavDropdown>
     )
