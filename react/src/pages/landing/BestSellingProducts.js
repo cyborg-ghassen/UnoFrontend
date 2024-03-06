@@ -17,7 +17,7 @@ const BestSellingProducts = () => {
     }, []);
 
     return (
-        <Section>
+        <Section fluid className={"mt-10"}>
             <SectionHeader
                 title="Meilleure Vente"
                 subtitle={""}

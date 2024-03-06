@@ -36,7 +36,7 @@ const The2ndNavBar = () => {
         >
             <Navbar expand={"lg"}>
                 <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className={"i5"} navbar>
+                    <Nav className={"i5"}>
                         {categories?.slice(0, 4)?.map((category, index) => (
                             <BarCategories data={category} key={index}/>
                         ))}
@@ -70,9 +70,7 @@ const BarCategories = ({data, key}) => {
 const CategoryBanner = () => {
 
     return (
-        <div className="i23">
-            <The2ndNavBar/>
-        </div>
+        <The2ndNavBar/>
     )
 }
 

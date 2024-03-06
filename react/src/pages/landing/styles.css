@@ -51,19 +51,10 @@
   /* border-radius: 0px; */
 }
 .i8{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 90%;
-  height: 85%;
+  width: auto;
+  height: fit-content;
 }
-@media (max-width: 700px) {
-  .i8{
-    width: 90%;
-    height: 85%;
-  }
-  
-}
+
 .i17{
   display: flex ;
   justify-content: space-between;
@@ -144,6 +135,10 @@
 .oo{
   display: flex;
   flex-wrap: wrap;
+  flex-direction: column;
+  width: 80vw !important;
+  left: 0;
+  right: 0;
 }
 .i28{
   padding-top: 3px;

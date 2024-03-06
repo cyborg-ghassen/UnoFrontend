@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
-import logo from '../../assets/img/uno logo.png';
+import logo from '../../assets/img/logo.svg';
 
 const Logo = ({ at, className, ...rest }) => {
   return (
