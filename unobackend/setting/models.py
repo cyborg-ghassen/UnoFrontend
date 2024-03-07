@@ -93,5 +93,9 @@ class SubLink(models.Model):
     categories = models.ManyToManyField(Category, verbose_name=_('Categories'), blank=True)
     link = models.ForeignKey(Link, on_delete=models.CASCADE, verbose_name=_('Link'))
 
+    @property
+    def link_name(self):
+        return self.link.name if self.link else ''
+
     def __str__(self):
         return self.name

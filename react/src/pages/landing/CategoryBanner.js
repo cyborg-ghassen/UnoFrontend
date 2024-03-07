@@ -1,11 +1,12 @@
-import {Nav, Navbar, NavDropdown} from "react-bootstrap";
+import {Col, Nav, Navbar, Row} from "react-bootstrap";
 import React, {useEffect, useState} from "react";
 import handleNavbarTransparency from "../../helpers/handleNavbarTransparency";
 import Section from "../../components/common/Section";
 import useQuery from "../../hooks/useQuery";
 import {api} from "../../utils/api";
 import "./styles.css"
-import Flex from "../../components/common/Flex";
+import NavbarDropdown from "../../components/navbar/top/NavbarDropdown";
+import NavbarNavLink from "../../components/navbar/top/NavbarNavLink";
 
 const The2ndNavBar = () => {
     const [categories, setCategories] = useState([])
@@ -27,16 +28,31 @@ const The2ndNavBar = () => {
         window.addEventListener('scroll', handleNavbarTransparency);
         return () => window.removeEventListener('scroll', handleNavbarTransparency);
     }, []);
+    const HTMLClassList = document.getElementsByTagName('html')[0].classList;
+
+    let time = null;
+
+    const handleMouseEnter = () => {
+        time = setTimeout(() => {
+            HTMLClassList.add('navbar-vertical-collapsed-hover');
+        }, 100);
+    };
+
+    const handleMouseLeave = () => {
+        clearTimeout(time);
+        HTMLClassList.remove('navbar-vertical-collapsed-hover');
+    };
 
     return (
         <Section
-            className="i4 py-0 overflow-visible content-center light"
+            className="i4 py-0 content-center light"
             position="center"
             overlay
         >
-            <Navbar expand={"lg"}>
-                <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className={"i5"}>
+            <Navbar expand={"xl"}>
+                <Navbar.Collapse onMouseEnter={handleMouseEnter}
+                                 onMouseLeave={handleMouseLeave}>
+                    <Nav navbar justify={true} >
                         {categories?.slice(0, 4)?.map((category, index) => (
                             <BarCategories data={category} key={index}/>
                         ))}
@@ -47,24 +63,29 @@ const The2ndNavBar = () => {
         </Section>
     )
 }
-const BarCategories = ({data, key}) => {
+const BarCategories = ({
+                           data, key
+                       }) => {
     return (
-        <NavDropdown title={data?.name} key={key} className={"i22 text-white text-center me-2"}>
-            <p className={"i25 p-2 bg-primary"}>{data?.name}</p>
-            <Nav.Item className={"oo"}>
+        <NavbarDropdown title={data?.name} key={key} >
+            <Row>
                 {data?.sublink_set?.map((items) => (
-                    <div className={"w-100"}>
-                        <div className="i27 p-2">{items?.name}</div>
-                        {items?.categories_set?.map((item) => (
-                            <NavDropdown.Item title={item?.name} className="i28"
-                                              href={`/products?category=${item?.id}`}>
-                                {item?.name}
-                            </NavDropdown.Item>
-                        ))}
-                    </div>
+                    <Col xs={6} xxl={4}>
+                        <Nav className="flex-column">
+                            <>
+                                <NavbarNavLink title={items?.name}/>
+                                {items?.categories_set?.map((item) => (
+                                    <NavbarNavLink href={`/products?category=${item?.id}`} route={item}>
+                                        {item?.name}
+                                    </NavbarNavLink>
+                                ))}
+                            </>
+
+                        </Nav>
+                    </Col>
                 ))}
-            </Nav.Item>
-        </NavDropdown>
+            </Row>
+        </NavbarDropdown>
     )
 }
 const CategoryBanner = () => {

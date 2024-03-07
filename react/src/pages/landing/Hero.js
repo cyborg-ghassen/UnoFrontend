@@ -1,16 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {Swiper, SwiperSlide} from 'swiper/react';
-
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/navigation';
-
-import './styles.css';
-
-// import required modules
-import {Navigation, Pagination} from 'swiper/modules';
 import {api} from "../../utils/api";
 import Section from "../../components/common/Section";
+import {Carousel} from "react-bootstrap";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const Hero = () => {
     const [posters, setPosters] = useState([])
@@ -25,21 +17,25 @@ const Hero = () => {
 
     return (
         <Section fluid>
-            <Swiper navigation={true} pagination={true} style={{
-                height: "auto"
-            }} modules={[Navigation, Pagination]}>
+            <Carousel
+                className='theme-slider'
+                nextIcon={
+                    <FontAwesomeIcon icon="angle-right"/>
+                }
+                prevIcon={
+                    <FontAwesomeIcon icon="angle-left"/>
+                }
+            >
                 {posters?.slice(0, 3)?.map(poster => (
-                    <SwiperSlide className={"d-flex justify-content-center align-items-center overflow-hidden"}>
-                        <img src={poster?.image}
-                             style={{
-                                 width: "70%",
-                                 position: "relative",
-                                 transitionProperty: "transform"
-                             }}
-                             alt={poster?.name}/>
-                    </SwiperSlide>
+                    <Carousel.Item>
+                        <img
+                            className="d-block w-100"
+                            src={poster?.image}
+                            alt={poster?.name}
+                        />
+                    </Carousel.Item>
                 ))}
-            </Swiper>
+            </Carousel>
         </Section>
     );
 };

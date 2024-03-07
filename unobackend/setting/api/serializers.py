@@ -37,10 +37,14 @@ class MagazineSettingSerializer(serializers.ModelSerializer):
 
 class SubLinkSerializer(serializers.ModelSerializer):
     categories_set = CategorySerializer(many=True, read_only=True, source='categories')
+    link_name = serializers.SerializerMethodField()
 
     class Meta:
         model = SubLink
         fields = "__all__"
+
+    def get_link_name(self, obj):
+        return obj.link_name
 
 
 class LinkSerializer(serializers.ModelSerializer):
