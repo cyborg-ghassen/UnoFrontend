@@ -23,12 +23,12 @@ const BestSellingProducts = () => {
                 subtitle={""}
             />
             <Row>
-                {products?.slice(0, 3).map((product, index) =>
+                {products?.slice(0, 4).map((product, index) =>
                     <ProductGrid
                         product={product}
                         key={product.id}
                         md={6}
-                        lg={4}
+                        lg={3}
                         index={index}
                     />
                 )}

@@ -36,7 +36,8 @@ const NavbarStandard = ({OpenAuth}) => {
         <Logo/>
         </Navbar.Brand>
         <Navbar.Toggle onClick={() => setNavbarCollapsed(!navbarCollapsed)} />
-        <Navbar.Collapse className={"scrollbar w-100 bg-light mt-2"}>
+        <Navbar.Collapse className={"i78"}>
+          <div>hello</div>
           <SearchBox />
           <LandingRightSideNavItem onClick={OpenAuth} />
         </Navbar.Collapse>
