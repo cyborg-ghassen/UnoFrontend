@@ -12,7 +12,7 @@ import {useDispatch, useSelector} from "react-redux";
 import FormError from "../errors/FormError";
 
 const CartModal = ({show, setShow, cartItems}) => {
-    const [type, setType] = useState(1)
+    const [type] = useState(1)
     const [errors, setErrors] = useState({})
     const [formData, setFormData] = useState({
         type: "physic",
@@ -59,7 +59,7 @@ const CartModal = ({show, setShow, cartItems}) => {
 
         return new Promise(async (resolve, reject) => {
 
-            var data = await api.post("/order/order/",
+            await api.post("/order/order/",
                 {
                     items: dataTosend(),
                     ...formData
@@ -120,7 +120,7 @@ const CartModal = ({show, setShow, cartItems}) => {
                             <FontAwesomeIcon icon="cart-plus" className="text-success"/>
                         </div>
                         <div className="ms-2">
-                            You just {type === 'remove' ? 'removed' : 'added'} {cartItems?.length} item
+                            Vous venez d'ajouter {cartItems?.length} élément
                             {cartItems?.length === 1 ? '' : 's'}
                         </div>
                     </Flex>
@@ -153,63 +153,63 @@ const CartModal = ({show, setShow, cartItems}) => {
                             </Flex>
                         </Col>
                         <Col sm="auto" className="ps-sm-3 d-none d-sm-block">
-                            {item?.individual_price} TND
+                            {parseFloat(item?.individual_price)?.toFixed(3)} TND
                         </Col>
                     </Row>
                 ))}
                 <Form className={"mt-3"}>
                     <Form.Group>
-                        <Form.Label>Full Name:</Form.Label>
+                        <Form.Label>Nom et prénom:</Form.Label>
                         <Form.Control
                             type={"text"}
                             value={formData.full_name}
                             onChange={({target}) => handleChange(target)}
                             name={"full_name"}
-                            placeholder={"Full name"}
+                            placeholder={"Nom et prénom"}
                         />
                         <FormError error={errors.full_name} />
                     </Form.Group>
                     <Form.Group>
-                        <Form.Label>Email:</Form.Label>
+                        <Form.Label>E-mail:</Form.Label>
                         <Form.Control
                             type={"email"}
                             value={formData.email}
                             onChange={({target}) => handleChange(target)}
                             name={"email"}
-                            placeholder={"Email"}
+                            placeholder={"E-mail"}
                         />
                         <FormError error={errors.email} />
                     </Form.Group>
                     <Form.Group>
-                        <Form.Label>Phone Number:</Form.Label>
+                        <Form.Label>Numéro de téléphone:</Form.Label>
                         <Form.Control
                             type={"number"}
                             value={formData.phone}
                             onChange={({target}) => handleChange(target)}
                             name={"phone"}
-                            placeholder={"Phone Number"}
+                            placeholder={"Numéro de téléphone"}
                         />
                         <FormError error={errors.phone} />
                     </Form.Group>
                     <Form.Group>
-                        <Form.Label>Address:</Form.Label>
+                        <Form.Label>Adresse:</Form.Label>
                         <Form.Control
                             type={"text"}
                             value={formData.address}
                             onChange={({target}) => handleChange(target)}
                             name={"address"}
-                            placeholder={"Address"}
+                            placeholder={"Adresse"}
                         />
                         <FormError error={errors.address} />
                     </Form.Group>
                     <Form.Group>
-                        <Form.Label>Notes:</Form.Label>
+                        <Form.Label>Remarques:</Form.Label>
                         <Form.Control
                             type={"text"}
                             value={formData.notes}
                             onChange={({target}) => handleChange(target)}
                             name={"notes"}
-                            placeholder={"Notes"}
+                            placeholder={"Remarques"}
                         />
                         <FormError error={errors.notes} />
                     </Form.Group>
@@ -222,7 +222,7 @@ const CartModal = ({show, setShow, cartItems}) => {
                         onClick={handleClose}
                         variant="secondary"
                     >
-                        Close
+                        Fermer
                     </Button>
                     <IconButton
                         size="sm"

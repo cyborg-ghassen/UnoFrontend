@@ -4,8 +4,8 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 from .filters import SiteSettingFilter, PosterSettingFilter, ServiceSettingFilter, TestimonialSettingFilter
 from .serializers import SiteSettingSerializer, PosterSettingSerializer, ServiceSettingSerializer, \
-    TestimonialSettingSerializer, MagazineSettingSerializer
-from setting.models import SiteSetting, PosterSetting, ServiceSetting, TestimonialSetting, MagazineSetting
+    TestimonialSettingSerializer, MagazineSettingSerializer, LinkSerializer, SubLinkSerializer
+from setting.models import SiteSetting, PosterSetting, ServiceSetting, TestimonialSetting, MagazineSetting, Link, SubLink
 
 
 class SiteSettingViewSet(viewsets.ModelViewSet):
@@ -43,4 +43,16 @@ class TestimonialSettingViewSet(viewsets.ModelViewSet):
 class MagazineSettingViewSet(viewsets.ModelViewSet):
     queryset = MagazineSetting.objects.order_by('-id')
     serializer_class = MagazineSettingSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
+
+
+class LinkViewSet(viewsets.ModelViewSet):
+    queryset = Link.objects.order_by('id')
+    serializer_class = LinkSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
+
+
+class SubLinkViewSet(viewsets.ModelViewSet):
+    queryset = SubLink.objects.order_by('id')
+    serializer_class = SubLinkSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]

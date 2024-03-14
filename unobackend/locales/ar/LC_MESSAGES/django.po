@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-21 13:25+0100\n"
+"POT-Creation-Date: 2024-02-26 17:36+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,232 +27,236 @@ msgstr "أدخل عنصرًا واحدًا على الأقل."
 msgid "You do not have permission to perform this action"
 msgstr "ليس لديك إذن لتنفيذ هذا الإجراء"
 
-#: .\order\models.py:9
-msgid "Physical"
-msgstr "طبيعي"
-
 #: .\order\models.py:10
-msgid "Company"
-msgstr "شركة"
-
-#: .\order\models.py:11
-msgid "Passenger"
-msgstr "عابر"
-
-#: .\order\models.py:15
 msgid "Draft"
 msgstr "مسودة"
 
-#: .\order\models.py:16
+#: .\order\models.py:11
 msgid "Approved"
 msgstr "موافقة"
 
-#: .\order\models.py:17
+#: .\order\models.py:12
 msgid "Rejected"
 msgstr "مرفوض"
 
-#: .\order\models.py:22
+#: .\order\models.py:17
 msgid "User"
 msgstr "مستخدم"
 
-#: .\order\models.py:23
-msgid "Type"
-msgstr "طبيعة"
-
-#: .\order\models.py:24
+#: .\order\models.py:18
 msgid "Status"
 msgstr "حالة"
 
-#: .\order\models.py:25
+#: .\order\models.py:19
 msgid "Full name"
 msgstr "الاسم الكامل"
 
-#: .\order\models.py:26
+#: .\order\models.py:20
 msgid "Email"
 msgstr "بريد إلكتروني"
 
-#: .\order\models.py:27
+#: .\order\models.py:21
 msgid "Address"
 msgstr "عنوان"
 
-#: .\order\models.py:28
+#: .\order\models.py:22
 msgid "Phone"
 msgstr "هاتف"
 
-#: .\order\models.py:29
+#: .\order\models.py:23
 msgid "Notes"
 msgstr "ملحوظات"
 
-#: .\order\models.py:30 .\product\models.py:39
+#: .\order\models.py:24 .\product\models.py:41
 msgid "Creation Date"
 msgstr "تاريخ الإنشاء"
 
-#: .\order\models.py:31 .\product\models.py:40
+#: .\order\models.py:25 .\product\models.py:42
 msgid "Update Date"
 msgstr "تاريخ التحديث"
 
-#: .\order\models.py:34 .\order\models.py:42 .\order\models.py:43
+#: .\order\models.py:28 .\order\models.py:44 .\order\models.py:45
 msgid "Order"
 msgstr "طلب"
 
-#: .\order\models.py:35
+#: .\order\models.py:29
 msgid "Orders"
 msgstr "طلبات"
 
-#: .\order\models.py:44
+#: .\order\models.py:46
 msgid "Quantity"
 msgstr "كمية"
 
-#: .\product\models.py:7 .\product\models.py:18 .\product\models.py:29
-#: .\setting\models.py:9 .\setting\models.py:26 .\setting\models.py:39
-#: .\setting\models.py:52 .\setting\models.py:67
+#: .\product\models.py:9 .\product\models.py:20 .\product\models.py:31
+#: .\setting\models.py:11 .\setting\models.py:30 .\setting\models.py:43
+#: .\setting\models.py:56 .\setting\models.py:71 .\setting\models.py:85
+#: .\setting\models.py:92
 msgid "Name"
 msgstr "اسم"
 
-#: .\product\models.py:10
+#: .\product\models.py:12 .\setting\models.py:93
 msgid "Categories"
 msgstr "فئات"
 
-#: .\product\models.py:11 .\product\models.py:31
+#: .\product\models.py:13 .\product\models.py:33
 msgid "Category"
 msgstr "فئة"
 
-#: .\product\models.py:21
+#: .\product\models.py:23
 msgid "Brands"
 msgstr "العلامات التجارية"
 
-#: .\product\models.py:22 .\product\models.py:32
+#: .\product\models.py:24 .\product\models.py:34
 msgid "Brand"
 msgstr "ماركة"
 
-#: .\product\models.py:30
+#: .\product\models.py:32
 msgid "Price"
 msgstr "سعر"
 
-#: .\product\models.py:33 .\setting\models.py:69
+#: .\product\models.py:35 .\setting\models.py:73
 msgid "Description"
 msgstr "وصف"
 
-#: .\product\models.py:34 .\setting\models.py:27 .\setting\models.py:53
-#: .\setting\models.py:68
+#: .\product\models.py:36 .\setting\models.py:31 .\setting\models.py:57
+#: .\setting\models.py:72
 msgid "Image"
 msgstr "صورة"
 
-#: .\product\models.py:35
+#: .\product\models.py:37
 msgid "Reviews"
 msgstr "التعليقات"
 
-#: .\product\models.py:36 .\setting\models.py:54
+#: .\product\models.py:38 .\setting\models.py:12 .\setting\models.py:58
 msgid "Slogan"
 msgstr "شعار"
 
-#: .\product\models.py:37
+#: .\product\models.py:39
 msgid "Stock"
 msgstr "مخزون"
 
-#: .\product\models.py:38
+#: .\product\models.py:40
 msgid "Promotion"
 msgstr "تخفيض"
 
-#: .\product\models.py:43
+#: .\product\models.py:45
 msgid "Product"
 msgstr "منتج"
 
-#: .\product\models.py:44
+#: .\product\models.py:46
 msgid "Products"
 msgstr "منتجات"
 
-#: .\setting\models.py:10
+#: .\setting\models.py:13
 msgid "Home cover"
 msgstr "غطاء المنزل"
 
-#: .\setting\models.py:12
+#: .\setting\models.py:15
 #, fuzzy
 #| msgid "Product"
 msgid "Product cover"
 msgstr "منتج"
 
-#: .\setting\models.py:14
+#: .\setting\models.py:17
+msgid "Best products Picture"
+msgstr ""
+
+#: .\setting\models.py:18
 msgid "About"
 msgstr "عن"
 
-#: .\setting\models.py:15 .\setting\models.py:28 .\setting\models.py:41
-#: .\setting\models.py:56 .\setting\models.py:70
+#: .\setting\models.py:19 .\setting\models.py:32 .\setting\models.py:45
+#: .\setting\models.py:60 .\setting\models.py:74
 msgid "Site"
 msgstr "موقع"
 
-#: .\setting\models.py:18
+#: .\setting\models.py:22
 msgid "Site Setting"
 msgstr "إعداد الموقع"
 
-#: .\setting\models.py:19
+#: .\setting\models.py:23
 msgid "Site Settings"
 msgstr "إعدادات الموقع"
 
-#: .\setting\models.py:31
+#: .\setting\models.py:35
 msgid "Poster Setting"
 msgstr "إعداد الملصق"
 
-#: .\setting\models.py:32
+#: .\setting\models.py:36
 msgid "Poster Settings"
 msgstr "إعدادات الملصقات"
 
-#: .\setting\models.py:40
+#: .\setting\models.py:44
 msgid "Svg Code"
 msgstr "كود Svg"
 
-#: .\setting\models.py:44
+#: .\setting\models.py:48
 msgid "Service Setting"
 msgstr "إعداد الخدمة"
 
-#: .\setting\models.py:45
+#: .\setting\models.py:49
 msgid "Service Settings"
 msgstr "إعدادات الخدمة"
 
-#: .\setting\models.py:55
+#: .\setting\models.py:59
 msgid "Comment"
 msgstr "تعليق"
 
-#: .\setting\models.py:59
+#: .\setting\models.py:63
 msgid "Testimonial Setting"
 msgstr "إعداد الشهادة"
 
-#: .\setting\models.py:60
+#: .\setting\models.py:64
 msgid "Testimonials"
 msgstr "الشهادات"
 
-#: .\setting\models.py:73
+#: .\setting\models.py:77
 msgid "Magazine Setting"
 msgstr "إعداد المجلة"
 
-#: .\setting\models.py:74
+#: .\setting\models.py:78
 msgid "Magazines"
 msgstr "المجلات"
+
+#: .\setting\models.py:94
+msgid "Link"
+msgstr "وصلة"
 
 #: .\templates\admin\base_site.html:27
 msgid "Lang:"
 msgstr "لغة"
 
-#: .\unobackend\settings.py:162
+#: .\unobackend\settings.py:165
 msgid "English"
 msgstr "إنجليزي"
 
-#: .\unobackend\settings.py:163
+#: .\unobackend\settings.py:166
 msgid "Arabic"
 msgstr "عربي"
 
-#: .\unobackend\settings.py:164
-msgid "French"
-msgstr "فرنسي"
-
-#: .\unobackend\urls.py:43
+#: .\unobackend\urls.py:44
 msgid "UNO Admin"
 msgstr "مشرف UNO"
 
-#: .\unobackend\urls.py:44
+#: .\unobackend\urls.py:45
 msgid "UNO Admin Portal"
 msgstr "بوابة إدارة UNO"
 
-#: .\unobackend\urls.py:45
+#: .\unobackend\urls.py:46
 msgid "Welcome to Uno Portal"
 msgstr "مرحبا بكم في بوابة UNO"
+
+#~ msgid "Physical"
+#~ msgstr "طبيعي"
+
+#~ msgid "Company"
+#~ msgstr "شركة"
+
+#~ msgid "Passenger"
+#~ msgstr "عابر"
+
+#~ msgid "Type"
+#~ msgstr "طبيعة"
+
+#~ msgid "French"
+#~ msgstr "فرنسي"

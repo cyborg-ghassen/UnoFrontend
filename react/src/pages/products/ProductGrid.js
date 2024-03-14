@@ -9,7 +9,7 @@ import "./style.css"
 import {setNewItemToBasket} from 'reduxStores.js/authSlice';
 import {useDispatch} from 'react-redux';
 
-const ProductGrid = ({product, ...rest}) => {
+const ProductGrid = ({product, index, ...rest}) => {
     const dispatch = useDispatch();
 
     const handleAddToCart = () => {
@@ -18,47 +18,49 @@ const ProductGrid = ({product, ...rest}) => {
 
 
     }
-
     return (
-        <Col className="mb-4" lg={3} {...rest}>
+        <Col className="mb-4 h-100" lg={3} {...rest}>
             <Flex
                 direction="column"
                 justifyContent="between"
-                className="border rounded-1 h-100 "
+                className="border rounded-1"
             >
                 <Card style={
                     {
-                        minWidth: "300px"
+                        minWidth: "300px",
                     }
                 }
                 >
-                    <div className="overflow-visible">
+                    <div className="overflow-hidden">
                         <ProductImage
                             // className="mt-3"
-                            promo={product?.promotion !== 0}
                             name={product?.name}
                             id={product?.id}
                             files={product?.image}
+                            product={product}
                             layout="grid"
                         />
                         <div className="i10 p-3 ">
                             <h5 className="fs-0">
-                                <Link
+                                <a
                                     className="text-dark"
-                                    to={`/products/${product?.id}`}
+                                    href={`/products/${product?.id}`}
                                 >
                                     {product?.name}
-                                </Link>
+                                </a>
                             </h5>
                             <p className="fs--1 mb-3">
-                                <Link to="#!" className="text-500">
-                                    {product?.category_names?.map(category => <>{category}, </>)}
-                                </Link>
+                                {product?.category_names?.map((c, i) =>
+                                    <>
+                                        <Link to={`/products?category=${product?.category[i]}`}
+                                              className="text-500">
+                                            {c}
+                                        </Link> {'  '}
+                                    </>
+                                )}
                             </p>
                             <h5 className="fs-md-2 text-warning mb-0 d-flex align-items-center mb-3">
-                                {`$${product?.price_promotion}`}
-                                {product?.price_promotion !== product?.price &&
-                                    <del className="ms-2 fs--1 text-500">${product?.price}</del>}
+                                {product?.promotion === 0 && `${product?.price_promotion} TND`}
                             </h5>
                             <p className="fs--1 mb-1">
                                 Stock:{' '}

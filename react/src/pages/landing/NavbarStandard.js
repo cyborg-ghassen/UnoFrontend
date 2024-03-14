@@ -37,7 +37,7 @@ const NavbarStandard = ({OpenAuth}) => {
         <Navbar.Toggle onClick={() => setNavbarCollapsed(!navbarCollapsed)} />
         <Navbar.Collapse className={""}>
           {/* <div className='LLLL'>Rechercher pour un produit</div> */}
-          <SearchBox className={"p93"}/>
+          <SearchBox className={"p91"}/>
           {/* <button className='lol'>Rechercher</button>
           <div className='box'>
             <a>Produits</a>
@@ -52,22 +52,24 @@ const NavbarStandard = ({OpenAuth}) => {
           </label> */}
           {/* //the scroll down */}
           <div className='p1'>
+          <div className='box'>
+            <a>Produits</a>
+            <a>Meilleur produits</a>
+            <a>Meilleur promo</a>
+            {/* <a>Panier</a> */}
+          </div>
           <div className='LLLL'>Rechercher pour un produit</div>
 
           <SearchBox className={"p2"}/>
           
           <button className='lol'>Rechercher</button>
-          <div className='box'>
-            <a>Produits</a>
-            <a>Milleur produits</a>
-            <a>Milleur promo</a>
-            <a>Panier</a>
-          </div>
-          <LandingRightSideNavItem className='p8787' onClick={OpenAuth} />
           <label className='o74 o78'>
-            Deconnecter
+            {/* Deconnecter */}
           </label>
+          <LandingRightSideNavItem className='p8787' onClick={OpenAuth} />
+
           </div>
+        
         </Navbar.Collapse>
       </Container>
       {/* <CategoryBar /> */}

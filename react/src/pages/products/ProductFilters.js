@@ -65,16 +65,6 @@ const ProductFilters = ({setShow, isOffcanvas, getProducts}) => {
                             <FontAwesomeIcon icon="filter" className="fs--1 me-1"/>
                             <span>Filter</span>
                         </h5>
-                        <Button
-                            variant="outline-secondary"
-                            size="sm"
-                            className="ms-2 mt-0 mb-0"
-                            style={{fontSize: '12px'}}
-                            onClick={() => setFilterOptions([])}
-                        >
-                            <FontAwesomeIcon icon="redo-alt" className="me-1 fs--2"/>
-                            Reset
-                        </Button>
                     </Flex>
                     {isOffcanvas && (
                         <Button

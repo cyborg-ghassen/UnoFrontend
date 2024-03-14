@@ -25,7 +25,7 @@ const LandingRightSideNavItem = () => {
         window.location.href = '/';
     }
     return (
-        <Nav navbar className="i6 ms-auto">
+        <Nav navbar className="ms-auto">
 
             <Flex justifyContent={"between"} alignItems={"center"}>
                 {authOrNot && 
@@ -34,8 +34,9 @@ const LandingRightSideNavItem = () => {
                 <FontAwesomeIcon
                     icon={faSignOutAlt}
                     onClick={LogOut}
-                    transform="shrink-7"
-                    className="fs-4 text-primary"
+                    size={"lg"}
+                    transform="shrink-3"
+                    className="fs-4 text-primary cursor-pointer ms-3"
                 />
                 </>
                 }
@@ -43,7 +44,7 @@ const LandingRightSideNavItem = () => {
                 
                 <Dropdown className="d-none d-sm-block">
                     <Dropdown.Toggle as={Link} to="#!" className="nav-link fw-semi-bold text-primary">
-                        <FontAwesomeIcon icon={faUser} size={"lg"}/>
+                        <FontAwesomeIcon icon={faUser} size={"lg"} transform="shrink-3" className="fs-4 text-primary cursor-pointer ms-3"/>
                     </Dropdown.Toggle>
                 </Dropdown>
                 }

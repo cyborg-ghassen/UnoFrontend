@@ -9,7 +9,7 @@ const CartNotification = () => {
     const bas = useSelector((state) => state.Auth.basket);
 
     return (
-        <Nav.Item as="li" className="d-none d-sm-block">
+        <Nav.Item as="li" className="d-sm-block">
             <Nav.Link
                 as={Link}
                 to="/panier"
@@ -20,7 +20,7 @@ const CartNotification = () => {
                 })}
             >
                 <span className="notification-indicator-number text-primary">
-                {(bas?.length!=0) &&
+                {(bas?.length!==0) &&
                     <>
                     {bas?.length} 
                     </>
@@ -28,8 +28,8 @@ const CartNotification = () => {
           </span>
                 <FontAwesomeIcon
                     icon="shopping-cart"
-                    transform="shrink-7"
-                    className="fs-4 text-primary"
+                    transform="shrink-3"
+                    className="fs-4 text-primary me-2"
                 />
             </Nav.Link>
         </Nav.Item>

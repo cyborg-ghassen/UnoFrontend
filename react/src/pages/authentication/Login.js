@@ -10,12 +10,12 @@ const Login = () => {
     return (
         <>
             <Flex justifyContent="between" alignItems="center" className="mb-2">
-                <h5>{login ? "Log in" : "Register"}</h5>
+                <h5>{login ? "Se Connecter" : "Créer un compte"}</h5>
                 <p className="fs--1 text-600 mb-0">
-                    {login ? "or" : "Have an account?"} <Link onClick={() => setLogin(!login)}>{login ? "Create an account" : "Login"}</Link>
+                    {login ? "ou" : "Avoir un compte?"} <Link onClick={() => setLogin(!login)}>{login ? "Créer un compte" : "Se Connecter"}</Link>
                 </p>
             </Flex>
-            {login ? <LoginForm /> : <RegistrationForm setLogin={setLogin} />}
+            {login ? <LoginForm hasLabel /> : <RegistrationForm setLogin={setLogin} hasLabel />}
         </>
     );
 }

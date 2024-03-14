@@ -26,9 +26,7 @@ const ProductDetailsMain = ({product,setQuantity,setToBacket}) => {
         productCount > 1 && setQuantity(productCount - 1);
     };
 
-    const handleAddToCart = () => {
 
-    }
     useEffect(()=>{
 
     },[productCount])
@@ -37,11 +35,11 @@ const ProductDetailsMain = ({product,setQuantity,setToBacket}) => {
         <>
             <h5>{product?.name}</h5>
             <div>
-                {product?.category_names?.map(item => (
+                {product?.category_names?.map((item, index) => (
                     <>
-                        <Link to="#!" className="fs--1">
+                        <Link to={`/products?category=${product?.category[index]}`} className="fs--1">
                             {item}
-                        </Link> |
+                        </Link> {index === product?.category_names?.length && '|'}
                     </>
                 ))}
             </div>

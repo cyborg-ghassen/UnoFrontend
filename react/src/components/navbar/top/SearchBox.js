@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {Form, Dropdown} from 'react-bootstrap';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import Avatar from 'components/common/Avatar';
 import Flex from 'components/common/Flex';
 import FalconCloseButton from 'components/common/FalconCloseButton';
@@ -36,18 +36,21 @@ const MediaSearchContent = ({item}) => {
 
 const SearchBox = () => {
     const [dropdownOpen, setDropdownOpen] = useState(false);
-    const [searchInputValue, setSearchInputValue] = useState('');
     let query = useQuery();
+    const [searchInputValue, setSearchInputValue] = useState(query.get("search") || '');
+
+    const navigate = useNavigate()
     const handleSubmit = (event) => {
         if (searchInputValue === "") {
             query.delete("search")
         } else {
             query.set("search", searchInputValue)
         }
-        window.location = "/products?" + query.toString()
+        navigate(`/products?${query.toString()}`)
     };
+
     return (
-        <Dropdown show={dropdownOpen} className="search-box w-100">
+        <Dropdown show={dropdownOpen} className="search-box w-100 mt-2">
             <Form className="position-relative"
                   onSubmit={handleSubmit}
             >

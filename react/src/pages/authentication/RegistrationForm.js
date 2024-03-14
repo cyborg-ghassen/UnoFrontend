@@ -57,9 +57,9 @@ const RegistrationForm = ({hasLabel, setLogin}) => {
     return (
         <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3">
-                {hasLabel && <Form.Label>Username</Form.Label>}
+                {hasLabel && <Form.Label>Nom d'utilisateur</Form.Label>}
                 <Form.Control
-                    placeholder={!hasLabel ? 'Username' : ''}
+                    placeholder={!hasLabel ? 'Nom d\'utilisateur' : ''}
                     value={formData.username}
                     name="username"
                     onChange={handleFieldChange}
@@ -69,9 +69,9 @@ const RegistrationForm = ({hasLabel, setLogin}) => {
             </Form.Group>
 
             <Form.Group className="mb-3">
-                {hasLabel && <Form.Label>Email address</Form.Label>}
+                {hasLabel && <Form.Label>Adresse e-mail</Form.Label>}
                 <Form.Control
-                    placeholder={!hasLabel ? 'Email address' : ''}
+                    placeholder={!hasLabel ? 'Adresse e-mail' : ''}
                     value={formData.email}
                     name="email"
                     onChange={handleFieldChange}
@@ -82,9 +82,9 @@ const RegistrationForm = ({hasLabel, setLogin}) => {
 
             <Row className="g-2 mb-3">
                 <Form.Group as={Col} sm={12}>
-                    {hasLabel && <Form.Label>Password</Form.Label>}
+                    {hasLabel && <Form.Label>Mot de passe</Form.Label>}
                     <Form.Control
-                        placeholder={!hasLabel ? 'Password' : ''}
+                        placeholder={!hasLabel ? 'Mot de passe' : ''}
                         value={formData.password}
                         name="password"
                         onChange={handleFieldChange}
@@ -99,7 +99,7 @@ const RegistrationForm = ({hasLabel, setLogin}) => {
                     className="w-100"
                     type="submit"
                 >
-                    Register
+                    Registre
                 </Button>
                 <FormError error={errors?.detail}/>
             </Form.Group>

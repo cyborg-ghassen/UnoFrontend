@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import SiteSetting, PosterSetting, ServiceSetting, TestimonialSetting, MagazineSetting
+from .models import SiteSetting, PosterSetting, ServiceSetting, TestimonialSetting, MagazineSetting, Link, SubLink
 
 
 # Register your models here.
@@ -27,3 +27,21 @@ class TestimonialSettingAdmin(admin.ModelAdmin):
 @admin.register(MagazineSetting)
 class MagazineSettingAdmin(admin.ModelAdmin):
     list_display = ('name', 'site')
+
+
+class LinkInline(admin.TabularInline):
+    model = SubLink
+    extra = 0
+    filter_horizontal = ('categories', )
+
+
+@admin.register(Link)
+class LinkAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+    inlines = [LinkInline]
+
+
+@admin.register(SubLink)
+class SubLinkAdmin(admin.ModelAdmin):
+    list_display = ('name', 'link')
+    filter_horizontal = ('categories',)
