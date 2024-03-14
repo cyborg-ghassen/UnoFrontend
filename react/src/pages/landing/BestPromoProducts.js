@@ -6,6 +6,7 @@ import SectionHeader from "./SectionHeader";
 import {api} from "../../utils/api";
 import 'swiper/css';
 import 'swiper/css/navigation';
+// import bg from "../../componnents/assetes/affiche1.jpg"
 
 import './styles.css';
 import Flex from "../../components/common/Flex";
@@ -44,8 +45,12 @@ const BestPromoProducts = () => {
             />
             <Flex justifyContent={"between"} alignItems={"center"} alignContent={"center"} breakpoint={"sm"}>
                 <div className="i16" style={{
+
                     background: `url(${settings[0]?.banner_best_products}) no-repeat`,
-                    backgroundSize: "contain"
+                    // background: `url(${bg}) no-repeat`,
+                    backgroundSize: "cover",
+                    // backgroundAttachment:"fixed"
+                    
                 }}>
                 </div>
                 <Slider

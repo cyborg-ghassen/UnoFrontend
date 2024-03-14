@@ -3,6 +3,7 @@ import React, {useEffect, useState} from "react";
 import {api} from "../../utils/api";
 import {Col, Image, Row} from "react-bootstrap";
 
+
 const PhotosBanner = () => {
     const [posters, setPosters] = useState([])
 
