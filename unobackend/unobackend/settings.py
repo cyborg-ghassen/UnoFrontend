@@ -30,6 +30,12 @@ SECRET_KEY = 'django-insecure-q8jub2_7#4d*=g$wstsqw4ae+75+!lu-b8-+_7nk=l0%wwme+l
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", "off") == "on"
+PRODUCTION = os.environ.get("PRODUCTION", "off") == "on"
+
+if PRODUCTION:
+    CSRF_TRUSTED_ORIGINS = [
+        "https://unoapi.code2bind.com"
+    ]
 
 ALLOWED_HOSTS = ["*"]
 
