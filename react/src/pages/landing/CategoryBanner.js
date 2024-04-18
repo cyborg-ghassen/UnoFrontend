@@ -49,7 +49,7 @@ const The2ndNavBar = () => {
             position="center"
             overlay
         >
-            <Navbar expand={"xl"}>
+            <Navbar expand={"lg"}>
                 <Navbar.Collapse onMouseEnter={handleMouseEnter}
                                  onMouseLeave={handleMouseLeave}>
                     <Nav navbar justify={true} >
