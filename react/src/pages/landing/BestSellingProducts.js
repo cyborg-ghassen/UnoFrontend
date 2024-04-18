@@ -29,6 +29,7 @@ const BestSellingProducts = () => {
                         key={product.id}
                         md={6}
                         lg={3}
+                        sm={2}
                         index={index}
                     />
                 )}
