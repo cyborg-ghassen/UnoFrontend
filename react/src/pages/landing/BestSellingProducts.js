@@ -27,9 +27,9 @@ const BestSellingProducts = () => {
                     <ProductGrid
                         product={product}
                         key={product.id}
+                        xs={6}
                         md={6}
                         lg={3}
-                        sm={2}
                         index={index}
                     />
                 )}

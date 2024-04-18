@@ -27,7 +27,7 @@ const ProductGrid = ({product, index, ...rest}) => {
             >
                 <Card style={
                     {
-                        minWidth: "300px",
+                        minWidth: "180px",
                     }
                 }
                 >
