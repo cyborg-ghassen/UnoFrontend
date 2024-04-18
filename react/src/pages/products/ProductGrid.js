@@ -19,7 +19,7 @@ const ProductGrid = ({product, index, ...rest}) => {
 
     }
     return (
-        <Col className="mb-4 h-100" lg={3} {...rest}>
+        <Col className="mb-4 h-75" lg={3} {...rest}>
             <Flex
                 direction="column"
                 justifyContent="between"
@@ -40,7 +40,7 @@ const ProductGrid = ({product, index, ...rest}) => {
                             product={product}
                             layout="grid"
                         />
-                        <div className="i10 p-3 ">
+                        <div className="i10 px-3 ">
                             <h5 className="fs-0">
                                 <a
                                     className="text-dark"
@@ -49,7 +49,7 @@ const ProductGrid = ({product, index, ...rest}) => {
                                     {product?.name}
                                 </a>
                             </h5>
-                            <p className="fs--1 mb-3">
+                            <p className="fs--1">
                                 {product?.category_names?.map((c, i) =>
                                     <>
                                         <Link to={`/products?category=${product?.category[i]}`}
@@ -59,7 +59,7 @@ const ProductGrid = ({product, index, ...rest}) => {
                                     </>
                                 )}
                             </p>
-                            <h5 className="fs-md-2 text-warning mb-0 d-flex align-items-center mb-3">
+                            <h5 className="fs-md-2 text-warning mb-0 d-flex align-items-center">
                                 {product?.promotion === 0 && `${product?.price_promotion} TND`}
                             </h5>
                             <p className="fs--1 mb-1">
@@ -73,7 +73,7 @@ const ProductGrid = ({product, index, ...rest}) => {
                                     {product?.stock > 0 ? 'En stock' : 'Hors stock'}
                                 </strong>
                             </p>
-                            <Button onClick={handleAddToCart} className='mt-4 pt-2 pb-2 pr-2 pl-2 btn-primary '>Ajouter
+                            <Button onClick={handleAddToCart} className='pt-1 pr-2 pl-2 btn-primary '>Ajouter
                                 au panier</Button>
                         </div>
                     </div>
