@@ -70,6 +70,7 @@ const BestPromoProducts = () => {
                             className='h-sm-50 overflow-visible'
                             product={product}
                             key={product.id}
+                            xs={6}
                             md={6}
                             lg={3}
                             index={index}

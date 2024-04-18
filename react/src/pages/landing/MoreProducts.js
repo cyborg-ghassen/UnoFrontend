@@ -22,6 +22,7 @@ const MoreProducts = () => {
                     <ProductGrid
                         product={product}
                         key={product.id}
+                        xs={6}
                         md={6}
                         lg={4}
                         index={index}
