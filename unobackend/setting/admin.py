@@ -32,7 +32,6 @@ class MagazineSettingAdmin(admin.ModelAdmin):
 class LinkInline(admin.TabularInline):
     model = SubLink
     extra = 0
-    filter_horizontal = ('categories', )
 
 
 @admin.register(Link)
@@ -44,4 +43,8 @@ class LinkAdmin(admin.ModelAdmin):
 @admin.register(SubLink)
 class SubLinkAdmin(admin.ModelAdmin):
     list_display = ('name', 'link')
-    filter_horizontal = ('categories',)
+
+    def display_categories(self, obj):
+        return ', '.join([category.name for category in obj.categories.all()])
+
+    display_categories.short_description = 'Categories'
