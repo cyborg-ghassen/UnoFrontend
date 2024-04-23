@@ -1,6 +1,7 @@
 import React from "react";
 import {Image} from "react-bootstrap";
-import img from "assets/img/g42.png"
+import img from "assets/img/g42-1.png"
+import "./style.css"
 
 const StarComponent = ({promo, price}) => {
     return (
@@ -14,7 +15,8 @@ const StarComponent = ({promo, price}) => {
                 left: '30%',
                 transform: 'translate(-50%, -50%)',
                 color: '#fff',
-                fontSize: "13px"
+                fontSize: "13px",
+                fontFamily: "Boucherie Block W05 Bold"
             }}>
                 {price} TND
             </div>
@@ -24,7 +26,8 @@ const StarComponent = ({promo, price}) => {
                 left: '65%',
                 transform: 'translate(-50%, -50%)',
                 color: '#fff',
-                fontSize: "13px"
+                fontSize: "13px",
+                fontFamily: "Boucherie Block W05 Bold"
             }}>
                 -{promo}%
             </div>
