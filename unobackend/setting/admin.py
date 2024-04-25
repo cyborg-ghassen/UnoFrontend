@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import SiteSetting, PosterSetting, ServiceSetting, TestimonialSetting, MagazineSetting, Link, SubLink
+from .models import SiteSetting, PosterSetting, Link, SubLink
 
 
 # Register your models here.
@@ -11,21 +11,6 @@ class SiteSettingAdmin(admin.ModelAdmin):
 
 @admin.register(PosterSetting)
 class PosterSettingAdmin(admin.ModelAdmin):
-    list_display = ('name', 'site')
-
-
-@admin.register(ServiceSetting)
-class ServiceSettingAdmin(admin.ModelAdmin):
-    list_display = ('name', 'site')
-
-
-@admin.register(TestimonialSetting)
-class TestimonialSettingAdmin(admin.ModelAdmin):
-    list_display = ('name', 'slogan', 'site')
-
-
-@admin.register(MagazineSetting)
-class MagazineSettingAdmin(admin.ModelAdmin):
     list_display = ('name', 'site')
 
 
