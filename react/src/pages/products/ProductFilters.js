@@ -63,7 +63,7 @@ const ProductFilters = ({setShow, isOffcanvas, getProducts}) => {
                     <Flex className="gap-2 flex-xl-grow-1 align-items-center justify-content-xl-between">
                         <h5 className="mb-0 text-700 fs-0 d-flex align-items-center">
                             <FontAwesomeIcon icon="filter" className="fs--1 me-1"/>
-                            <span>Filter</span>
+                            <span>Filtre</span>
                         </h5>
                     </Flex>
                     {isOffcanvas && (
@@ -105,7 +105,7 @@ const ProductFilters = ({setShow, isOffcanvas, getProducts}) => {
                         <FilterItem
                             // key={filter?.id}
                             // index={index}
-                            name={"brand"}
+                            name={"Marque"}
                             filter={brands}
                             filterOptions={brands}
                             setFilterOptions={setFilterOptions}
@@ -116,7 +116,7 @@ const ProductFilters = ({setShow, isOffcanvas, getProducts}) => {
                         <FilterItem
                             // key={filter?.id}
                             // index={0}
-                            name={"category"}
+                            name={"Categorie"}
                             filter={categories}
                             filterOptions={categories}
                             setFilterOptions={setFilterOptions}
