@@ -12,7 +12,7 @@ class SiteSettingFilter(django_filters.FilterSet):
 class PosterSettingFilter(django_filters.FilterSet):
     class Meta:
         model = PosterSetting
-        fields = ['name', 'site']
+        fields = ['name', 'site', 'position']
 
 
 class ServiceSettingFilter(django_filters.FilterSet):

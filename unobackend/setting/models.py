@@ -29,6 +29,7 @@ class SiteSetting(models.Model):
 class PosterSetting(models.Model):
     name = models.CharField(max_length=100, verbose_name=_('Name'))
     image = models.ImageField(upload_to="poster", verbose_name=_('Image'))
+    position = models.CharField(max_length=100, verbose_name=_('Position'), choices=(('top', 'Top'), ('bottom', 'Bottom')))
     site = models.ForeignKey(Site, on_delete=models.CASCADE, verbose_name=_('Site'))
 
     class Meta:

@@ -43,9 +43,9 @@ const NavbarStandard = ({OpenAuth}) => {
 					{/* //the scroll down */}
 					<div className='p1'>
 						<div className='box'>
-							<a>Produits</a>
-							<a>Meilleur produits</a>
-							<a>Meilleur promo</a>
+							<a href={"#!"}>Produits</a>
+							<a href={"#!"}>Meilleur produits</a>
+							<a href={"#!"}>Meilleur promo</a>
 							{/* <a>Panier</a> */}
 						</div>
 
