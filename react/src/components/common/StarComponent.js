@@ -11,7 +11,7 @@ const StarComponent = ({promo, price}) => {
             <Image src={img} alt="Blue Star" fluid style={{zIndex: 9999}}/>
             <div style={{
                 position: 'absolute',
-                bottom: '6%',
+                top: '70%',
                 left: '30%',
                 transform: 'translate(-50%, -50%)',
                 color: '#fff',
