@@ -26,7 +26,7 @@ const Products = () => {
     useEffect(() => {
         getProducts(query)
         // eslint-disable-next-line
-    }, []);
+    }, [query.get('category')]);
 
     return (
         <Section fluid>
