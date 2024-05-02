@@ -6,7 +6,7 @@ import "./style.css"
 const StarComponent = ({promo, price}) => {
     return (
         <div className="position-absolute me-2 mt-2 fs--2 z-index-2" style={{
-            bottom: 0, right: 0, width: "35%"
+            bottom: 0, right: 0, width: "130px"
         }}>
             <Image src={img} alt="Blue Star" fluid style={{zIndex: 9999}}/>
             <div style={{
