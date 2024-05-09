@@ -59,7 +59,7 @@ const ProductGrid = ({product, index, ...rest}) => {
                                     </>
                                 )}
                             </p>
-                            <h5 className="fs-md-2 text-warning mb-0 d-flex align-items-center">
+                            <h5 className="fs-md-2 text-warning mb-0 d-flex align-items-center" style={{minHeight: "30px"}}>
                                 {product?.promotion === 0 && `${product?.price_promotion} TND`}
                             </h5>
                             <p className="fs--1 mb-1">
