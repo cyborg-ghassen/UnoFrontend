@@ -6,10 +6,7 @@ import FooterStandard from "../pages/landing/FooterStandard";
 import {useEffect} from "react";
 
 const ProductLayout = () => {
-	const navigate = useNavigate()
-	useEffect(() => {
-		navigate("/expired")
-	}, [navigate]);
+
 	return (
 		<div className={classNames('content')}>
 			<NavbarStandard/>
