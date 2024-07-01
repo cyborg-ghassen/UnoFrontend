@@ -29,6 +29,7 @@ function App() {
             openAuthPopUp()
         }
     }
+    openAuthPopUp()
     return (
         <div>
             <Router basename={process.env.PUBLIC_URL}>
