@@ -34,7 +34,7 @@ PRODUCTION = os.environ.get("PRODUCTION", "off") == "on"
 
 if PRODUCTION:
     CSRF_TRUSTED_ORIGINS = [
-        "https://unoapi.code2bind.com"
+        "https://apiuno.code2bind.com"
     ]
 
 ALLOWED_HOSTS = ["*"]
