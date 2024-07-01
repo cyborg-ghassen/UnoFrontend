@@ -18,7 +18,7 @@ function App() {
 
     async function openAuthPopUp() {
 
-        await sleep(3000);
+        await sleep(900000);
         if (!AuthenticatedOrNot) {
             setForceToauthenticate(true)
         }
