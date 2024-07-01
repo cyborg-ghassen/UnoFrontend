@@ -18,7 +18,6 @@ drf-spectacular = "*"
 django-cors-headers = "*"
 django-storages = "*"
 boto3 = "*"
-django-oss-storage = "*"
 
 [dev-packages]
 

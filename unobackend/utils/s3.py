@@ -1,20 +1,20 @@
 from django.conf import settings
-from django_oss_storage.backends import OssStaticStorage
+from storages.backends.s3boto3 import S3Boto3Storage
 
 
-class StaticStorage(OssStaticStorage):
+class StaticStorage(S3Boto3Storage):
     """Used to manage static files for the web server"""
     location = settings.STATIC_LOCATION
     default_acl = 'public-read'
 
 
-class PublicMediaStorage(OssStaticStorage):
+class PublicMediaStorage(S3Boto3Storage):
     location = 'media'
     default_acl = 'public-read'
     file_overwrite = False
 
 
-class PrivateMediaStorage(OssStaticStorage):
+class PrivateMediaStorage(S3Boto3Storage):
     location = 'private'
     default_acl = 'private'
     file_overwrite = False
