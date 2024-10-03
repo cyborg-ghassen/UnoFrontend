@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "nexameet",
+  "private_key_id": "22f87c3e1fb1fd938f13cb10fca63983e88f041d",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCPXx7WHqO7wNsF\n5XlsGRyQGQlEMwYr2ldOODz3XVxeqMUzzNh7PV0gUnMXwsyTq6ttcgPcVmHlyFXE\nPmOmA9AhC54PFNxA4TVK6UL+LKG++WFpGcIMgpo1c1D1qDoQIR2nI/gCxQEYfBNv\nEHS5ntV2XruFbhtjJ3ft3utnqjQl+3AOyeVA2zgDmsp85tPrfeeOi/fhQmxxfx4Z\nQUObKqpObmp9t8hOnnRVuuD9nuDpnlLIl8ct8kgz35sRSkmz3Gua3WG42Ps7FB2D\nYZ0fKopt9VyEk652Utyj3eCX6tgkYEPZx/Kpx0atUSiv4qbfqNIgqYaxub5tSa3B\nuB//BaXFAgMBAAECggEAI59bPpFbVk2rPdJP8otkvOrzkfXpjSDRe3Zes4mHZ1+g\nq+e0TB6pklvaC+fTQ8euLuHa0rbF2T2HDd0AjmG5J1THH3Er7pTmVGgTxKqbP6Of\nz+jd/ZS/sxMlZPw4/QP1Za96sll3lblSbNCWZ/5uhFwyVItQk7jdRAWU0OuJzHvH\nFKmRPK0crjoCND1mGTHbcxUJyFyOf3g+MpoVlpJYgUIjqqa2Og86K1bRlmRu5R0L\nY4kc79vwZJlYfIjzrK14TouRkLs+C57Cl547WFy4X25nXrZCRvlzfTDzaBaZhqiO\nC8UNm/WRIxJj9wF6VFASoAbGrths6+pR/5+oNpXEGwKBgQDFHIlWxhC6O+nqbWQo\nMY4KlXyB8mFsYsRhOnIA2/fYzazspBq0zaAjC0gYhLL8MyDREP5bLrv/dRZWyKSg\nqoMqqLteuW75dxJTg+h+vBAiRvGTtb6qGaVYwoC3OCNnBPy2a/GCEiSb3/mTzoGm\nPxGTlgJFfT0S71m1DBEM70VOJwKBgQC6NHPrifLlza+IOpfpuu2Y1k7wJzQXGM2X\nzzusOjZAlsd/lSwWkLcwrvqyMRcDRkuRSbrip6dJL1MIRuUn6A5ldWinfIM4QB10\nl9kZQKoQzT20jpGWhUJTtSX4UJWOVDgwhKPZookUPFnKM4Y5vRxr64PAnhQMIlUn\n8g1MPJDMMwKBgCMBgWaWwGvCrjVC/jGhM1+v0q/lUuYD2GqIDa0XY7nuNRLFxjRr\n/E+c9k3ca0kc72wRv4qED0E8Ex6QfaRHBAp0cupMtme5fNi2KXkwfxEHVmnsMhNV\ngKb1zBQ99RObsCHZo8d832GLcnCMkTvsIXv7fSXIKyuMtHrRzMlmSQGrAoGAWbkK\nnlVjaF4bFb5+Es7SzBGACfIqBHMcJelibJPELo045f4gN2NWEixOemxzFU3a/dAU\nMEDut7IJBXT72KXVwge3/PRfWkxypQrCPovNJrlu4UDNYEUn96PS/vr9hY6JYL+Z\nIDZUbR7DeU4ogEvilRHv83F4YXxtogjdZX3Nm8cCgYEAqmIbSnrU73XFHcGmlxCq\n6UAHf0ffUl+YUhR2BrRvKSObjAIcG/aH3ITIZcpCID3NMIS9+NlULmfxFHzqUDQr\nd0Le/uHZ4o8vjrvmEBbu23kclLhbVeCB0NCpejHDRGKYwZ3lMIs9ia32HGurK4BM\nZbU3YM4iVW91mJDTde7IQeE=\n-----END PRIVATE KEY-----\n",
+  "client_email": "ghassen@nexameet.iam.gserviceaccount.com",
+  "client_id": "106926935740961319977",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/ghassen%40nexameet.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
