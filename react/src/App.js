@@ -1,5 +1,6 @@
 import {useSelector} from 'react-redux';
 import {BrowserRouter as Router} from "react-router-dom";
+import {useEffect} from 'react';
 import AppRoutes from "./routes";
 import {LogInPopUp} from 'components/LogInPopUp';
 import {useState} from 'react';
@@ -17,7 +18,7 @@ function App() {
 
     async function openAuthPopUp() {
 
-        await sleep(3000);
+        await sleep(900000);
         if (!AuthenticatedOrNot) {
             setForceToauthenticate(true)
         }
@@ -29,6 +30,10 @@ function App() {
             openAuthPopUp()
         }
     }
+    useEffect(() => {
+        openAuthPopUp()
+    }, []);
+
     return (
         <div>
             <Router basename={process.env.PUBLIC_URL}>
