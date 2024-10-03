@@ -16,9 +16,12 @@ gunicorn = "*"
 djangorestframework-simplejwt = "*"
 drf-spectacular = "*"
 django-cors-headers = "*"
-django-storages = "*"
 boto3 = "*"
 django-oss-storage = "*"
+google-auth-httplib2 = "*"
+google-api-python-client = "*"
+google-auth-oauthlib = "*"
+django-storages = {extras = ["google"], version = "*"}
 
 [dev-packages]
 

@@ -16,6 +16,7 @@ from django.utils.translation import gettext_lazy as _
 
 from corsheaders.defaults import default_headers
 from dotenv import load_dotenv
+from google.oauth2 import service_account
 
 load_dotenv()
 
@@ -189,26 +190,16 @@ AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
 
 USE_S3 = os.environ.get('USE_S3') == 'on'
 if USE_S3:
-    # aws settings
-    OSS_BUCKET_NAME = os.environ.get('OSS_BUCKET_NAME')
-    OSS_DEFAULT_ACL = None
-    OSS_ENDPOINT = f'oss-us-west-1.aliyuncs.com'
-    # s3 static settings
-    STATIC_LOCATION = 'static'
-    STATIC_URL = f'https://{OSS_ENDPOINT}/{STATIC_LOCATION}/'
-    STATICFILES_STORAGE = 'utils.s3.StaticStorage'
-    # s3 public media settings
-    PUBLIC_MEDIA_LOCATION = 'media'
-    MEDIA_URL = f'https://{OSS_ENDPOINT}/{PUBLIC_MEDIA_LOCATION}/'
-    DEFAULT_FILE_STORAGE = 'utils.s3.PublicMediaStorage'
-    # s3 private media settings
-    PRIVATE_MEDIA_LOCATION = 'private'
-    PRIVATE_FILE_STORAGE = 'utils.s3.PrivateMediaStorage'
+    # oss settings
+    GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
+        os.path.join(BASE_DIR, 'nexameet-22f87c3e1fb1.json')
+    )
+    DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+    GS_BUCKET_NAME = 'nexameet'
+    STATIC_URL = 'static/'
+    STATIC_ROOT = BASE_DIR / 'static'
 else:
     STATIC_URL = 'static/'
-    STATIC_ROOT = 'static'
-    MEDIA_URL = 'media/'
-    MEDIA_ROOT = 'media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
