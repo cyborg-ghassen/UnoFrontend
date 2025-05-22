@@ -56,7 +56,7 @@ for category_url in category_links:
             brand, created = Brand.objects.get_or_create(name=brand)
             print(brand)
             product_data = {
-                "title": soup.select_one(".h1").text.strip(),
+                "name": soup.select_one(".h1").text.strip(),
                 "slogan": soup.select_one(".product-information h2").text.strip() if soup.select_one(".product-information h2") else "",
                 "price": soup.select_one(".product-prices .current-price span")["content"],
                 "description": soup.select_one(".product-information p").text.strip(),
