@@ -54,7 +54,8 @@ for category_url in category_links:
             soup = BeautifulSoup(driver.page_source, "lxml")
             brand = soup.select_one("#product-details a")["href"].split("/")[-1].split('-')[1].capitalize() if soup.select_one("#product-details a") else ""
             brand, created = Brand.objects.get_or_create(name=brand)
-            print(brand)
+            if created:
+                print(f"Brand created: {brand}")
             product_data = {
                 "name": soup.select_one(".h1").text.strip(),
                 "slogan": soup.select_one(".product-information h2").text.strip() if soup.select_one(".product-information h2") else "",
@@ -65,20 +66,21 @@ for category_url in category_links:
                 "promotion": 0,
                 "brand": brand,
             }
-            product = Product.objects.create(**product_data)
-            product.category.add(category)
-            img_tag = soup.select_one("#content .product-cover img")
-            img_url = urljoin(product_url, img_tag["src"])
-            img_response = requests.get(img_url)
-            if img_response.status_code == 200:
-                img_temp = NamedTemporaryFile(delete=True)
-                img_temp.write(img_response.content)
-                img_temp.flush()
+            product, created = Product.objects.get_or_create(**product_data)
+            if created:
+                product.category.add(category)
+                img_tag = soup.select_one("#content .product-cover img")
+                img_url = urljoin(product_url, img_tag["src"])
+                img_response = requests.get(img_url)
+                if img_response.status_code == 200:
+                    img_temp = NamedTemporaryFile(delete=True)
+                    img_temp.write(img_response.content)
+                    img_temp.flush()
 
-                # Save to Django model
+                    # Save to Django model
 
-                # Assuming your model has an ImageField called 'image'
-                product.image.save(f"{soup.select_one('.h1').text.strip().replace(' ', '_')}.jpg", ContentFile(img_response.content), save=True)
+                    # Assuming your model has an ImageField called 'image'
+                    product.image.save(f"{soup.select_one('.h1').text.strip().replace(' ', '_')}.jpg", ContentFile(img_response.content), save=True)
             print(product_data)
             all_product_data.append(product_data)
             driver.back()
