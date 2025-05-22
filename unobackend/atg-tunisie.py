@@ -53,7 +53,11 @@ for category_url in category_links:
 
             soup = BeautifulSoup(driver.page_source, "lxml")
             brand = soup.select_one("#product-details a")["href"].split("/")[-1].split('-')[1].capitalize() if soup.select_one("#product-details a") else ""
-            brand, created = Brand.objects.get_or_create(name=brand)
+            if Brand.objects.filter(name=brand).exists():
+                print(f"Brand already exists: {brand}")
+                brand = Brand.objects.get(name=brand)
+            else:
+                brand = Brand.objects.create(name=brand)
             if created:
                 print(f"Brand created: {brand}")
             product_data = {
@@ -66,8 +70,11 @@ for category_url in category_links:
                 "promotion": 0,
                 "brand": brand,
             }
-            product, created = Product.objects.get_or_create(**product_data)
-            if created:
+            if Product.objects.filter(**product_data).exists():
+                print(f"Product already exists: {product_data['name']}")
+                continue
+            else:
+                product = Product.objects.create(**product_data)
                 product.category.add(category)
                 img_tag = soup.select_one("#content .product-cover img")
                 img_url = urljoin(product_url, img_tag["src"])
