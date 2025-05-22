@@ -61,7 +61,6 @@ for category_url in category_links:
                 print(f"Brand already exists: {brand}")
             else:
                 brand = Brand.objects.create(name=brand)
-            if created:
                 print(f"Brand created: {brand}")
             product_data = {
                 "name": soup.select_one(".h1").text.strip(),
