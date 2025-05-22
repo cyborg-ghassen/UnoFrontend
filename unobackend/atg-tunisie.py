@@ -45,6 +45,7 @@ for category_url in category_links:
         soup = BeautifulSoup(driver.page_source, "lxml")
         category = soup.select_one("#category-description h2").text.strip() if soup.select_one("#category-description h2") else ""
         if Category.objects.filter(name=category).exists():
+            category = Category.objects.filter(name=category).first()
             print(f"Category already exists: {category}")
         else:
             category = Category.objects.create(name=category)
@@ -58,6 +59,7 @@ for category_url in category_links:
             soup = BeautifulSoup(driver.page_source, "lxml")
             brand = soup.select_one("#product-details a")["href"].split("/")[-1].split('-')[1].capitalize() if soup.select_one("#product-details a") else ""
             if Brand.objects.filter(name=brand).exists():
+                brand = Brand.objects.filter(name=brand).first()
                 print(f"Brand already exists: {brand}")
             else:
                 brand = Brand.objects.create(name=brand)
@@ -73,6 +75,7 @@ for category_url in category_links:
                 "brand": brand,
             }
             if Product.objects.filter(**product_data).exists():
+                product = Product.objects.filter(**product_data).first()
                 print(f"Product already exists: {product_data['name']}")
                 continue
             else:
