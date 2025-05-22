@@ -48,7 +48,7 @@ const BestPromoProducts = () => {
 
 					background: `url(${settings[0]?.banner_best_products}) no-repeat`,
 					// background: `url(${bg}) no-repeat`,
-					backgroundSize: "contain",
+					backgroundSize: "cover",
 					// backgroundAttachment:"fixed"
 
 				}}>
