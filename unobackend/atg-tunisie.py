@@ -53,7 +53,7 @@ for category_url in category_links:
 
             soup = BeautifulSoup(driver.page_source, "lxml")
             brand = soup.select_one("#product-details a")["href"].split("/")[-1].split('-')[1].capitalize() if soup.select_one("#product-details a") else ""
-            brand, created = Brand.objects.get_or_create(brand=brand)
+            brand, created = Brand.objects.get_or_create(name=brand)
             print(brand)
             product_data = {
                 "title": soup.select_one(".h1").text.strip(),
