@@ -65,7 +65,7 @@ for category_url in category_links:
                 "promotion": 0,
                 "brand": brand,
             }
-            product = Product(**product_data)
+            product = Product.objects.create(**product_data)
             product.category.add(category)
             img_tag = soup.select_one("#content .product-cover img")
             img_url = urljoin(product_url, img_tag["src"])
