@@ -63,9 +63,10 @@ for category_url in category_links:
                 "reviews": 0,
                 "stock": 0,
                 "promotion": 0,
-                "category": category,
                 "brand": brand,
             }
+            product = Product(**product_data)
+            product.category.add(category)
             img_tag = soup.select_one("#content .product-cover img")
             img_url = urljoin(product_url, img_tag["src"])
             img_response = requests.get(img_url)
@@ -75,7 +76,7 @@ for category_url in category_links:
                 img_temp.flush()
 
                 # Save to Django model
-                product = Product(**product_data)
+
                 # Assuming your model has an ImageField called 'image'
                 product.image.save(f"{product_data.get('title')[:50].replace(' ', '_')}.jpg", ContentFile(img_response.content), save=True)
             print(product_data)
