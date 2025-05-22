@@ -9,8 +9,13 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 import os
+import django
 import requests
 from urllib.parse import urljoin
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "unobackend.settings")
+django.setup()
+
 from django.core.files.base import ContentFile
 from django.core.files.temp import NamedTemporaryFile
 
