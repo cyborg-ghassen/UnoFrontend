@@ -66,7 +66,7 @@ for category_url in category_links:
                 "category": category,
                 "brand": brand,
             }
-            img_tag = soup.select_one(".product-image img")
+            img_tag = soup.select_one("#content .product-cover img")
             img_url = urljoin(product_url, img_tag["src"])
             img_response = requests.get(img_url)
             if img_response.status_code == 200:
