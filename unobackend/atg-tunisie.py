@@ -44,7 +44,11 @@ for category_url in category_links:
     while True:
         soup = BeautifulSoup(driver.page_source, "lxml")
         category = soup.select_one("#category-description h2").text.strip() if soup.select_one("#category-description h2") else ""
-        category, created = Category.objects.get_or_create(name=category)
+        if Category.objects.filter(name=category).exists():
+            print(f"Category already exists: {category}")
+        else:
+            category = Category.objects.create(name=category)
+            print(f"Category created: {category}")
         product_links = [a["href"] for a in soup.select(".item .left-product a") if a["href"].startswith(base_url)]
         print(product_links)
         for product_url in product_links:
@@ -55,7 +59,6 @@ for category_url in category_links:
             brand = soup.select_one("#product-details a")["href"].split("/")[-1].split('-')[1].capitalize() if soup.select_one("#product-details a") else ""
             if Brand.objects.filter(name=brand).exists():
                 print(f"Brand already exists: {brand}")
-                brand = Brand.objects.get(name=brand)
             else:
                 brand = Brand.objects.create(name=brand)
             if created:
