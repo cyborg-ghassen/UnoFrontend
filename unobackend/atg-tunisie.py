@@ -5,8 +5,22 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
+import os
+import requests
+from urllib.parse import urljoin
+from django.core.files.base import ContentFile
+from django.core.files.temp import NamedTemporaryFile
 
-driver = webdriver.Chrome()
+from product.models import Product, Category, Brand
+
+options = Options()
+options.add_argument('--headless')
+options.add_argument('--no-sandbox')
+options.add_argument('--disable-dev-shm-usage')
+driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 base_url = "https://atg-tunisie.com/fr/"
 
 driver.get(base_url)
@@ -25,6 +39,7 @@ for category_url in category_links:
     while True:
         soup = BeautifulSoup(driver.page_source, "lxml")
         category = soup.select_one("#category-description h2").text.strip() if soup.select_one("#category-description h2") else ""
+        category, created = Category.objects.get_or_create(name=category)
         product_links = [a["href"] for a in soup.select(".item .left-product a") if a["href"].startswith(base_url)]
         print(product_links)
         for product_url in product_links:
@@ -33,14 +48,31 @@ for category_url in category_links:
 
             soup = BeautifulSoup(driver.page_source, "lxml")
             brand = soup.select_one("#product-details a")["href"].split("/")[-1].split('-')[1].capitalize() if soup.select_one("#product-details a") else ""
+            brand, created = Brand.objects.get_or_create(brand=brand)
             print(brand)
             product_data = {
                 "title": soup.select_one(".h1").text.strip(),
                 "slogan": soup.select_one(".product-information h2").text.strip() if soup.select_one(".product-information h2") else "",
                 "price": soup.select_one(".product-prices .current-price span")["content"],
                 "description": soup.select_one(".product-information p").text.strip(),
-                "image": soup.select_one("#content .product-cover img")["src"],
+                "reviews": 0,
+                "stock": 0,
+                "promotion": 0,
+                "category": category,
+                "brand": brand,
             }
+            img_tag = soup.select_one(".product-image img")
+            img_url = urljoin(product_url, img_tag["src"])
+            img_response = requests.get(img_url)
+            if img_response.status_code == 200:
+                img_temp = NamedTemporaryFile(delete=True)
+                img_temp.write(img_response.content)
+                img_temp.flush()
+
+                # Save to Django model
+                product = Product(**product_data)
+                # Assuming your model has an ImageField called 'image'
+                product.image.save(f"{product_data.get('title')[:50].replace(' ', '_')}.jpg", ContentFile(img_response.content), save=True)
             print(product_data)
             all_product_data.append(product_data)
             driver.back()
