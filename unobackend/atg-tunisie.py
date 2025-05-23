@@ -27,7 +27,7 @@ options.add_argument('--no-sandbox')
 options.add_argument('--disable-dev-shm-usage')
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 
-for i in range(1, 25):
+for i in range(18, 26):
     base_url = f"https://sopen.tn/boutique/page/{i}/"
 
     driver.get(base_url)
@@ -67,6 +67,6 @@ for i in range(1, 25):
                 # Save to Django model
 
                 # Assuming your model has an ImageField called 'image'
-                product.image.save(f"{soup.select_one('.elementor-container .elementor-widget-wrap .elementor-widget-container .product_title').text.strip().replace(' ', '_')}.jpg", ContentFile(img_response.content), save=True)
+                product.image.save(f"{soup.select_one('.elementor-container .elementor-widget-wrap .elementor-widget-container .product_title').text.strip().replace(' ', '_')[:15]}.jpg", ContentFile(img_response.content), save=True)
         print(product_data)
         all_product_data.append(product_data)
