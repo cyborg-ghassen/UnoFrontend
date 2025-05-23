@@ -35,13 +35,13 @@ category_links = [a["href"] for a in soup.select(".list-prod li a")]
 all_product_data = []
 print(category_links)
 for category_url in category_links:
-    driver.get(category_url)
+    driver.get(f"{base_url}{category_url}")
     time.sleep(2)
 
     sub_category_links = [a["href"] for a in soup.select(".list-prod li a")]
     print(sub_category_links)
     for sub_category_url in sub_category_links:
-        driver.get(sub_category_url)
+        driver.get(f"{base_url}{sub_category_url}")
         time.sleep(2)
 
         soup = BeautifulSoup(driver.page_source, "lxml")
