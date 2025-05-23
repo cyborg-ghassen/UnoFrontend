@@ -26,15 +26,15 @@ options.add_argument('--headless')
 options.add_argument('--no-sandbox')
 options.add_argument('--disable-dev-shm-usage')
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
-base_url = "https://sopen.tn/boutique/"
 
-driver.get(base_url)
-time.sleep(2)
-all_product_data = []
+for i in range(1, 25):
+    base_url = f"https://sopen.tn/boutique/page/{i}/"
 
-while True:
+    driver.get(base_url)
+    time.sleep(2)
+    all_product_data = []
     soup = BeautifulSoup(driver.page_source, "lxml")
-    product_links = [a["href"] for a in soup.select(".product-wrapper a") if a["href"].startswith(base_url)]
+    product_links = [a["href"] for a in soup.select(".product-wrapper .product-element-bottom .wd-entities-title a")]
     print(product_links)
     for product_url in product_links:
         driver.get(product_url)
@@ -42,9 +42,9 @@ while True:
 
         soup = BeautifulSoup(driver.page_source, "lxml")
         product_data = {
-            "name": soup.select_one(".elementor-container h1").text.strip() if soup.select_one(".h1") else "",
+            "name": soup.select_one(".elementor-container .elementor-widget-wrap .elementor-widget-container .product_title").text.strip() if soup.select_one(".elementor-container .elementor-widget-wrap .elementor-widget-container .product_title") else "",
             "slogan": soup.select_one(".woocommerce-product-details__short-description").text.strip() if soup.select_one(".woocommerce-product-details__short-description") else "",
-            "price": soup.select_one(".elementor-widget-container .woocommerce-Price-amount amount bdi").text.strip() if soup.select_one(".elementor-widget-container .woocommerce-Price-amount amount bdi") else "",
+            "price": soup.select_one(".elementor-widget-container .price .woocommerce-Price-amount bdi").text.strip()[:5].replace(',', '.') if soup.select_one(".elementor-widget-container .price .woocommerce-Price-amount bdi") else 0,
             "description": "",
             "reviews": 0,
             "stock": 0,
@@ -70,23 +70,3 @@ while True:
                 product.image.save(f"{soup.select_one('.h1').text.strip().replace(' ', '_')}.jpg", ContentFile(img_response.content), save=True)
         print(product_data)
         all_product_data.append(product_data)
-        driver.back()
-    try:
-        # Wait for pagination to be present (max 3 seconds)
-        WebDriverWait(driver, 3).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, ".wd-pagination"))
-        )
-        next_btn = driver.find_elements(By.CSS_SELECTOR, ".wd-pagination .next")
-        if next_btn and next_btn[0].is_enabled() and next_btn[0].is_displayed():
-            next_btn[0].click()
-            time.sleep(2)
-        else:
-            print("No next button or not enabled/visible.")
-            break
-    except Exception as e:
-        print(f"Pagination not found or next button not clickable")
-        break
-
-driver.quit()
-for product in all_product_data:
-    print(product)
