@@ -43,9 +43,9 @@ for i in range(1, 25):
         soup = BeautifulSoup(driver.page_source, "lxml")
         product_data = {
             "name": soup.select_one(".elementor-container .elementor-widget-wrap .elementor-widget-container .product_title").text.strip() if soup.select_one(".elementor-container .elementor-widget-wrap .elementor-widget-container .product_title") else "",
-            "slogan": soup.select_one(".woocommerce-product-details__short-description").text.strip() if soup.select_one(".woocommerce-product-details__short-description") else "",
+            "description": soup.select_one(".woocommerce-product-details__short-description").text.strip() if soup.select_one(".woocommerce-product-details__short-description") else "",
             "price": soup.select_one(".elementor-widget-container .price .woocommerce-Price-amount bdi").text.strip()[:5].replace(',', '.') if soup.select_one(".elementor-widget-container .price .woocommerce-Price-amount bdi") else 0,
-            "description": "",
+            "slogan": "",
             "reviews": 0,
             "stock": 0,
             "promotion": 0,
