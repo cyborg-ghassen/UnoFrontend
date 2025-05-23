@@ -65,10 +65,10 @@ for category_url in category_links:
                 brand = Brand.objects.create(name=brand)
                 print(f"Brand created: {brand}")
             product_data = {
-                "name": soup.select_one(".h1").text.strip(),
+                "name": soup.select_one(".h1").text.strip() if soup.select_one(".h1") else "",
                 "slogan": soup.select_one(".product-information h2").text.strip() if soup.select_one(".product-information h2") else "",
-                "price": soup.select_one(".product-prices .current-price span")["content"],
-                "description": soup.select_one(".product-information p").text.strip(),
+                "price": soup.select_one(".product-prices .current-price span")["content"] if soup.select_one(".product-prices .current-price span") else "",
+                "description": soup.select_one(".product-information p").text.strip() if soup.select_one(".product-information p") else "",
                 "reviews": 0,
                 "stock": 0,
                 "promotion": 0,
