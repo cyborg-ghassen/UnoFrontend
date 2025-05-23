@@ -11,6 +11,16 @@ class ProductAdmin(admin.ModelAdmin):
     list_filter = ('category', 'brand', 'created_at', 'updated_at')
     list_per_page = 20
     ordering = ('-created_at',)
+    fieldsets = (
+        (None, {
+            'fields': ('name', 'price', 'category', 'brand', 'description', 'image', 'reviews', 'slogan', 'stock', 'promotion')
+        }),
+        ('Dates', {
+            'fields': ('created_at', 'updated_at'),
+            'classes': ('collapse',),
+        }),
+    )
+    readonly_fields = ('created_at', 'updated_at')
 
 
 admin.site.register(Category)
