@@ -72,19 +72,3 @@ for category in ["chair", "desk"]:
                     product.image.save(f"{product_data['name']}.jpg", ContentFile(img_response.content), save=True)
             print(product_data)
             all_product_data.append(product_data)
-        try:
-            # Wait for pagination to be present (max 3 seconds)
-            WebDriverWait(driver, 3).until(
-                EC.presence_of_element_located((By.CSS_SELECTOR, ".woocommerce-pagination ul li"))
-            )
-            next_btn = driver.find_elements(By.CSS_SELECTOR, ".woocommerce-pagination ul li .next")
-            print(next_btn)
-            if next_btn and next_btn[0].is_enabled() and next_btn[0].is_displayed():
-                next_btn[0].click()
-                time.sleep(2)
-            else:
-                print("No next button or not enabled/visible.")
-                break
-        except Exception as e:
-            print(f"Pagination not found or next button not clickable")
-            break
