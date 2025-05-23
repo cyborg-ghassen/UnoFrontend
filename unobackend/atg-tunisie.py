@@ -38,7 +38,7 @@ for category_url in category_links:
     driver.get(f"{base_url}{category_url}")
     time.sleep(2)
 
-    sub_category_links = [a["href"] for a in soup.select(".list-prod li a")]
+    sub_category_links = [a["href"] for a in soup.select("#bas .list-prod li a")]
     print(sub_category_links)
     for sub_category_url in sub_category_links:
         driver.get(f"{base_url}{sub_category_url}")
