@@ -67,6 +67,6 @@ for i in range(1, 25):
                 # Save to Django model
 
                 # Assuming your model has an ImageField called 'image'
-                product.image.save(f"{soup.select_one('.h1').text.strip().replace(' ', '_')}.jpg", ContentFile(img_response.content), save=True)
+                product.image.save(f"{soup.select_one('.elementor-container .elementor-widget-wrap .elementor-widget-container .product_title').text.strip().replace(' ', '_')}.jpg", ContentFile(img_response.content), save=True)
         print(product_data)
         all_product_data.append(product_data)
