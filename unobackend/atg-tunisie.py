@@ -58,7 +58,7 @@ for category in ["chair", "desk"]:
                 continue
             else:
                 product = Product.objects.create(**product_data)
-                img_tag = soup.select_one("a img")
+                img_tag = product_url.select_one("a img")
                 img_url = urljoin(product_url.select_one("h4 a")['href'], img_tag["src"])
                 img_response = requests.get(img_url)
                 if img_response.status_code == 200:
