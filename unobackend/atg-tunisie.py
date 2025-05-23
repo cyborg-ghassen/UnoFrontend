@@ -76,7 +76,7 @@ for category_url in category_links:
                     category_instance = Category.objects.create(name=category_name)
                 else:
                     category_instance = Category.objects.get(name=category_name)
-                product.categories.add(category_instance)
+                product.category.add(category_instance)
             img_tag = soup.select_one(".woocommerce-product-gallery__wrapper .woocommerce-product-gallery__image a img")
             img_url = urljoin(product_url, img_tag["src"])
             img_response = requests.get(img_url)
