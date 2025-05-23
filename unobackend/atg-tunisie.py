@@ -78,6 +78,7 @@ for category in ["chair", "desk"]:
                 EC.presence_of_element_located((By.CSS_SELECTOR, ".woocommerce-pagination ul li"))
             )
             next_btn = driver.find_elements(By.CSS_SELECTOR, ".woocommerce-pagination ul li .next")
+            print(next_btn)
             if next_btn and next_btn[0].is_enabled() and next_btn[0].is_displayed():
                 next_btn[0].click()
                 time.sleep(2)
