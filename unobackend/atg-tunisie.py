@@ -40,35 +40,34 @@ for category in ["chair", "desk"]:
     soup = BeautifulSoup(driver.page_source, "lxml")
 
     products = soup.select(".products .product")
-    while True:
-        for product_url in products:
-            time.sleep(2)
-            product_data = {
-                "name": product_url.select_one("h4 a").text.strip() if product_url.select_one("h4 a") else "",
-                "description": "",
-                "price": 0,
-                "slogan": "",
-                "reviews": 0,
-                "stock": 0,
-                "promotion": 0,
-            }
-            if Product.objects.filter(**product_data).exists():
-                product = Product.objects.filter(**product_data).first()
-                print(f"Product already exists: {product_data['name']}")
-                continue
-            else:
-                product = Product.objects.create(**product_data)
-                img_tag = product_url.select_one("a img")
-                img_url = urljoin(product_url.select_one("h4 a")['href'], img_tag["src"])
-                img_response = requests.get(img_url)
-                if img_response.status_code == 200:
-                    img_temp = NamedTemporaryFile(delete=True)
-                    img_temp.write(img_response.content)
-                    img_temp.flush()
+    for product_url in products:
+        time.sleep(2)
+        product_data = {
+            "name": product_url.select_one("h4 a").text.strip() if product_url.select_one("h4 a") else "",
+            "description": "",
+            "price": 0,
+            "slogan": "",
+            "reviews": 0,
+            "stock": 0,
+            "promotion": 0,
+        }
+        if Product.objects.filter(**product_data).exists():
+            product = Product.objects.filter(**product_data).first()
+            print(f"Product already exists: {product_data['name']}")
+            continue
+        else:
+            product = Product.objects.create(**product_data)
+            img_tag = product_url.select_one("a img")
+            img_url = urljoin(product_url.select_one("h4 a")['href'], img_tag["src"])
+            img_response = requests.get(img_url)
+            if img_response.status_code == 200:
+                img_temp = NamedTemporaryFile(delete=True)
+                img_temp.write(img_response.content)
+                img_temp.flush()
 
-                    # Save to a Django model
+                # Save to a Django model
 
-                    # Assuming your model has an ImageField called 'image'
-                    product.image.save(f"{product_data['name']}.jpg", ContentFile(img_response.content), save=True)
-            print(product_data)
-            all_product_data.append(product_data)
+                # Assuming your model has an ImageField called 'image'
+                product.image.save(f"{product_data['name']}.jpg", ContentFile(img_response.content), save=True)
+        print(product_data)
+        all_product_data.append(product_data)
