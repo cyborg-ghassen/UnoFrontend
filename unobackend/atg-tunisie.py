@@ -19,98 +19,73 @@ django.setup()
 from django.core.files.base import ContentFile
 from django.core.files.temp import NamedTemporaryFile
 
-from product.models import Product, Category, Brand
+from product.models import Product
 
 options = Options()
 options.add_argument('--headless')
 options.add_argument('--no-sandbox')
 options.add_argument('--disable-dev-shm-usage')
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
-base_url = "https://atg-tunisie.com/fr/"
+base_url = "https://sopen.tn/boutique/"
 
 driver.get(base_url)
 time.sleep(2)
-
-soup = BeautifulSoup(driver.page_source, "lxml")
-category_links = [a["href"] for a in soup.select(".sections-contaier a")]
-
 all_product_data = []
-print(category_links)
 
-for category_url in category_links:
-    driver.get(category_url)
-    time.sleep(2)
+while True:
+    soup = BeautifulSoup(driver.page_source, "lxml")
+    product_links = [a["href"] for a in soup.select(".product-wrapper a") if a["href"].startswith(base_url)]
+    print(product_links)
+    for product_url in product_links:
+        driver.get(product_url)
+        time.sleep(2)
 
-    while True:
         soup = BeautifulSoup(driver.page_source, "lxml")
-        category = soup.select_one("#category-description h2").text.strip() if soup.select_one("#category-description h2") else ""
-        if Category.objects.filter(name=category).exists():
-            category = Category.objects.filter(name=category).first()
-            print(f"Category already exists: {category}")
+        product_data = {
+            "name": soup.select_one(".elementor-container h1").text.strip() if soup.select_one(".h1") else "",
+            "slogan": soup.select_one(".woocommerce-product-details__short-description").text.strip() if soup.select_one(".woocommerce-product-details__short-description") else "",
+            "price": soup.select_one(".elementor-widget-container .woocommerce-Price-amount amount bdi").text.strip() if soup.select_one(".elementor-widget-container .woocommerce-Price-amount amount bdi") else "",
+            "description": "",
+            "reviews": 0,
+            "stock": 0,
+            "promotion": 0,
+        }
+        if Product.objects.filter(**product_data).exists():
+            product = Product.objects.filter(**product_data).first()
+            print(f"Product already exists: {product_data['name']}")
+            continue
         else:
-            category = Category.objects.create(name=category)
-            print(f"Category created: {category}")
-        product_links = [a["href"] for a in soup.select(".item .left-product a") if a["href"].startswith(base_url)]
-        print(product_links)
-        for product_url in product_links:
-            driver.get(product_url)
+            product = Product.objects.create(**product_data)
+            img_tag = soup.select_one(".wd-carousel-item a img")
+            img_url = urljoin(product_url, img_tag["src"])
+            img_response = requests.get(img_url)
+            if img_response.status_code == 200:
+                img_temp = NamedTemporaryFile(delete=True)
+                img_temp.write(img_response.content)
+                img_temp.flush()
+
+                # Save to Django model
+
+                # Assuming your model has an ImageField called 'image'
+                product.image.save(f"{soup.select_one('.h1').text.strip().replace(' ', '_')}.jpg", ContentFile(img_response.content), save=True)
+        print(product_data)
+        all_product_data.append(product_data)
+        driver.back()
+    try:
+        # Wait for pagination to be present (max 3 seconds)
+        WebDriverWait(driver, 3).until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, ".wd-pagination"))
+        )
+        next_btn = driver.find_elements(By.CSS_SELECTOR, ".wd-pagination .next")
+        if next_btn and next_btn[0].is_enabled() and next_btn[0].is_displayed():
+            next_btn[0].click()
             time.sleep(2)
-
-            soup = BeautifulSoup(driver.page_source, "lxml")
-            brand = soup.select_one("#product-details a")["href"].split("/")[-1].split('-')[1].capitalize() if soup.select_one("#product-details a") else ""
-            if Brand.objects.filter(name=brand).exists():
-                brand = Brand.objects.filter(name=brand).first()
-                print(f"Brand already exists: {brand}")
-            else:
-                brand = Brand.objects.create(name=brand)
-                print(f"Brand created: {brand}")
-            product_data = {
-                "name": soup.select_one(".h1").text.strip() if soup.select_one(".h1") else "",
-                "slogan": soup.select_one(".product-information h2").text.strip() if soup.select_one(".product-information h2") else "",
-                "price": soup.select_one(".product-prices .current-price span")["content"] if soup.select_one(".product-prices .current-price span") else "",
-                "description": soup.select_one(".product-information p").text.strip() if soup.select_one(".product-information p") else "",
-                "reviews": 0,
-                "stock": 0,
-                "promotion": 0,
-                "brand": brand,
-            }
-            if Product.objects.filter(**product_data).exists():
-                product = Product.objects.filter(**product_data).first()
-                print(f"Product already exists: {product_data['name']}")
-                continue
-            else:
-                product = Product.objects.create(**product_data)
-                product.category.add(category)
-                img_tag = soup.select_one("#content .product-cover img")
-                img_url = urljoin(product_url, img_tag["src"])
-                img_response = requests.get(img_url)
-                if img_response.status_code == 200:
-                    img_temp = NamedTemporaryFile(delete=True)
-                    img_temp.write(img_response.content)
-                    img_temp.flush()
-
-                    # Save to Django model
-
-                    # Assuming your model has an ImageField called 'image'
-                    product.image.save(f"{soup.select_one('.h1').text.strip().replace(' ', '_')}.jpg", ContentFile(img_response.content), save=True)
-            print(product_data)
-            all_product_data.append(product_data)
-            driver.back()
-        try:
-            # Wait for pagination to be present (max 3 seconds)
-            WebDriverWait(driver, 3).until(
-                EC.presence_of_element_located((By.CSS_SELECTOR, ".pagination"))
-            )
-            next_btn = driver.find_elements(By.CSS_SELECTOR, ".pagination .next")
-            if next_btn and next_btn[0].is_enabled() and next_btn[0].is_displayed():
-                next_btn[0].click()
-                time.sleep(2)
-            else:
-                print("No next button or not enabled/visible.")
-                break
-        except Exception as e:
-            print(f"Pagination not found or next button not clickable")
+        else:
+            print("No next button or not enabled/visible.")
             break
+    except Exception as e:
+        print(f"Pagination not found or next button not clickable")
+        break
 
 driver.quit()
 for product in all_product_data:
