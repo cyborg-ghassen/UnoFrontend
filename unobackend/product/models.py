@@ -35,7 +35,7 @@ class Product(models.Model):
     description = models.TextField(verbose_name=_("Description"), null=True, blank=True)
     image = models.ImageField(upload_to='products', verbose_name=_("Image"), null=True, blank=True)
     reviews = models.IntegerField(default=0, verbose_name=_("Reviews"))
-    slogan = models.CharField(max_length=100, verbose_name=_("Slogan"))
+    slogan = models.CharField(max_length=256, verbose_name=_("Slogan"), null=True, blank=True)
     stock = models.IntegerField(default=0, verbose_name=_("Stock"))
     promotion = models.IntegerField(default=0, verbose_name=_("Promotion"))
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_("Creation Date"))
