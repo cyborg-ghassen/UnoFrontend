@@ -34,7 +34,7 @@ time.sleep(2)
 
 all_product_data = []
 for category in ["chair", "desk"]:
-    driver.get(f"{base_url}{category}")
+    driver.get(f"{base_url}{category}/page/2/")
     time.sleep(2)
 
     soup = BeautifulSoup(driver.page_source, "lxml")
