@@ -56,6 +56,7 @@ for product_url in products:
         product = Product.objects.create(**product_data)
         img_tag = product_url.select_one(".image-box img")
         img_url = f'https://bsp.com.tn{img_tag["src"]}'
+        print("Image URL:", img_url)
         img_response = requests.get(img_url)
         if img_response.status_code == 200:
             img_temp = NamedTemporaryFile(delete=True)
