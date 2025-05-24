@@ -44,51 +44,43 @@ for category_url in category_links:
     driver.get(category_url)
     time.sleep(5)
     soup = BeautifulSoup(driver.page_source, "lxml")
+    category = soup.select(".titre-frame span")[0].text.strip() if soup.select(".titre-frame span") else ""
+    if Category.objects.filter(name=category).exists():
+        category = Category.objects.filter(name=category).first()
+        print(f"Category already exists: {category}")
+    else:
+        category = Category.objects.create(name=category)
+    print(category)
 
-    sub_categories = [f'{a["href"]}' if a['href'].startswith('http') else f'{base_url}{a["href"]}' for a in soup.select(".list-prod ul li a")]
-    print(sub_categories)
-    for sub_category_url in sub_categories:
-        driver.get(sub_category_url)
-        time.sleep(5)
-
-        soup = BeautifulSoup(driver.page_source, "lxml")
-        category = soup.select(".titre-frame span")[1].text.strip() if soup.select(".titre-frame span") else ""
-        if Category.objects.filter(name=category).exists():
-            category = Category.objects.filter(name=category).first()
-            print(f"Category already exists: {category}")
+    product_links = soup.select(".list-prod ul li")
+    for product_url in product_links:
+        product_data = {
+            "name": product_url.select_one(".bloc-des").text.strip(),
+            "description": "",
+            "price": 0,
+            "slogan": "",
+            "reviews": 0,
+            "stock": 0,
+            "promotion": 0,
+        }
+        if Product.objects.filter(**product_data).exists():
+            product = Product.objects.filter(**product_data).first()
+            print(f"Product already exists: {product_data['name']}")
+            continue
         else:
-            category = Category.objects.create(name=category)
-        print(category)
+            product = Product.objects.create(**product_data)
+            product.category.add(category)
+            img_tag = product_url.select_one(".bloc-img img")
+            img_url = urljoin(f'{product_url.select_one("a")["href"]}', f'{img_tag["src"]}')
+            img_response = requests.get(img_url)
+            if img_response.status_code == 200:
+                img_temp = NamedTemporaryFile(delete=True)
+                img_temp.write(img_response.content)
+                img_temp.flush()
 
-        product_links = soup.select(".list-prod ul li")
-        for product_url in product_links:
-            product_data = {
-                "name": product_url.select_one(".bloc-des").text.strip(),
-                "description": "",
-                "price": 0,
-                "slogan": "",
-                "reviews": 0,
-                "stock": 0,
-                "promotion": 0,
-            }
-            if Product.objects.filter(**product_data).exists():
-                product = Product.objects.filter(**product_data).first()
-                print(f"Product already exists: {product_data['name']}")
-                continue
-            else:
-                product = Product.objects.create(**product_data)
-                product.category.add(category)
-                img_tag = product_url.select_one(".bloc-img img")
-                img_url = urljoin(f'{product_url.select_one("a")["href"]}', f'{img_tag["src"]}')
-                img_response = requests.get(img_url)
-                if img_response.status_code == 200:
-                    img_temp = NamedTemporaryFile(delete=True)
-                    img_temp.write(img_response.content)
-                    img_temp.flush()
+                # Save to a Django model
 
-                    # Save to a Django model
-
-                    # Assuming your model has an ImageField called 'image'
-                    product.image.save(f"{product_data['name']}.jpg", ContentFile(img_response.content), save=True)
-            print(product_data)
-            all_product_data.append(product_data)
+                # Assuming your model has an ImageField called 'image'
+                product.image.save(f"{product_data['name']}.jpg", ContentFile(img_response.content), save=True)
+        print(product_data)
+        all_product_data.append(product_data)
