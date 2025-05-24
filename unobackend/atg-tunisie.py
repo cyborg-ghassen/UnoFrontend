@@ -59,6 +59,7 @@ for product_url in products:
         print("Image URL:", img_url)
         img_response = requests.get(img_url)
         if img_response.status_code == 200:
+            print("Image response:", img_response.content)
             img_temp = NamedTemporaryFile(delete=True)
             img_temp.write(img_response.content)
             img_temp.flush()
