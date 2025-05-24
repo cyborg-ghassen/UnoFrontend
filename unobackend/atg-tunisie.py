@@ -92,5 +92,3 @@ for category_url in category_links:
                     product.image.save(f"{product_data['name']}.jpg", ContentFile(img_response.content), save=True)
             print(product_data)
             all_product_data.append(product_data)
-        driver.back()
-    driver.back()
