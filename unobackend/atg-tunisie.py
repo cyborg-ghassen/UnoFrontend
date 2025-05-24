@@ -58,6 +58,7 @@ for product_url in products:
         img_url = urljoin(f'https://bsp.com.tn{product_url.select_one(".overlay-inner a")["href"]}', f'https://bsp.com.tn{img_tag["src"]}')
         print("Image URL:", img_url)
         img_response = requests.get(img_url)
+        print("Image response status code:", img_response.status_code)
         if img_response.status_code == 200:
             print("Image response:", img_response.content)
             img_temp = NamedTemporaryFile(delete=True)
