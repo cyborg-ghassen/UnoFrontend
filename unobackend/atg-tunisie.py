@@ -41,7 +41,7 @@ print(products)
 for product_url in products:
     time.sleep(2)
     product_data = {
-        "name": product_url.select_one(".overlay-inner .name_product").text.strip() if product_url.select_one(".overlay-inner .name_product a") else "",
+        "name": product_url.select_one(".overlay-inner .name_product").text.strip() if product_url.select_one(".overlay-inner .name_product") else "",
         "description": "",
         "price": 0,
         "slogan": "",
