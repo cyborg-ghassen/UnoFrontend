@@ -70,7 +70,6 @@ for category_url in category_links:
                 "reviews": 0,
                 "stock": 0,
                 "promotion": 0,
-                "category": category,
             }
             if Product.objects.filter(**product_data).exists():
                 product = Product.objects.filter(**product_data).first()
@@ -78,6 +77,7 @@ for category_url in category_links:
                 continue
             else:
                 product = Product.objects.create(**product_data)
+                product.category.add(category)
                 img_tag = product_url.select_one(".bloc-img img")
                 img_url = urljoin(f'{product_url.select_one("a")["href"]}', f'{img_tag["src"]}')
                 print("Image URL:", img_url)
