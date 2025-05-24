@@ -45,7 +45,7 @@ for category_url in category_links:
     time.sleep(5)
     soup = BeautifulSoup(driver.page_source, "lxml")
 
-    sub_categories = [f'{a["href"]}' for a in soup.select(".list-prod ul li a")]
+    sub_categories = [f'{base_url}{a["href"]}' for a in soup.select(".list-prod ul li a")]
     print(sub_categories)
     for sub_category_url in sub_categories:
         driver.get(sub_category_url)
