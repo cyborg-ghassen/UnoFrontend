@@ -61,7 +61,6 @@ for category_url in category_links:
         print(category)
 
         product_links = soup.select(".list-prod ul li")
-        print(product_links)
         for product_url in product_links:
             product_data = {
                 "name": product_url.select_one(".bloc-des").text.strip(),
