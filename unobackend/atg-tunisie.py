@@ -55,7 +55,7 @@ for product_url in products:
     else:
         product = Product.objects.create(**product_data)
         img_tag = product_url.select_one(".image-box img")
-        img_url = f'https://bsp.com.tn{img_tag["src"]}'
+        img_url = urljoin(f'https://bsp.com.tn{product_url.select_one(".overlay-inner a")["href"]}', f'https://bsp.com.tn{img_tag["src"]}')
         print("Image URL:", img_url)
         img_response = requests.get(img_url)
         if img_response.status_code == 200:
