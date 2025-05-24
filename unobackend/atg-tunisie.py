@@ -64,7 +64,7 @@ for category_url in category_links:
         print(product_links)
         for product_url in product_links:
             product_data = {
-                "title": product_url.select_one(".bloc-des").text.strip(),
+                "name": product_url.select_one(".bloc-des").text.strip(),
                 "description": "",
                 "price": 0,
                 "slogan": "",
