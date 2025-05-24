@@ -55,7 +55,7 @@ for product_url in products:
     else:
         product = Product.objects.create(**product_data)
         img_tag = product_url.select_one(".image-box img")
-        img_url = urljoin(f"https://bsp.com.tn", f'{img_tag["src"]}')
+        img_url = urljoin(product_url.select_one(".overlay-inner .name_product")['href'], img_tag["src"])
         img_response = requests.get(img_url)
         if img_response.status_code == 200:
             img_temp = NamedTemporaryFile(delete=True)
