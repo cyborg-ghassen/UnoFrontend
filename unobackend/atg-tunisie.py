@@ -37,7 +37,6 @@ all_product_data = []
 soup = BeautifulSoup(driver.page_source, "lxml")
 
 products = soup.select(".filter-list .gallery-item")
-print(products)
 for product_url in products:
     time.sleep(2)
     product_data = {
