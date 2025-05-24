@@ -80,11 +80,8 @@ for category_url in category_links:
                 product.category.add(category)
                 img_tag = product_url.select_one(".bloc-img img")
                 img_url = urljoin(f'{product_url.select_one("a")["href"]}', f'{img_tag["src"]}')
-                print("Image URL:", img_url)
                 img_response = requests.get(img_url)
-                print("Image response status code:", img_response.status_code)
                 if img_response.status_code == 200:
-                    print("Image response:", img_response.content)
                     img_temp = NamedTemporaryFile(delete=True)
                     img_temp.write(img_response.content)
                     img_temp.flush()
