@@ -35,7 +35,7 @@ time.sleep(5)
 all_product_data = []
 
 soup = BeautifulSoup(driver.page_source, "lxml")
-category_links = [f'{base_url}{a["href"]}' for a in soup.select(".list-prod ul li a")]
+category_links = [f'{a["href"]}' if a['href'].startswith('http') else f'{base_url}{a["href"]}' for a in soup.select(".list-prod ul li a")]
 
 products = soup.select(".filter-list .gallery-item")
 print(category_links)
@@ -45,7 +45,7 @@ for category_url in category_links:
     time.sleep(5)
     soup = BeautifulSoup(driver.page_source, "lxml")
 
-    sub_categories = [f'{base_url}{a["href"]}' for a in soup.select(".list-prod ul li a")]
+    sub_categories = [f'{a["href"]}' if a['href'].startswith('http') else f'{base_url}{a["href"]}' for a in soup.select(".list-prod ul li a")]
     print(sub_categories)
     for sub_category_url in sub_categories:
         driver.get(sub_category_url)
