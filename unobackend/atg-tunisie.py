@@ -54,7 +54,7 @@ for category_url in category_links:
         soup = BeautifulSoup(driver.page_source, "lxml")
         category = soup.select(".titre-frame span")[1].text.strip() if soup.select(".titre-frame span") else ""
         if Category.objects.filter(name=category).exists():
-            category = Category.objects.filter(category=category).first()
+            category = Category.objects.filter(name=category).first()
             print(f"Category already exists: {category}")
         else:
             category = Category.objects.create(name=category)
