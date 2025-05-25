@@ -215,7 +215,7 @@ const CartModal = ({show, setShow, cartItems}) => {
                         />
                         <FormError error={errors.notes} />
                     </Form.Group>
-                    <Form.Group as={Flex} justifyContent="between" className="mt-3">
+                    <Form.Group className="mt-3 d-inline-flex">
                         <Form.Check
                             type={"radio"}
                             value={"cash_on_delivery"}
@@ -223,6 +223,7 @@ const CartModal = ({show, setShow, cartItems}) => {
                             label={"Cash à la livraison"}
                             onChange={({target}) => handleChange(target)}
                             name={"payment_method"}
+                            className={"me-3"}
                         />
                         <Form.Check
                             type={"radio"}
