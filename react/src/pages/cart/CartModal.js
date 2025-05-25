@@ -135,7 +135,7 @@ const CartModal = ({show, setShow, cartItems}) => {
                             <Flex alignItems="center">
                                 <Link to={`/products/${item?.product?.id}`}>
                                     <Image
-                                        src={item?.product?.image_url}
+                                        src={item?.product?.image}
                                         rounded
                                         className="me-3 d-none d-md-block"
                                         width="80"

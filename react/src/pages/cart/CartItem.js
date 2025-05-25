@@ -49,7 +49,7 @@ const CartItem = ({product, getItems}) => {
                 <div className="d-flex align-items-center">
                     <Link to={`/products/${product?.product?.id}`}>
                         <img
-                            src={product?.product?.image_url}
+                            src={product?.product?.image}
                             width="60"
                             alt={product?.product?.name}
                             className="img-fluid rounded-1 me-3 d-none d-md-block"
