@@ -22,6 +22,7 @@ const CartModal = ({show, setShow, cartItems}) => {
         address: "",
         phone: "",
         notes: "",
+        payment_method: "cash_on_delivery",
     })
 
     const {
@@ -96,6 +97,7 @@ const CartModal = ({show, setShow, cartItems}) => {
                 address: "",
                 phone: "",
                 notes: "",
+                payment_method: "cash_on_delivery",
             })
             delay(3000).then(() => {
                 resetTheBasket()
@@ -212,6 +214,24 @@ const CartModal = ({show, setShow, cartItems}) => {
                             placeholder={"Remarques"}
                         />
                         <FormError error={errors.notes} />
+                    </Form.Group>
+                    <Form.Group as={Flex} justifyContent="between" className="mt-3">
+                        <Form.Check
+                            type={"radio"}
+                            value={"cash_on_delivery"}
+                            checked={formData.payment_method === "cash_on_delivery"}
+                            label={"Cash à la livraison"}
+                            onChange={({target}) => handleChange(target)}
+                            name={"payment_method"}
+                        />
+                        <Form.Check
+                            type={"radio"}
+                            value={"tpe"}
+                            checked={formData.payment_method === "tpe"}
+                            label={"TPE à la livraison"}
+                            onChange={({target}) => handleChange(target)}
+                            name={"payment_method"}
+                        />
                     </Form.Group>
                 </Form>
             </Modal.Body>

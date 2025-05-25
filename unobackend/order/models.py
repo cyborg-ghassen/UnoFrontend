@@ -21,6 +21,10 @@ class Order(models.Model):
     address = models.CharField(max_length=100, verbose_name=_("Address"))
     phone = models.CharField(max_length=100, verbose_name=_("Phone"))
     notes = models.TextField(null=True, blank=True, verbose_name=_("Notes"))
+    payment_method = models.CharField(max_length=100, null=True, blank=True, verbose_name=_("Payment Method"), choices=[
+        ('tpe', _('TPE à la livraison')),
+        ('cash_on_delivery', _('Cash à la livraison')),
+    ], default='cash_on_delivery')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_("Creation Date"))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_("Update Date"))
 
