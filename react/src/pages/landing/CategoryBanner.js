@@ -45,20 +45,19 @@ const The2ndNavBar = () => {
 
     return (
         <Section
-            className="i4 py-0 content-center light"
+            className="i4 py-0 light d-flex justify-content-between align-items-center"
             position="center"
             overlay
         >
             <Navbar expand={"lg"}>
                 <Navbar.Collapse onMouseEnter={handleMouseEnter}
                                  onMouseLeave={handleMouseLeave}>
-                    <Nav navbar justify={true} >
-                        {categories?.slice(0, 4)?.map((category, index) => (
+                    <Nav navbar justify={true}>
+                        {categories?.slice(0, 5)?.map((category, index) => (
                             <BarCategories data={category} key={index}/>
                         ))}
                     </Nav>
                 </Navbar.Collapse>
-
             </Navbar>
         </Section>
     )
