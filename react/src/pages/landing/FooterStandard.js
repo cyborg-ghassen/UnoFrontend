@@ -158,11 +158,11 @@ const FooterStandard2 = () => {
 						<Row className="mt-5 mt-lg-0">
 							<Col className="mt-5 mt-md-0">
 								<FooterTitle><FontAwesomeIcon icon={faSquarePhone}/> Service Client</FooterTitle>
-								<p className={"text-white"}>(+216) 42 639 582</p>
+								<p className={"text-white"}>(+216) 22 549 842</p>
 							</Col>
 							<Col className="mt-5 mt-md-0">
-								<FooterTitle><FontAwesomeIcon icon={faShippingFast}/> Livraison rapide</FooterTitle>
-								<p className={"text-white"}>(+216) 42 639 582</p>
+								<FooterTitle><FontAwesomeIcon icon={faShippingFast}/> Livraison</FooterTitle>
+								<p className={"text-white"}>(+216) 22 549 842</p>
 								<p className={"text-white"}>info@uno.tn</p>
 							</Col>
 						</Row>
