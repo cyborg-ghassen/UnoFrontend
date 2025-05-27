@@ -4,6 +4,7 @@ import NavbarStandard from "../pages/landing/NavbarStandard";
 import CategoryBanner from "../pages/landing/CategoryBanner";
 import FooterStandard from "../pages/landing/FooterStandard";
 import {useEffect} from "react";
+import FooterStandard2 from "../pages/landing/FooterStandard";
 
 const ProductLayout = () => {
 
@@ -13,7 +14,7 @@ const ProductLayout = () => {
 			<CategoryBanner/>
 			{/*------ Main Routes ------*/}
 			<Outlet/>
-			<FooterStandard/>
+			<FooterStandard2/>
 		</div>
 	)
 }
