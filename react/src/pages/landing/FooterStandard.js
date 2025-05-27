@@ -152,22 +152,18 @@ const FooterStandard2 = () => {
 				</Row>
 				<Row>
 					<Col lg={4}>
-						<FooterTitle>Uno</FooterTitle>
 						<IconGroup className="mt-4" icons={bgWhiteIcons}/>
 					</Col>
 					<Col className="ps-lg-6 ps-xl-8">
 						<Row className="mt-5 mt-lg-0">
 							<Col className="mt-5 mt-md-0">
 								<FooterTitle><FontAwesomeIcon icon={faSquarePhone}/> Service Client</FooterTitle>
-								(+216) 42 639 582
+								<p className={"text-white"}>(+216) 42 639 582</p>
 							</Col>
 							<Col className="mt-5 mt-md-0">
 								<FooterTitle><FontAwesomeIcon icon={faShippingFast}/> Livraison rapide</FooterTitle>
-								(+216) 42 639 582
-							</Col>
-							<Col className="mt-5 mt-md-0">
-								<FooterTitle><FontAwesomeIcon icon={faPaperclip}/> Livraison rapide</FooterTitle>
-								info@uno.tn
+								<p className={"text-white"}>(+216) 42 639 582</p>
+								<p className={"text-white"}>info@uno.tn</p>
 							</Col>
 						</Row>
 					</Col>
