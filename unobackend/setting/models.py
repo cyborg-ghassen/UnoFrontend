@@ -43,7 +43,7 @@ class Link(models.Model):
 
 class SubLink(models.Model):
     name = models.CharField(max_length=100, verbose_name=_('Name'))
-    categories = models.ManyToManyField(Category, verbose_name=_('Categories'))
+    categories = models.ManyToManyField(Category, verbose_name=_('Categories'), blank=True)
     link = models.ForeignKey(Link, on_delete=models.CASCADE, verbose_name=_('Link'))
 
     @property
