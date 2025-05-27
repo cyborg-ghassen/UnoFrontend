@@ -16,6 +16,7 @@ class PosterSettingAdmin(admin.ModelAdmin):
 
 class LinkInline(admin.TabularInline):
     model = SubLink
+    filter_horizontal = ('categories',)
     extra = 0
 
 
