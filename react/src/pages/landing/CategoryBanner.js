@@ -53,7 +53,7 @@ const The2ndNavBar = () => {
                 <Navbar.Collapse onMouseEnter={handleMouseEnter}
                                  onMouseLeave={handleMouseLeave}>
                     <Nav navbar justify={true}>
-                        {categories?.slice(0, 5)?.map((category, index) => (
+                        {categories?.slice(0, 6)?.map((category, index) => (
                             <BarCategories data={category} key={index}/>
                         ))}
                     </Nav>
