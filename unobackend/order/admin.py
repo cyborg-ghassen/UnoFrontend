@@ -13,7 +13,7 @@ class ItemInline(admin.TabularInline):
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('user', 'status', 'full_name', 'email', 'phone', 'total_cost')
+    list_display = ('user', 'status', 'full_name', 'email', 'phone', 'payment_method', 'total_cost')
     inlines = [ItemInline]
 
     actions = ['approve_orders', 'reject_orders']

@@ -25,6 +25,10 @@ class Order(models.Model):
         ('tpe', _('TPE à la livraison')),
         ('cash_on_delivery', _('Cash à la livraison')),
     ], default='cash_on_delivery')
+    shipment_method = models.CharField(max_length=100, null=True, blank=True, verbose_name=_("Shipment Method"), choices=[
+        ('domicile', _('Livraison à domicile')),
+        ('magasin', _('Livraison au magasin')),
+    ], default='domicile')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_("Creation Date"))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_("Update Date"))
 
