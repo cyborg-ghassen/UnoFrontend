@@ -41,6 +41,7 @@ urlpatterns = [
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) if not os.environ.get(
     'USE_S3') == 'on' else []
 
+admin.site.site_url = ''
 admin.site.site_header = _("UNO Admin")
 admin.site.site_title = _("UNO Admin Portal")
 admin.site.index_title = _("Welcome to Uno Portal")

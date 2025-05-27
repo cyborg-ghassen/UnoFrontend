@@ -13,8 +13,8 @@ class SiteSetting(models.Model):
     site = models.OneToOneField(Site, on_delete=models.CASCADE, verbose_name=_('Site'))
 
     class Meta:
-        verbose_name = _('Site Setting')
-        verbose_name_plural = _('Site Settings')
+        verbose_name = _('Side Banner')
+        verbose_name_plural = _('Side Banners')
 
     def __str__(self):
         return self.name
