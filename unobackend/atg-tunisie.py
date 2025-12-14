@@ -74,13 +74,6 @@ for category_url in category_links:
             img_url = urljoin(f'{product_url.select_one("a")["href"]}', f'{img_tag["src"]}')
             img_response = requests.get(img_url)
             if img_response.status_code == 200:
-                img_temp = NamedTemporaryFile(delete=True)
-                img_temp.write(img_response.content)
-                img_temp.flush()
-
-                # Save to a Django model
-
-                # Assuming your model has an ImageField called 'image'
                 product.image.save(f"{product_data['name']}.jpg", ContentFile(img_response.content), save=True)
         print(product_data)
         all_product_data.append(product_data)

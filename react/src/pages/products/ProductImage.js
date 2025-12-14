@@ -11,7 +11,7 @@ const ProductSingleImage = ({id, image, name, layout}) => {
         <Link
             to={`/products/${id}`}
             className="d-block h-sm-100"
-            key={image.id}
+            key={id}
         >
             <Image
                 rounded={layout === 'list'}

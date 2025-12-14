@@ -22,6 +22,10 @@ google-auth-httplib2 = "*"
 google-api-python-client = "*"
 google-auth-oauthlib = "*"
 django-storages = {extras = ["google"], version = "*"}
+openpyxl = "*"
+pandas = "*"
+lxml = "*"
+whitenoise = "*"
 
 [dev-packages]
 
